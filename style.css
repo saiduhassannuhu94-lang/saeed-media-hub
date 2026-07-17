@@ -197,3 +197,39 @@ line-height:1.8;
     color:#cfcfcf;
     padding:0 20px 25px;
     }
+/* =========================
+   CONTACT SECTION
+========================= */
+
+.contact{
+    padding:100px 10%;
+    background:#101d35;
+    text-align:center;
+}
+
+.contact h2{
+    font-size:40px;
+    color:#00E676;
+    margin-bottom:20px;
+}
+
+.contact p{
+    color:#d6d6d6;
+    font-size:18px;
+    margin:15px 0;
+}
+
+.contact-info{
+    margin-top:40px;
+}
+
+.contact-info a{
+    color:#00E676;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.contact-info a:hover{
+    color:white;
+    }
