@@ -148,3 +148,52 @@ margin-bottom:15px;
 color:#d6d6d6;
 line-height:1.8;
     }
+/* =========================
+   PORTFOLIO SECTION
+========================= */
+
+.portfolio{
+    padding:100px 10%;
+    background:#0A1628;
+    text-align:center;
+}
+
+.portfolio h2{
+    font-size:40px;
+    color:#00E676;
+    margin-bottom:50px;
+}
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.portfolio-card{
+    background:#101d35;
+    border-radius:15px;
+    overflow:hidden;
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.portfolio-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,230,118,.25);
+}
+
+.portfolio-card img{
+    width:100%;
+    display:block;
+}
+
+.portfolio-card h3{
+    color:white;
+    margin:20px 0 10px;
+}
+
+.portfolio-card p{
+    color:#cfcfcf;
+    padding:0 20px 25px;
+    }
