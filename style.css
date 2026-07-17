@@ -233,3 +233,42 @@ line-height:1.8;
 .contact-info a:hover{
     color:white;
     }
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+background:#08111f;
+padding:50px 20px;
+text-align:center;
+}
+
+.footer h3{
+color:#00E676;
+margin-bottom:15px;
+}
+
+.footer p{
+color:#cfcfcf;
+}
+
+.footer-links{
+margin:25px 0;
+}
+
+.footer-links a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+transition:.3s;
+}
+
+.footer-links a:hover{
+color:#00E676;
+}
+
+.copyright{
+margin-top:20px;
+font-size:14px;
+color:#888;
+    }
