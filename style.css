@@ -272,3 +272,36 @@ margin-top:20px;
 font-size:14px;
 color:#888;
     }
+/* PREMIUM NAVBAR */
+
+.navbar{
+position:sticky;
+top:0;
+z-index:999;
+background:rgba(10,22,40,.92);
+backdrop-filter:blur(12px);
+box-shadow:0 5px 20px rgba(0,0,0,.35);
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+.nav-links a{
+position:relative;
+}
+
+.nav-links a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-5px;
+width:0%;
+height:2px;
+background:#00E676;
+transition:.4s;
+}
+
+.nav-links a:hover::after{
+width:100%;
+    }
