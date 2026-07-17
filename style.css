@@ -347,3 +347,51 @@ transition:all .8s ease;
 opacity:1;
 transform:translateY(0);
 }
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width:768px){
+
+.navbar{
+flex-direction:column;
+padding:15px;
+}
+
+.nav-links{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+margin-top:15px;
+}
+
+.hero h1{
+font-size:38px;
+text-align:center;
+}
+
+.hero h2{
+font-size:22px;
+text-align:center;
+}
+
+.hero p{
+font-size:16px;
+text-align:center;
+}
+
+.hero-buttons{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.about,
+.services,
+.portfolio,
+.contact{
+padding:70px 7%;
+}
+
+        }
