@@ -15,3 +15,26 @@ loader.style.display = "none";
 }, 1000);
 
 });
+const observer = new IntersectionObserver((entries)=>{
+
+entries.forEach((entry)=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+const hiddenElements=document.querySelectorAll("section");
+
+hiddenElements.forEach((el)=>{
+
+el.classList.add("hidden");
+
+observer.observe(el);
+
+});
