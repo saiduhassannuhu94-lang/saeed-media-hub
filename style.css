@@ -431,3 +431,30 @@ flex-direction:column;
     color:#00E676;
     border-bottom:2px solid #00E676;
     }
+.nav-links{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:80px;
+    right:20px;
+    background:#0A1628;
+    width:220px;
+    border-radius:10px;
+    padding:15px;
+}
+
+.nav-links.active{
+    display:flex;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    padding:12px;
+}
+
+.menu-toggle{
+    font-size:35px;
+    color:white;
+    cursor:pointer;
+    }
