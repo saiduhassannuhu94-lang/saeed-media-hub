@@ -173,3 +173,26 @@ e.preventDefault();
 alert("Thank you! Your message has been received.");
 
 });
+const testimonials=document.querySelectorAll(".testimonial");
+
+let currentTestimonial=0;
+
+function showTestimonials(){
+
+testimonials.forEach(t=>t.classList.remove("active"));
+
+testimonials[currentTestimonial].classList.add("active");
+
+currentTestimonial++;
+
+if(currentTestimonial>=testimonials.length){
+
+currentTestimonial=0;
+
+}
+
+}
+
+showTestimonials();
+
+setInterval(showTestimonials,4000);
