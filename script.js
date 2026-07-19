@@ -73,4 +73,3 @@ window.addEventListener("scroll", () => {
     });
 
 });
-<button id="topBtn">↑</button><button id="topBtn">↑</button>
