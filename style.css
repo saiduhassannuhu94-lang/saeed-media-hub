@@ -593,3 +593,45 @@ background:#ffffff;
 color:#111;
 box-shadow:0 5px 20px rgba(0,0,0,.15);
     }
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+padding:60px 8%;
+text-align:center;
+background:#10182a;
+}
+
+.stat-box{
+background:#16213e;
+padding:30px;
+border-radius:15px;
+transition:.3s;
+}
+
+.stat-box:hover{
+transform:translateY(-10px);
+}
+
+.stat-box h2{
+font-size:40px;
+color:#00E676;
+margin-bottom:10px;
+}
+
+.stat-box p{
+font-size:18px;
+color:#fff;
+}
+
+body.light-mode .stats{
+background:#f5f5f5;
+}
+
+body.light-mode .stat-box{
+background:#fff;
+}
+
+body.light-mode .stat-box p{
+color:#111;
+}
