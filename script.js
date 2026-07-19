@@ -39,10 +39,10 @@ observer.observe(el);
 
 });
 const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.querySelector(".nav-links");
+const navMenu = document.querySelector(".nav-links");
 
 menuToggle.addEventListener("click", () => {
-navLinks.classList.toggle("active");
+navMenu.classList.toggle("active");
 });
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-links a");
