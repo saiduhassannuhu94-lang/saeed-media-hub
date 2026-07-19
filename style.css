@@ -458,3 +458,19 @@ flex-direction:column;
     color:white;
     cursor:pointer;
     }
+.portfolio-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.portfolio-card{
+    transition:.3s;
+    overflow:hidden;
+}
+
+.portfolio-card:hover{
+    transform:translateY(-10px);
+    }
