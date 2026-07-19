@@ -108,3 +108,32 @@ lightbox.style.display="none";
 }
 
 };
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+
+document.body.classList.toggle("light-mode");
+
+if(document.body.classList.contains("light-mode")){
+
+themeToggle.innerHTML="☀️";
+
+localStorage.setItem("theme","light");
+
+}else{
+
+themeToggle.innerHTML="🌙";
+
+localStorage.setItem("theme","dark");
+
+}
+
+});
+
+if(localStorage.getItem("theme")==="light"){
+
+document.body.classList.add("light-mode");
+
+themeToggle.innerHTML="☀️";
+
+}
