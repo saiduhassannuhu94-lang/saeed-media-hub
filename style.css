@@ -479,4 +479,27 @@ flex-direction:column;
 .portfolio-card:hover img{
     transform:scale(1.05);
     }
-.
+
+.whatsapp-float{
+position:fixed;
+bottom:25px;
+right:20px;
+width:60px;
+height:60px;
+background:#25D366;
+color:white;
+font-size:30px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+box-shadow:0 8px 20px rgba(0,0,0,.3);
+z-index:9999;
+transition:.3s;
+}
+
+.whatsapp-float:hover{
+transform:scale(1.1);
+background:#1ebe5d;
+    }
