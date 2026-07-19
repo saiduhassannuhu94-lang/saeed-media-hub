@@ -215,3 +215,28 @@ setTimeout(typeWriter,70);
 }
 
 window.addEventListener("load",typeWriter);
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+
+e.preventDefault();
+
+emailjs.sendForm(
+"service_6djvlr5",
+"template_i0paeys",
+this
+)
+.then(function () {
+
+alert("✅ Message Sent Successfully!");
+
+document.getElementById("contact-form").reset();
+
+})
+.catch(function (error) {
+
+alert("❌ Failed to send message!");
+
+console.log(error);
+
+});
+
+});
