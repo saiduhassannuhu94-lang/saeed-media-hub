@@ -771,3 +771,30 @@ border-color:transparent;
 }
 
     }
+.social-icons{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+margin:25px 0;
+
+}
+
+.social-icons a{
+
+font-size:30px;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+.social-icons a:hover{
+
+transform:translateY(-8px) scale(1.2);
+
+    }
