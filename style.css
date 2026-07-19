@@ -748,3 +748,26 @@ body.light-mode .testimonial{
 background:white;
 color:#111;
     }
+#typing{
+
+display:inline-block;
+
+border-right:3px solid #00E676;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+animation:blink .7s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+
+border-color:transparent;
+
+}
+
+    }
