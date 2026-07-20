@@ -227,10 +227,8 @@ document.getElementById("contact-form").reset();
 })
 .catch(function (error) {
 
-alert("❌ Failed to send message!");
+alert("Error: " + JSON.stringify(error));
 
 console.log(error);
-
-});
 
 });
