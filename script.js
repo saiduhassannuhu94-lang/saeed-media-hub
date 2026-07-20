@@ -215,7 +215,7 @@ e.preventDefault();
 
 emailjs.sendForm(
 "service_6djvlr5",
-"template_hiw8vcd",
+"template_amkqcfo",
 this
 )
 .then(function () {
