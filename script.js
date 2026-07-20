@@ -6,13 +6,15 @@ setTimeout(() => {
 
 loader.style.opacity = "0";
 
+loader.style.visibility = "hidden";
+
 setTimeout(() => {
 
 loader.style.display = "none";
 
 }, 600);
 
-}, 1000);
+}, 2500);
 
 });
 const observer = new IntersectionObserver((entries)=>{
