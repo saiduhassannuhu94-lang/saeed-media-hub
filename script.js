@@ -1,40 +1,40 @@
 /* =========================================
-   SAEED MEDIA HUB — SCRIPT.JS V2.0
+   SAEED MEDIA HUB — SCRIPT.JS V3.0
+   PREMIUM CONTACT + UI SYSTEM
    ========================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================================
-   1. PREMIUM PAGE LOADER
-   ========================================= */
-
-window.addEventListener("load", () => {
+    /* =========================================
+       1. PREMIUM PAGE LOADER
+       ========================================= */
 
     const loader = document.getElementById("loader");
 
     if (loader) {
 
-        setTimeout(() => {
-
-            loader.style.opacity = "0";
-            loader.style.visibility = "hidden";
-            loader.style.pointerEvents = "none";
+        window.addEventListener("load", () => {
 
             setTimeout(() => {
-                loader.style.display = "none";
-            }, 700);
 
-        }, 1500);
+                loader.style.opacity = "0";
+                loader.style.visibility = "hidden";
+                loader.style.pointerEvents = "none";
+
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 700);
+
+            }, 1200);
+
+        });
 
     }
 
-});
 
-
-/* =========================================
-   2. SCROLL REVEAL ANIMATION
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+    /* =========================================
+       2. SCROLL REVEAL ANIMATION
+       ========================================= */
 
     const animatedSections = document.querySelectorAll(
         "section:not(.hero)"
@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if ("IntersectionObserver" in window) {
 
-        const observer = new IntersectionObserver(
-            (entries) => {
+        const sectionObserver = new IntersectionObserver(
+            (entries, observer) => {
 
                 entries.forEach((entry) => {
 
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             section.classList.add("hidden");
 
-            observer.observe(section);
+            sectionObserver.observe(section);
 
         });
 
@@ -81,17 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
 
+    /* =========================================
+       3. MOBILE NAVIGATION
+       ========================================= */
 
-/* =========================================
-   3. MOBILE NAVIGATION
-   ========================================= */
+    const menuToggle =
+        document.getElementById("menu-toggle");
 
-document.addEventListener("DOMContentLoaded", () => {
+    const navMenu =
+        document.querySelector(".nav-links");
 
-    const menuToggle = document.getElementById("menu-toggle");
-    const navMenu = document.querySelector(".nav-links");
 
     if (menuToggle && navMenu) {
 
@@ -104,9 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        const navItems = navMenu.querySelectorAll("a");
-
-        navItems.forEach((link) => {
+        navMenu.querySelectorAll("a").forEach((link) => {
 
             link.addEventListener("click", () => {
 
@@ -120,274 +118,245 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-});
+
+    /* =========================================
+       4. ACTIVE NAVIGATION ON SCROLL
+       ========================================= */
+
+    const sections =
+        document.querySelectorAll("section[id]");
+
+    const navLinks =
+        document.querySelectorAll(".nav-links a");
 
 
-/* =========================================
-   4. ACTIVE NAVIGATION ON SCROLL
-   ========================================= */
+    function updateActiveNavigation() {
 
-window.addEventListener("scroll", () => {
+        let currentSection = "";
 
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-links a");
+        sections.forEach((section) => {
 
-    let currentSection = "";
+            const sectionTop =
+                section.offsetTop - 150;
 
-    sections.forEach((section) => {
+            if (window.scrollY >= sectionTop) {
 
-        const sectionTop =
-            section.offsetTop - 150;
+                currentSection =
+                    section.getAttribute("id");
 
-        if (window.scrollY >= sectionTop) {
+            }
 
-            currentSection = section.getAttribute("id");
-
-        }
-
-    });
-
-    navLinks.forEach((link) => {
-
-        link.classList.remove("active");
-
-        const linkTarget =
-            link.getAttribute("href");
-
-        if (
-            linkTarget === "#" + currentSection
-        ) {
-
-            link.classList.add("active");
-
-        }
-
-    });
-
-});
+        });
 
 
-/* =========================================
-   5. DARK / LIGHT MODE
-   ========================================= */
+        navLinks.forEach((link) => {
 
-document.addEventListener("DOMContentLoaded", () => {
+            link.classList.remove("active");
 
-    const themeToggle =
-        document.getElementById("themeToggle");
+            if (
+                link.getAttribute("href") ===
+                "#" + currentSection
+            ) {
 
-    if (!themeToggle) return;
+                link.classList.add("active");
 
+            }
 
-    const savedTheme =
-        localStorage.getItem("theme");
-
-
-    if (savedTheme === "light") {
-
-        document.body.classList.add("light-mode");
-
-        themeToggle.innerHTML = "☀️";
-
-    } else {
-
-        themeToggle.innerHTML = "🌙";
+        });
 
     }
 
 
-    themeToggle.addEventListener("click", () => {
+    window.addEventListener(
+        "scroll",
+        updateActiveNavigation
+    );
 
-        document.body.classList.toggle("light-mode");
+
+    updateActiveNavigation();
 
 
-        if (
-            document.body.classList.contains("light-mode")
-        ) {
+    /* =========================================
+       5. DARK / LIGHT MODE
+       ========================================= */
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+
+    if (themeToggle) {
+
+        const savedTheme =
+            localStorage.getItem("theme");
+
+
+        if (savedTheme === "light") {
+
+            document.body.classList.add(
+                "light-mode"
+            );
 
             themeToggle.innerHTML = "☀️";
-
-            localStorage.setItem(
-                "theme",
-                "light"
-            );
 
         } else {
 
             themeToggle.innerHTML = "🌙";
 
-            localStorage.setItem(
-                "theme",
-                "dark"
-            );
-
         }
 
-    });
 
-});
+        themeToggle.addEventListener(
+            "click",
+            () => {
+
+                document.body.classList.toggle(
+                    "light-mode"
+                );
 
 
-/* =========================================
-   6. ANIMATED COUNTERS
-   ========================================= */
+                const isLight =
+                    document.body.classList.contains(
+                        "light-mode"
+                    );
 
-document.addEventListener("DOMContentLoaded", () => {
+
+                themeToggle.innerHTML =
+                    isLight ? "☀️" : "🌙";
+
+
+                localStorage.setItem(
+                    "theme",
+                    isLight
+                        ? "light"
+                        : "dark"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       6. ANIMATED COUNTERS
+       ========================================= */
 
     const counters =
         document.querySelectorAll(".counter");
 
 
-    if (!counters.length) return;
+    if (counters.length) {
 
+        const animateCounter = (counter) => {
 
-    const animateCounter = (counter) => {
-
-        const target =
-            Number(
-                counter.getAttribute("data-target")
-            );
-
-
-        if (isNaN(target)) return;
-
-
-        let current = 0;
-
-        const duration = 1800;
-
-        const startTime =
-            performance.now();
-
-
-        const updateCounter = (currentTime) => {
-
-            const elapsed =
-                currentTime - startTime;
-
-
-            const progress =
-                Math.min(
-                    elapsed / duration,
-                    1
+            const target =
+                Number(
+                    counter.getAttribute(
+                        "data-target"
+                    )
                 );
 
 
-            const value =
-                Math.floor(
-                    progress * target
-                );
+            if (isNaN(target)) return;
 
 
-            counter.textContent =
-                value;
+            let current = 0;
+
+            const duration = 1800;
+
+            const startTime =
+                performance.now();
 
 
-            if (progress < 1) {
+            function updateCounter(currentTime) {
 
-                requestAnimationFrame(
-                    updateCounter
-                );
+                const elapsed =
+                    currentTime - startTime;
 
-            } else {
+
+                const progress =
+                    Math.min(
+                        elapsed / duration,
+                        1
+                    );
+
+
+                const value =
+                    Math.floor(
+                        progress * target
+                    );
+
 
                 counter.textContent =
-                    target + "+";
+                    value;
+
+
+                if (progress < 1) {
+
+                    requestAnimationFrame(
+                        updateCounter
+                    );
+
+                } else {
+
+                    counter.textContent =
+                        target + "+";
+
+                }
 
             }
+
+
+            requestAnimationFrame(
+                updateCounter
+            );
 
         };
 
 
-        requestAnimationFrame(
-            updateCounter
-        );
+        if ("IntersectionObserver" in window) {
 
-    };
+            const counterObserver =
+                new IntersectionObserver(
+                    (entries, observer) => {
 
+                        entries.forEach((entry) => {
 
-    if ("IntersectionObserver" in window) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-        const counterObserver =
-            new IntersectionObserver(
-                (entries, observer) => {
+                                animateCounter(
+                                    entry.target
+                                );
 
-                    entries.forEach((entry) => {
+                                observer.unobserve(
+                                    entry.target
+                                );
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                            }
 
-                            animateCounter(
-                                entry.target
-                            );
+                        });
 
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.5
-                }
-            );
+                    },
+                    {
+                        threshold: 0.5
+                    }
+                );
 
 
-        counters.forEach((counter) => {
+            counters.forEach((counter) => {
 
-            counterObserver.observe(
-                counter
-            );
+                counterObserver.observe(
+                    counter
+                );
 
-        });
+            });
 
-    } else {
+        } else {
 
-        counters.forEach(
-            animateCounter
-        );
-
-    }
-
-});
-
-
-/* =========================================
-   7. TYPING EFFECT
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const typingElement =
-        document.getElementById("typing");
-
-
-    if (!typingElement) return;
-
-
-    const text =
-        "Empowering Creativity Through AI & Technology";
-
-
-    let index = 0;
-
-
-    function typeWriter() {
-
-        if (index < text.length) {
-
-            typingElement.textContent +=
-                text.charAt(index);
-
-            index++;
-
-            setTimeout(
-                typeWriter,
-                70
+            counters.forEach(
+                animateCounter
             );
 
         }
@@ -395,19 +364,56 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    setTimeout(
-        typeWriter,
-        1800
-    );
+    /* =========================================
+       7. TYPING EFFECT
+       ========================================= */
 
-});
+    const typingElement =
+        document.getElementById("typing");
 
 
-/* =========================================
-   8. PORTFOLIO LIGHTBOX
-   ========================================= */
+    if (typingElement) {
 
-document.addEventListener("DOMContentLoaded", () => {
+        const text =
+            "Empowering Creativity Through AI & Technology";
+
+
+        let index = 0;
+
+
+        function typeWriter() {
+
+            if (
+                index <
+                text.length
+            ) {
+
+                typingElement.textContent +=
+                    text.charAt(index);
+
+                index++;
+
+                setTimeout(
+                    typeWriter,
+                    70
+                );
+
+            }
+
+        }
+
+
+        setTimeout(
+            typeWriter,
+            1500
+        );
+
+    }
+
+
+    /* =========================================
+       8. PORTFOLIO LIGHTBOX
+       ========================================= */
 
     const portfolioImages =
         document.querySelectorAll(
@@ -434,42 +440,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     if (
-        !portfolioImages.length ||
-        !lightbox ||
-        !lightboxImg
-    ) return;
+        portfolioImages.length &&
+        lightbox &&
+        lightboxImg
+    ) {
+
+        portfolioImages.forEach((image) => {
+
+            image.style.cursor =
+                "pointer";
 
 
-    portfolioImages.forEach((image) => {
+            image.addEventListener(
+                "click",
+                () => {
 
-        image.style.cursor =
-            "pointer";
+                    lightbox.style.display =
+                        "flex";
+
+                    lightboxImg.src =
+                        image.src;
+
+                }
+            );
+
+        });
 
 
-        image.addEventListener(
+        if (closeLightbox) {
+
+            closeLightbox.addEventListener(
+                "click",
+                () => {
+
+                    lightbox.style.display =
+                        "none";
+
+                }
+            );
+
+        }
+
+
+        lightbox.addEventListener(
             "click",
-            () => {
+            (event) => {
 
-                lightbox.style.display =
-                    "flex";
+                if (
+                    event.target ===
+                    lightbox
+                ) {
 
-                lightboxImg.src =
-                    image.src;
+                    lightbox.style.display =
+                        "none";
 
-            }
-        );
-
-    });
-
-
-    if (closeLightbox) {
-
-        closeLightbox.addEventListener(
-            "click",
-            () => {
-
-                lightbox.style.display =
-                    "none";
+                }
 
             }
         );
@@ -477,30 +502,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    lightbox.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                event.target === lightbox
-            ) {
-
-                lightbox.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   9. TESTIMONIAL SLIDER
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+    /* =========================================
+       9. TESTIMONIAL SLIDER
+       ========================================= */
 
     const testimonials =
         document.querySelectorAll(
@@ -508,48 +512,27 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    if (!testimonials.length) return;
+    if (testimonials.length) {
+
+        let currentTestimonial = 0;
 
 
-    let currentTestimonial = 0;
+        function showTestimonial(index) {
+
+            testimonials.forEach(
+                (testimonial) => {
+
+                    testimonial.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
 
 
-    function showTestimonial(index) {
-
-        testimonials.forEach(
-            (testimonial) => {
-
-                testimonial.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-        testimonials[index].classList.add(
-            "active"
-        );
-
-    }
-
-
-    showTestimonial(
-        currentTestimonial
-    );
-
-
-    setInterval(() => {
-
-        currentTestimonial++;
-
-
-        if (
-            currentTestimonial >=
-            testimonials.length
-        ) {
-
-            currentTestimonial = 0;
+            testimonials[index].classList.add(
+                "active"
+            );
 
         }
 
@@ -558,16 +541,124 @@ document.addEventListener("DOMContentLoaded", () => {
             currentTestimonial
         );
 
-    }, 4000);
 
-});
+        setInterval(() => {
+
+            currentTestimonial++;
 
 
-/* =========================================
-   10. EMAILJS CONTACT FORM
-   ========================================= */
+            if (
+                currentTestimonial >=
+                testimonials.length
+            ) {
 
-document.addEventListener("DOMContentLoaded", () => {
+                currentTestimonial = 0;
+
+            }
+
+
+            showTestimonial(
+                currentTestimonial
+            );
+
+        }, 4000);
+
+    }
+
+
+    /* =========================================
+       10. PREMIUM NOTIFICATION SYSTEM
+       ========================================= */
+
+    function showNotification(
+        message,
+        type = "success"
+    ) {
+
+        const notification =
+            document.createElement(
+                "div"
+            );
+
+
+        notification.className =
+            `smh-notification ${type}`;
+
+
+        const icon =
+            type === "success"
+                ? "✅"
+                : "❌";
+
+
+        notification.innerHTML = `
+            <span class="notification-icon">
+                ${icon}
+            </span>
+
+            <span class="notification-message">
+                ${message}
+            </span>
+
+            <button class="notification-close">
+                ×
+            </button>
+        `;
+
+
+        document.body.appendChild(
+            notification
+        );
+
+
+        requestAnimationFrame(() => {
+
+            notification.classList.add(
+                "show"
+            );
+
+        });
+
+
+        const closeButton =
+            notification.querySelector(
+                ".notification-close"
+            );
+
+
+        const removeNotification = () => {
+
+            notification.classList.remove(
+                "show"
+            );
+
+
+            setTimeout(() => {
+
+                notification.remove();
+
+            }, 400);
+
+        };
+
+
+        closeButton.addEventListener(
+            "click",
+            removeNotification
+        );
+
+
+        setTimeout(
+            removeNotification,
+            5000
+        );
+
+    }
+
+
+    /* =========================================
+       11. EMAILJS CONTACT FORM V3
+       ========================================= */
 
     const contactForm =
         document.getElementById(
@@ -575,89 +666,220 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    if (!contactForm) return;
+    if (contactForm) {
+
+        contactForm.addEventListener(
+            "submit",
+            async (event) => {
+
+                event.preventDefault();
 
 
-    contactForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-
-            const submitButton =
-                contactForm.querySelector(
-                    "button[type='submit']"
-                );
+                const submitButton =
+                    contactForm.querySelector(
+                        "button[type='submit']"
+                    );
 
 
-            if (!submitButton) return;
+                if (!submitButton) return;
 
 
-            const originalText =
-                submitButton.innerHTML;
+                const nameInput =
+                    contactForm.querySelector(
+                        '[name="user_name"]'
+                    );
 
 
-            submitButton.disabled = true;
-
-            submitButton.innerHTML =
-                "Sending...";
-
-
-            try {
-
-                await emailjs.sendForm(
-
-                    "service_6djvlr5",
-
-                    "template_amkqcfo",
-
-                    contactForm
-
-                );
+                const emailInput =
+                    contactForm.querySelector(
+                        '[name="user_email"]'
+                    );
 
 
-                alert(
-                    "✅ Message sent successfully!"
-                );
+                const subjectInput =
+                    contactForm.querySelector(
+                        '[name="subject"]'
+                    );
 
 
-                contactForm.reset();
+                const messageInput =
+                    contactForm.querySelector(
+                        '[name="message"]'
+                    );
 
 
-            } catch (error) {
+                if (
+                    !nameInput ||
+                    !emailInput ||
+                    !subjectInput ||
+                    !messageInput
+                ) {
 
-                console.error(
-                    "EmailJS Error:",
-                    error
-                );
+                    showNotification(
+                        "Please complete the contact form correctly.",
+                        "error"
+                    );
+
+                    return;
+
+                }
 
 
-                alert(
-                    "❌ Failed to send message. Please try again."
-                );
+                const name =
+                    nameInput.value.trim();
 
-            } finally {
+
+                const email =
+                    emailInput.value.trim();
+
+
+                const subject =
+                    subjectInput.value.trim();
+
+
+                const message =
+                    messageInput.value.trim();
+
+
+                if (
+                    name.length < 2
+                ) {
+
+                    showNotification(
+                        "Please enter your full name.",
+                        "error"
+                    );
+
+                    nameInput.focus();
+
+                    return;
+
+                }
+
+
+                if (
+                    !emailInput.checkValidity()
+                ) {
+
+                    showNotification(
+                        "Please enter a valid email address.",
+                        "error"
+                    );
+
+                    emailInput.focus();
+
+                    return;
+
+                }
+
+
+                if (
+                    subject.length < 2
+                ) {
+
+                    showNotification(
+                        "Please enter a subject.",
+                        "error"
+                    );
+
+                    subjectInput.focus();
+
+                    return;
+
+                }
+
+
+                if (
+                    message.length < 10
+                ) {
+
+                    showNotification(
+                        "Your message must be at least 10 characters.",
+                        "error"
+                    );
+
+                    messageInput.focus();
+
+                    return;
+
+                }
+
+
+                const originalText =
+                    submitButton.innerHTML;
+
 
                 submitButton.disabled =
-                    false;
+                    true;
+
 
                 submitButton.innerHTML =
-                    originalText;
+                    "⏳ Sending...";
+
+
+                submitButton.style.opacity =
+                    "0.7";
+
+
+                try {
+
+                    await emailjs.sendForm(
+
+                        "service_6djvlr5",
+
+                        "template_amkqcfo",
+
+                        contactForm
+
+                    );
+
+
+                    showNotification(
+                        "Your message has been sent successfully!",
+                        "success"
+                    );
+
+
+                    contactForm.reset();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "EmailJS Error:",
+                        error
+                    );
+
+
+                    showNotification(
+                        "Failed to send your message. Please try again.",
+                        "error"
+                    );
+
+                } finally {
+
+                    submitButton.disabled =
+                        false;
+
+
+                    submitButton.innerHTML =
+                        originalText;
+
+
+                    submitButton.style.opacity =
+                        "1";
+
+                }
 
             }
+        );
 
-        }
-    );
-
-});
+    }
 
 
-/* =========================================
-   11. BACK TO TOP BUTTON
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+    /* =========================================
+       12. BACK TO TOP BUTTON
+       ========================================= */
 
     const topButton =
         document.getElementById(
@@ -665,64 +887,62 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    if (!topButton) return;
+    if (topButton) {
 
+        window.addEventListener(
+            "scroll",
+            () => {
 
-    window.addEventListener(
-        "scroll",
-        () => {
+                if (
+                    window.scrollY >
+                    400
+                ) {
 
-            if (
-                window.scrollY > 400
-            ) {
+                    topButton.classList.add(
+                        "show"
+                    );
 
-                topButton.classList.add(
-                    "show"
-                );
+                } else {
 
-            } else {
+                    topButton.classList.remove(
+                        "show"
+                    );
 
-                topButton.classList.remove(
-                    "show"
-                );
+                }
 
             }
-
-        }
-    );
+        );
 
 
-    topButton.addEventListener(
-        "click",
-        () => {
+        topButton.addEventListener(
+            "click",
+            () => {
 
-            window.scrollTo({
+                window.scrollTo({
 
-                top: 0,
+                    top: 0,
 
-                behavior: "smooth"
+                    behavior: "smooth"
 
-            });
+                });
 
-        }
-    );
+            }
+        );
 
-});
+    }
 
 
-/* =========================================
-   12. SMOOTH SCROLL
-   ========================================= */
+    /* =========================================
+       13. SMOOTH SCROLL
+       ========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    const links =
+    const smoothLinks =
         document.querySelectorAll(
             'a[href^="#"]'
         );
 
 
-    links.forEach((link) => {
+    smoothLinks.forEach((link) => {
 
         link.addEventListener(
             "click",
@@ -735,8 +955,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 if (
-                    targetId === "#" ||
-                    !targetId
+                    !targetId ||
+                    targetId === "#"
                 ) return;
 
 
@@ -772,5 +992,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================
-   SAEED MEDIA HUB V2.0 COMPLETE
+   SAEED MEDIA HUB — V3.0 COMPLETE
    ========================================= */
