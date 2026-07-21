@@ -1,90 +1,46 @@
 /* =========================================
    SAEED MEDIA HUB — SCRIPT.JS V3.0
-   PREMIUM CONTACT + UI SYSTEM
+   PREMIUM + MOBILE RESPONSIVE
+   ========================================= */
+
+
+/* =========================================
+   1. PREMIUM PAGE LOADER
+   ========================================= */
+
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("loader");
+
+    if (!loader) return;
+
+    setTimeout(() => {
+
+        loader.style.opacity = "0";
+        loader.style.visibility = "hidden";
+        loader.style.pointerEvents = "none";
+
+        setTimeout(() => {
+
+            loader.style.display = "none";
+
+        }, 700);
+
+    }, 1200);
+
+});
+
+
+/* =========================================
+   2. DOM READY
    ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       1. PREMIUM PAGE LOADER
-       ========================================= */
 
-    const loader = document.getElementById("loader");
-
-    if (loader) {
-
-        window.addEventListener("load", () => {
-
-            setTimeout(() => {
-
-                loader.style.opacity = "0";
-                loader.style.visibility = "hidden";
-                loader.style.pointerEvents = "none";
-
-                setTimeout(() => {
-                    loader.style.display = "none";
-                }, 700);
-
-            }, 1200);
-
-        });
-
-    }
-
-
-    /* =========================================
-       2. SCROLL REVEAL ANIMATION
-       ========================================= */
-
-    const animatedSections = document.querySelectorAll(
-        "section:not(.hero)"
-    );
-
-    if ("IntersectionObserver" in window) {
-
-        const sectionObserver = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach((entry) => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("show");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.15
-            }
-        );
-
-        animatedSections.forEach((section) => {
-
-            section.classList.add("hidden");
-
-            sectionObserver.observe(section);
-
-        });
-
-    } else {
-
-        animatedSections.forEach((section) => {
-
-            section.classList.add("show");
-
-        });
-
-    }
-
-
-    /* =========================================
+    /* =====================================
        3. MOBILE NAVIGATION
-       ========================================= */
+       ===================================== */
 
     const menuToggle =
         document.getElementById("menu-toggle");
@@ -104,7 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        navMenu.querySelectorAll("a").forEach((link) => {
+        const navItems =
+            navMenu.querySelectorAll("a");
+
+
+        navItems.forEach((link) => {
 
             link.addEventListener("click", () => {
 
@@ -119,27 +79,91 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       4. ACTIVE NAVIGATION ON SCROLL
-       ========================================= */
+    /* =====================================
+       4. SCROLL REVEAL ANIMATION
+       ===================================== */
+
+    const animatedElements =
+        document.querySelectorAll(
+            "section:not(.hero), .card, .portfolio-card, .stat-box, .testimonial"
+        );
+
+
+    if ("IntersectionObserver" in window) {
+
+        const revealObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach((entry) => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        animatedElements.forEach((element) => {
+
+            element.classList.add("hidden");
+
+            revealObserver.observe(element);
+
+        });
+
+    } else {
+
+        animatedElements.forEach((element) => {
+
+            element.classList.add("show");
+
+        });
+
+    }
+
+
+    /* =====================================
+       5. ACTIVE NAVIGATION
+       ===================================== */
 
     const sections =
-        document.querySelectorAll("section[id]");
+        document.querySelectorAll(
+            "section[id]"
+        );
 
     const navLinks =
-        document.querySelectorAll(".nav-links a");
+        document.querySelectorAll(
+            ".nav-links a"
+        );
 
 
     function updateActiveNavigation() {
 
         let currentSection = "";
 
+
         sections.forEach((section) => {
 
             const sectionTop =
-                section.offsetTop - 150;
+                section.offsetTop - 160;
 
-            if (window.scrollY >= sectionTop) {
+
+            if (
+                window.scrollY >= sectionTop
+            ) {
 
                 currentSection =
                     section.getAttribute("id");
@@ -153,8 +177,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             link.classList.remove("active");
 
+
+            const target =
+                link.getAttribute("href");
+
+
             if (
-                link.getAttribute("href") ===
+                target ===
                 "#" + currentSection
             ) {
 
@@ -176,18 +205,79 @@ document.addEventListener("DOMContentLoaded", () => {
     updateActiveNavigation();
 
 
-    /* =========================================
-       5. DARK / LIGHT MODE
-       ========================================= */
+    /* =====================================
+       6. SMOOTH SCROLL
+       ===================================== */
+
+    const smoothLinks =
+        document.querySelectorAll(
+            'a[href^="#"]'
+        );
+
+
+    smoothLinks.forEach((link) => {
+
+        link.addEventListener(
+            "click",
+            (event) => {
+
+                const targetId =
+                    link.getAttribute("href");
+
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+
+                    return;
+
+                }
+
+
+                const targetElement =
+                    document.querySelector(
+                        targetId
+                    );
+
+
+                if (targetElement) {
+
+                    event.preventDefault();
+
+
+                    targetElement.scrollIntoView({
+
+                        behavior: "smooth",
+
+                        block: "start"
+
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* =====================================
+       7. DARK / LIGHT MODE
+       ===================================== */
 
     const themeToggle =
-        document.getElementById("themeToggle");
+        document.getElementById(
+            "themeToggle"
+        );
 
 
     if (themeToggle) {
 
         const savedTheme =
-            localStorage.getItem("theme");
+            localStorage.getItem(
+                "theme"
+            );
 
 
         if (savedTheme === "light") {
@@ -196,11 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 "light-mode"
             );
 
-            themeToggle.innerHTML = "☀️";
+            themeToggle.innerHTML =
+                "☀️";
 
         } else {
 
-            themeToggle.innerHTML = "🌙";
+            themeToggle.innerHTML =
+                "🌙";
 
         }
 
@@ -220,16 +312,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                themeToggle.innerHTML =
-                    isLight ? "☀️" : "🌙";
+                if (isLight) {
 
+                    themeToggle.innerHTML =
+                        "☀️";
 
-                localStorage.setItem(
-                    "theme",
-                    isLight
-                        ? "light"
-                        : "dark"
-                );
+                    localStorage.setItem(
+                        "theme",
+                        "light"
+                    );
+
+                } else {
+
+                    themeToggle.innerHTML =
+                        "🌙";
+
+                    localStorage.setItem(
+                        "theme",
+                        "dark"
+                    );
+
+                }
 
             }
         );
@@ -237,161 +340,181 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       6. ANIMATED COUNTERS
-       ========================================= */
+    /* =====================================
+       8. ANIMATED COUNTERS
+       ===================================== */
 
     const counters =
-        document.querySelectorAll(".counter");
+        document.querySelectorAll(
+            ".counter"
+        );
 
 
-    if (counters.length) {
+    function animateCounter(counter) {
 
-        const animateCounter = (counter) => {
+        const target =
+            Number(
+                counter.getAttribute(
+                    "data-target"
+                )
+            );
 
-            const target =
-                Number(
-                    counter.getAttribute(
-                        "data-target"
-                    )
+
+        if (
+            isNaN(target)
+        ) {
+
+            return;
+
+        }
+
+
+        const duration = 1800;
+
+        const startTime =
+            performance.now();
+
+
+        function updateCounter(
+            currentTime
+        ) {
+
+            const elapsed =
+                currentTime -
+                startTime;
+
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
                 );
 
 
-            if (isNaN(target)) return;
+            const currentValue =
+                Math.floor(
+                    progress * target
+                );
 
 
-            let current = 0;
-
-            const duration = 1800;
-
-            const startTime =
-                performance.now();
+            counter.textContent =
+                currentValue;
 
 
-            function updateCounter(currentTime) {
+            if (
+                progress < 1
+            ) {
 
-                const elapsed =
-                    currentTime - startTime;
+                requestAnimationFrame(
+                    updateCounter
+                );
 
-
-                const progress =
-                    Math.min(
-                        elapsed / duration,
-                        1
-                    );
-
-
-                const value =
-                    Math.floor(
-                        progress * target
-                    );
-
+            } else {
 
                 counter.textContent =
-                    value;
-
-
-                if (progress < 1) {
-
-                    requestAnimationFrame(
-                        updateCounter
-                    );
-
-                } else {
-
-                    counter.textContent =
-                        target + "+";
-
-                }
+                    target + "+";
 
             }
 
-
-            requestAnimationFrame(
-                updateCounter
-            );
-
-        };
-
-
-        if ("IntersectionObserver" in window) {
-
-            const counterObserver =
-                new IntersectionObserver(
-                    (entries, observer) => {
-
-                        entries.forEach((entry) => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                animateCounter(
-                                    entry.target
-                                );
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
-
-                        });
-
-                    },
-                    {
-                        threshold: 0.5
-                    }
-                );
-
-
-            counters.forEach((counter) => {
-
-                counterObserver.observe(
-                    counter
-                );
-
-            });
-
-        } else {
-
-            counters.forEach(
-                animateCounter
-            );
-
         }
+
+
+        requestAnimationFrame(
+            updateCounter
+        );
 
     }
 
 
-    /* =========================================
-       7. TYPING EFFECT
-       ========================================= */
+    if (
+        counters.length &&
+        "IntersectionObserver" in window
+    ) {
+
+        const counterObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach((entry) => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            animateCounter(
+                                entry.target
+                            );
+
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+
+        counters.forEach((counter) => {
+
+            counterObserver.observe(
+                counter
+            );
+
+        });
+
+    } else {
+
+        counters.forEach(
+            animateCounter
+        );
+
+    }
+
+
+    /* =====================================
+       9. TYPING EFFECT
+       ===================================== */
 
     const typingElement =
-        document.getElementById("typing");
+        document.getElementById(
+            "typing"
+        );
 
 
     if (typingElement) {
 
-        const text =
+        const typingText =
             "Empowering Creativity Through AI & Technology";
 
 
-        let index = 0;
+        let typingIndex = 0;
+
+
+        typingElement.textContent = "";
 
 
         function typeWriter() {
 
             if (
-                index <
-                text.length
+                typingIndex <
+                typingText.length
             ) {
 
                 typingElement.textContent +=
-                    text.charAt(index);
+                    typingText.charAt(
+                        typingIndex
+                    );
 
-                index++;
+
+                typingIndex++;
+
 
                 setTimeout(
                     typeWriter,
@@ -405,15 +528,103 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(
             typeWriter,
-            1500
+            1300
         );
 
     }
 
 
-    /* =========================================
-       8. PORTFOLIO LIGHTBOX
-       ========================================= */
+    /* =====================================
+       10. PORTFOLIO FILTER
+       ===================================== */
+
+    const filterButtons =
+        document.querySelectorAll(
+            ".filter-btn"
+        );
+
+
+    const portfolioCards =
+        document.querySelectorAll(
+            ".portfolio-card"
+        );
+
+
+    if (
+        filterButtons.length &&
+        portfolioCards.length
+    ) {
+
+        filterButtons.forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        filterButtons.forEach(
+                            (btn) => {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        const filter =
+                            button.getAttribute(
+                                "data-filter"
+                            );
+
+
+                        portfolioCards.forEach(
+                            (card) => {
+
+                                const category =
+                                    card.getAttribute(
+                                        "data-category"
+                                    );
+
+
+                                if (
+                                    filter === "all" ||
+                                    category === filter
+                                ) {
+
+                                    card.classList.remove(
+                                        "hide"
+                                    );
+
+                                } else {
+
+                                    card.classList.add(
+                                        "hide"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================
+       11. PORTFOLIO LIGHTBOX
+       ===================================== */
 
     const portfolioImages =
         document.querySelectorAll(
@@ -445,38 +656,52 @@ document.addEventListener("DOMContentLoaded", () => {
         lightboxImg
     ) {
 
-        portfolioImages.forEach((image) => {
+        portfolioImages.forEach(
+            (image) => {
 
-            image.style.cursor =
-                "pointer";
+                image.style.cursor =
+                    "pointer";
 
 
-            image.addEventListener(
-                "click",
-                () => {
+                image.addEventListener(
+                    "click",
+                    () => {
 
-                    lightbox.style.display =
-                        "flex";
+                        lightbox.style.display =
+                            "flex";
 
-                    lightboxImg.src =
-                        image.src;
 
-                }
-            );
+                        lightboxImg.src =
+                            image.src;
 
-        });
+
+                        document.body.style.overflow =
+                            "hidden";
+
+                    }
+                );
+
+            }
+        );
+
+
+        function closeLightboxFunction() {
+
+            lightbox.style.display =
+                "none";
+
+
+            document.body.style.overflow =
+                "";
+
+        }
 
 
         if (closeLightbox) {
 
             closeLightbox.addEventListener(
                 "click",
-                () => {
-
-                    lightbox.style.display =
-                        "none";
-
-                }
+                closeLightboxFunction
             );
 
         }
@@ -491,8 +716,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     lightbox
                 ) {
 
-                    lightbox.style.display =
-                        "none";
+                    closeLightboxFunction();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    closeLightboxFunction();
 
                 }
 
@@ -502,9 +743,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       9. TESTIMONIAL SLIDER
-       ========================================= */
+    /* =====================================
+       12. TESTIMONIAL SLIDER
+       ===================================== */
 
     const testimonials =
         document.querySelectorAll(
@@ -512,12 +753,16 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    if (testimonials.length) {
+    if (
+        testimonials.length
+    ) {
 
         let currentTestimonial = 0;
 
 
-        function showTestimonial(index) {
+        function showTestimonial(
+            index
+        ) {
 
             testimonials.forEach(
                 (testimonial) => {
@@ -530,7 +775,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            testimonials[index].classList.add(
+            testimonials[
+                index
+            ].classList.add(
                 "active"
             );
 
@@ -542,123 +789,42 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        setInterval(() => {
+        if (
+            testimonials.length > 1
+        ) {
 
-            currentTestimonial++;
+            setInterval(
+                () => {
 
-
-            if (
-                currentTestimonial >=
-                testimonials.length
-            ) {
-
-                currentTestimonial = 0;
-
-            }
+                    currentTestimonial++;
 
 
-            showTestimonial(
-                currentTestimonial
+                    if (
+                        currentTestimonial >=
+                        testimonials.length
+                    ) {
+
+                        currentTestimonial = 0;
+
+                    }
+
+
+                    showTestimonial(
+                        currentTestimonial
+                    );
+
+                },
+                4000
             );
 
-        }, 4000);
+        }
 
     }
 
 
-    /* =========================================
-       10. PREMIUM NOTIFICATION SYSTEM
-       ========================================= */
-
-    function showNotification(
-        message,
-        type = "success"
-    ) {
-
-        const notification =
-            document.createElement(
-                "div"
-            );
-
-
-        notification.className =
-            `smh-notification ${type}`;
-
-
-        const icon =
-            type === "success"
-                ? "✅"
-                : "❌";
-
-
-        notification.innerHTML = `
-            <span class="notification-icon">
-                ${icon}
-            </span>
-
-            <span class="notification-message">
-                ${message}
-            </span>
-
-            <button class="notification-close">
-                ×
-            </button>
-        `;
-
-
-        document.body.appendChild(
-            notification
-        );
-
-
-        requestAnimationFrame(() => {
-
-            notification.classList.add(
-                "show"
-            );
-
-        });
-
-
-        const closeButton =
-            notification.querySelector(
-                ".notification-close"
-            );
-
-
-        const removeNotification = () => {
-
-            notification.classList.remove(
-                "show"
-            );
-
-
-            setTimeout(() => {
-
-                notification.remove();
-
-            }, 400);
-
-        };
-
-
-        closeButton.addEventListener(
-            "click",
-            removeNotification
-        );
-
-
-        setTimeout(
-            removeNotification,
-            5000
-        );
-
-    }
-
-
-    /* =========================================
-       11. EMAILJS CONTACT FORM V3
-       ========================================= */
+    /* =====================================
+       13. EMAILJS CONTACT FORM
+       ===================================== */
 
     const contactForm =
         document.getElementById(
@@ -681,124 +847,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                if (!submitButton) return;
-
-
-                const nameInput =
-                    contactForm.querySelector(
-                        '[name="user_name"]'
-                    );
-
-
-                const emailInput =
-                    contactForm.querySelector(
-                        '[name="user_email"]'
-                    );
-
-
-                const subjectInput =
-                    contactForm.querySelector(
-                        '[name="subject"]'
-                    );
-
-
-                const messageInput =
-                    contactForm.querySelector(
-                        '[name="message"]'
-                    );
-
-
-                if (
-                    !nameInput ||
-                    !emailInput ||
-                    !subjectInput ||
-                    !messageInput
-                ) {
-
-                    showNotification(
-                        "Please complete the contact form correctly.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                const name =
-                    nameInput.value.trim();
-
-
-                const email =
-                    emailInput.value.trim();
-
-
-                const subject =
-                    subjectInput.value.trim();
-
-
-                const message =
-                    messageInput.value.trim();
-
-
-                if (
-                    name.length < 2
-                ) {
-
-                    showNotification(
-                        "Please enter your full name.",
-                        "error"
-                    );
-
-                    nameInput.focus();
-
-                    return;
-
-                }
-
-
-                if (
-                    !emailInput.checkValidity()
-                ) {
-
-                    showNotification(
-                        "Please enter a valid email address.",
-                        "error"
-                    );
-
-                    emailInput.focus();
-
-                    return;
-
-                }
-
-
-                if (
-                    subject.length < 2
-                ) {
-
-                    showNotification(
-                        "Please enter a subject.",
-                        "error"
-                    );
-
-                    subjectInput.focus();
-
-                    return;
-
-                }
-
-
-                if (
-                    message.length < 10
-                ) {
-
-                    showNotification(
-                        "Your message must be at least 10 characters.",
-                        "error"
-                    );
-
-                    messageInput.focus();
+                if (!submitButton) {
 
                     return;
 
@@ -814,14 +863,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 submitButton.innerHTML =
-                    "⏳ Sending...";
-
-
-                submitButton.style.opacity =
-                    "0.7";
+                    "Sending...";
 
 
                 try {
+
+                    if (
+                        typeof emailjs ===
+                        "undefined"
+                    ) {
+
+                        throw new Error(
+                            "EmailJS is not loaded."
+                        );
+
+                    }
+
 
                     await emailjs.sendForm(
 
@@ -834,9 +891,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    showNotification(
-                        "Your message has been sent successfully!",
-                        "success"
+                    alert(
+                        "✅ Message sent successfully!"
                     );
 
 
@@ -851,9 +907,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    showNotification(
-                        "Failed to send your message. Please try again.",
-                        "error"
+                    alert(
+                        "❌ Failed to send message. Please try again."
                     );
 
                 } finally {
@@ -865,10 +920,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     submitButton.innerHTML =
                         originalText;
 
-
-                    submitButton.style.opacity =
-                        "1";
-
                 }
 
             }
@@ -877,9 +928,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       12. BACK TO TOP BUTTON
-       ========================================= */
+    /* =====================================
+       14. BACK TO TOP
+       ===================================== */
 
     const topButton =
         document.getElementById(
@@ -889,28 +940,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (topButton) {
 
-        window.addEventListener(
-            "scroll",
-            () => {
+        function updateTopButton() {
 
-                if (
-                    window.scrollY >
-                    400
-                ) {
+            if (
+                window.scrollY >
+                400
+            ) {
 
-                    topButton.classList.add(
-                        "show"
-                    );
+                topButton.classList.add(
+                    "show"
+                );
 
-                } else {
+            } else {
 
-                    topButton.classList.remove(
-                        "show"
-                    );
-
-                }
+                topButton.classList.remove(
+                    "show"
+                );
 
             }
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            updateTopButton
         );
 
 
@@ -929,68 +983,51 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
 
+
+        updateTopButton();
+
     }
 
 
-    /* =========================================
-       13. SMOOTH SCROLL
-       ========================================= */
+    /* =====================================
+       15. CLOSE MOBILE MENU ON RESIZE
+       ===================================== */
 
-    const smoothLinks =
-        document.querySelectorAll(
-            'a[href^="#"]'
-        );
+    window.addEventListener(
+        "resize",
+        () => {
 
+            if (
+                window.innerWidth >= 900 &&
+                navMenu &&
+                menuToggle
+            ) {
 
-    smoothLinks.forEach((link) => {
+                navMenu.classList.remove(
+                    "active"
+                );
 
-        link.addEventListener(
-            "click",
-            (event) => {
-
-                const targetId =
-                    link.getAttribute(
-                        "href"
-                    );
-
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) return;
-
-
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
-
-
-                if (target) {
-
-                    event.preventDefault();
-
-
-                    target.scrollIntoView({
-
-                        behavior:
-                            "smooth",
-
-                        block:
-                            "start"
-
-                    });
-
-                }
+                menuToggle.classList.remove(
+                    "active"
+                );
 
             }
-        );
 
-    });
+        }
+    );
+
+
+    /* =====================================
+       16. PAGE READY
+       ===================================== */
+
+    document.body.classList.add(
+        "js-ready"
+    );
+
+
+    console.log(
+        "🚀 Saeed Media Hub V3.0 loaded successfully!"
+    );
 
 });
-
-
-/* =========================================
-   SAEED MEDIA HUB — V3.0 COMPLETE
-   ========================================= */
