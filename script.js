@@ -1,3 +1,4 @@
+alert("JavaScript Loaded");
 window.addEventListener("load", () => {
 
 const loader = document.getElementById("loader");
