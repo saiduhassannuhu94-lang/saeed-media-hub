@@ -1,4 +1,4 @@
-alert("JavaScript Loaded");
+
 window.addEventListener("load", () => {
 
 const loader = document.getElementById("loader");
@@ -44,9 +44,11 @@ observer.observe(el);
 const menuToggle = document.getElementById("menu-toggle");
 const navMenu = document.querySelector(".nav-links");
 
+if(menuToggle && navMenu){
 menuToggle.addEventListener("click", () => {
 navMenu.classList.toggle("active");
 });
+}
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-links a");
 
@@ -113,6 +115,8 @@ lightbox.style.display="none";
 };
 const themeToggle = document.getElementById("themeToggle");
 
+if(themeToggle){
+
 themeToggle.addEventListener("click", () => {
 
 document.body.classList.toggle("light-mode");
@@ -139,7 +143,7 @@ document.body.classList.add("light-mode");
 
 themeToggle.innerHTML="☀️";
 
-}
+}}
 const counters = document.querySelectorAll(".counter");
 
 counters.forEach(counter => {
