@@ -12,17 +12,12 @@
 
     <meta
         name="description"
-        content="Saeed Media Hub provides professional AI solutions, graphic design, website development, video editing and digital services."
+        content="Saeed Media Hub — AI Solutions, Graphic Design, Website Development, Video Editing and Digital Services."
     >
 
     <meta
-        name="keywords"
-        content="Saeed Media Hub, AI Services, Graphic Design, Web Development, Video Editing, Digital Services"
-    >
-
-    <meta
-        name="author"
-        content="Saeed Hassan Nuhu"
+        name="theme-color"
+        content="#07142b"
     >
 
     <title>
@@ -38,7 +33,7 @@
     >
 
 
-    <!-- Google Fonts -->
+    <!-- Google Font -->
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -48,8 +43,12 @@
 
     <!-- EmailJS -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
 
+
+    <!-- EmailJS Public Key -->
 
     <script>
 
@@ -72,47 +71,48 @@
 <body>
 
 
-<!-- =========================================
-     PREMIUM LOADER
-========================================= -->
+    <!-- =================================
+         PREMIUM PAGE LOADER
+    ================================== -->
 
-<div id="loader">
+    <div id="loader">
 
-    <div class="loader-content">
+        <div class="loader-content">
 
-        <div class="spinner"></div>
+            <div class="spinner"></div>
 
-        <h3>
-            Saeed Media Hub
-        </h3>
+            <h3>
+                Saeed Media Hub
+            </h3>
 
-        <p>
-            Loading Experience...
-        </p>
+            <p>
+                Loading your digital experience...
+            </p>
+
+        </div>
 
     </div>
 
-</div>
 
 
+    <!-- =================================
+         HEADER
+    ================================== -->
 
-<!-- =========================================
-     HEADER
-========================================= -->
-
-<header id="home">
-
-
-    <!-- NAVIGATION -->
-
-    <nav class="navbar">
+    <header id="home">
 
 
-        <!-- LOGO -->
+        <!-- NAVIGATION -->
 
-        <div class="logo">
+        <nav class="navbar">
 
-            <a href="#home">
+
+            <!-- LOGO -->
+
+            <a
+                href="#home"
+                class="logo"
+            >
 
                 <img
                     src="logo.png"
@@ -121,327 +121,385 @@
 
             </a>
 
-        </div>
 
 
-        <!-- MOBILE MENU -->
+            <!-- MOBILE MENU BUTTON -->
 
-        <div
-            class="menu-toggle"
-            id="menu-toggle"
-        >
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Open navigation menu"
+            >
 
-            ☰
+                ☰
 
-        </div>
-
-
-        <!-- THEME BUTTON -->
-
-        <button
-            id="themeToggle"
-            class="theme-btn"
-            type="button"
-            aria-label="Toggle dark and light mode"
-        >
-
-            🌙
-
-        </button>
-
-
-        <!-- NAV LINKS -->
-
-        <ul class="nav-links">
-
-            <li>
-                <a
-                    href="#home"
-                    class="active"
-                >
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="#about">
-                    About
-                </a>
-            </li>
-
-            <li>
-                <a href="#services">
-                    Services
-                </a>
-            </li>
-
-            <li>
-                <a href="#portfolio">
-                    Portfolio
-                </a>
-            </li>
-
-            <li>
-                <a href="#contact">
-                    Contact
-                </a>
-            </li>
-
-        </ul>
-
-    </nav>
+            </button>
 
 
 
-    <!-- =========================================
-         HERO SECTION
-    ========================================== -->
+            <!-- THEME BUTTON -->
 
-    <section id="portfolio" class="portfolio">
+            <button
+                id="themeToggle"
+                class="theme-btn"
+                aria-label="Toggle theme"
+            >
 
-    <h2>My Portfolio</h2>
+                🌙
 
-    <p class="portfolio-subtitle">
-        Explore some of my latest creative and digital projects.
-    </p>
-
-
-    <!-- Portfolio Filter Buttons -->
-
-    <div class="portfolio-filters">
-
-        <button
-            class="filter-btn active"
-            data-filter="all">
-            All
-        </button>
-
-        <button
-            class="filter-btn"
-            data-filter="ai">
-            🤖 AI Designs
-        </button>
-
-        <button
-            class="filter-btn"
-            data-filter="graphic">
-            🎨 Graphic Design
-        </button>
-
-        <button
-            class="filter-btn"
-            data-filter="web">
-            🌐 Websites
-        </button>
-
-        <button
-            class="filter-btn"
-            data-filter="video">
-            🎬 Video Editing
-        </button>
-
-    </div>
+            </button>
 
 
-    <!-- Portfolio Grid -->
 
-    <div class="portfolio-grid">
+            <!-- NAV LINKS -->
+
+            <ul class="nav-links">
+
+                <li>
+
+                    <a
+                        href="#home"
+                        class="active"
+                    >
+
+                        Home
+
+                    </a>
+
+                </li>
 
 
-        <!-- AI Design -->
+                <li>
 
-        <div
-            class="portfolio-card"
-            data-category="ai">
+                    <a href="#about">
 
-            <div class="portfolio-image">
+                        About
 
-                <img
-                    src="assets/work1.jpg"
-                    alt="AI Design Project">
+                    </a>
 
-                <div class="portfolio-overlay">
+                </li>
 
-                    <span>🤖 AI Design</span>
+
+                <li>
+
+                    <a href="#services">
+
+                        Services
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="#portfolio">
+
+                        Portfolio
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="#contact">
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+        </nav>
+
+
+
+        <!-- =================================
+             HERO / HOME DASHBOARD
+        ================================== -->
+
+        <section class="hero">
+
+
+            <div class="hero-content">
+
+
+                <div class="hero-badge">
+
+                    🚀 Digital Innovation
+                    & Technology
 
                 </div>
 
-            </div>
 
-            <h3>🤖 AI Designs</h3>
+                <h1>
 
-            <p>
-                Professional AI images,
-                creative artworks and
-                AI-powered designs.
-            </p>
+                    Saeed Media Hub
 
-        </div>
+                </h1>
 
 
-        <!-- Graphic Design -->
+                <h2 id="typing"></h2>
 
-        <div
-            class="portfolio-card"
-            data-category="graphic">
 
-            <div class="portfolio-image">
+                <p>
 
-                <img
-                    src="assets/work2.jpg"
-                    alt="Graphic Design Project">
+                    Professional AI Solutions,
+                    Graphic Design,
+                    Website Development,
+                    Video Editing and
+                    Creative Digital Services.
 
-                <div class="portfolio-overlay">
+                </p>
 
-                    <span>🎨 Graphic Design</span>
+
+
+                <!-- HERO BUTTONS -->
+
+                <div class="hero-buttons">
+
+
+                    <a
+                        href="#services"
+                        class="btn1"
+                    >
+
+                        Explore Services
+
+                    </a>
+
+
+                    <a
+                        href="https://wa.me/2347077992618"
+                        class="btn2"
+                        target="_blank"
+                        rel="noopener"
+                    >
+
+                        💬 WhatsApp Me
+
+                    </a>
+
 
                 </div>
 
-            </div>
-
-            <h3>🎨 Graphic Design</h3>
-
-            <p>
-                Logos, flyers, posters,
-                branding and social media
-                designs.
-            </p>
-
-        </div>
-
-
-        <!-- Website -->
-
-        <div
-            class="portfolio-card"
-            data-category="web">
-
-            <div class="portfolio-image">
-
-                <img
-                    src="assets/work3.jpg"
-                    alt="Website Development Project">
-
-                <div class="portfolio-overlay">
-
-                    <span>🌐 Website</span>
-
-                </div>
 
             </div>
 
-            <h3>🌐 Website Development</h3>
-
-            <p>
-                Modern, responsive and
-                professional websites.
-            </p>
-
-        </div>
-
-
-        <!-- Video Editing -->
-
-        <div
-            class="portfolio-card"
-            data-category="video">
-
-            <div class="portfolio-image">
-
-                <img
-                    src="assets/work4.jpg"
-                    alt="Video Editing Project">
-
-                <div class="portfolio-overlay">
-
-                    <span>🎬 Video Editing</span>
-
-                </div>
-
-            </div>
-
-            <h3>🎬 Video Editing</h3>
-
-            <p>
-                Professional video editing,
-                reels and AI videos.
-            </p>
-
-        </div>
-
-
-    </div>
 
         </section>
 
 
-    <!-- =========================================
-         STATS
-    ========================================== -->
 
-    <section class="stats">
+        <!-- =================================
+             STATS
+        ================================== -->
 
-
-        <div class="stat-box">
-
-            <h2
-                class="counter"
-                data-target="500"
-            >
-                0
-            </h2>
-
-            <p>
-                Happy Clients
-            </p>
-
-        </div>
+        <section class="stats">
 
 
+            <div class="stat-box">
 
-        <div class="stat-box">
+                <h2
+                    class="counter"
+                    data-target="500"
+                >
+                    0
+                </h2>
 
-            <h2
-                class="counter"
-                data-target="1000"
-            >
-                0
-            </h2>
+                <p>
 
-            <p>
-                Projects Completed
-            </p>
+                    Happy Clients
 
-        </div>
+                </p>
+
+            </div>
 
 
 
-        <div class="stat-box">
+            <div class="stat-box">
 
-            <h2
-                class="counter"
-                data-target="5"
-            >
-                0
-            </h2>
+                <h2
+                    class="counter"
+                    data-target="1000"
+                >
+                    0
+                </h2>
 
-            <p>
-                Years Experience
-            </p>
+                <p>
 
-        </div>
+                    Projects Completed
+
+                </p>
+
+            </div>
 
 
 
-        <div class="stat-box">
+            <div class="stat-box">
+
+                <h2
+                    class="counter"
+                    data-target="5"
+                >
+                    0
+                </h2>
+
+                <p>
+
+                    Years Experience
+
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-box">
+
+                <h2>
+
+                    24/7
+
+                </h2>
+
+                <p>
+
+                    Support
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </header>
+
+
+
+    <!-- =================================
+         ABOUT
+    ================================== -->
+
+    <section
+        id="about"
+        class="about"
+    >
+
+
+        <div class="section-heading">
+
+            <span>
+
+                Who We Are
+
+            </span>
 
             <h2>
-                24/7
+
+                About Saeed Media Hub
+
             </h2>
 
-            <p>
-                Client Support
-            </p>
+        </div>
+
+
+        <div class="about-content">
+
+
+            <div class="about-text">
+
+
+                <p>
+
+                    Saeed Media Hub is a modern
+                    digital brand focused on
+                    Artificial Intelligence,
+                    Graphic Design,
+                    Website Development,
+                    Technology Tutorials and
+                    Creative Digital Solutions.
+
+                </p>
+
+
+                <p>
+
+                    We help individuals,
+                    businesses and content
+                    creators grow through
+                    innovation, creativity
+                    and technology.
+
+                </p>
+
+
+            </div>
+
+
+            <div class="about-highlight">
+
+
+                <div>
+
+                    <strong>
+
+                        AI
+
+                    </strong>
+
+                    <span>
+
+                        Innovation
+
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+
+                        Web
+
+                    </strong>
+
+                    <span>
+
+                        Development
+
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+
+                        Design
+
+                    </strong>
+
+                    <span>
+
+                        Creativity
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
 
         </div>
 
@@ -449,852 +507,1008 @@
     </section>
 
 
-</header>
 
+    <!-- =================================
+         SERVICES
+    ================================== -->
 
-
-<!-- =========================================
-     ABOUT SECTION
-========================================= -->
-
-<section
-    id="about"
-    class="about"
->
-
-
-    <div class="section-heading">
-
-        <span>
-            Who We Are
-        </span>
-
-        <h2>
-            About Saeed Media Hub
-        </h2>
-
-    </div>
-
-
-    <div class="about-content">
-
-
-        <div class="about-text">
-
-
-            <p>
-
-                Saeed Media Hub is a modern digital
-                brand focused on Artificial Intelligence,
-                Graphic Design, Website Development,
-                Video Editing, Technology Tutorials
-                and Creative Digital Solutions.
-
-            </p>
-
-
-            <p>
-
-                We help individuals, businesses
-                and content creators grow through
-                creativity, innovation and technology.
-
-            </p>
-
-
-            <a
-                href="#services"
-                class="btn1"
-            >
-
-                Discover Our Services
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =========================================
-     SERVICES SECTION
-========================================= -->
-
-<section
-    id="services"
-    class="services"
->
-
-
-    <div class="section-heading">
-
-        <span>
-            What We Do
-        </span>
-
-        <h2>
-            Our Services
-        </h2>
-
-        <p>
-
-            Creative and professional digital
-            solutions designed to help you grow.
-
-        </p>
-
-    </div>
-
-
-
-    <div class="service-grid">
-
-
-        <!-- AI -->
-
-        <div class="card">
-
-            <div class="service-icon">
-                🤖
-            </div>
-
-            <h3>
-                <a href="ai.html">
-                    AI Designs
-                </a>
-            </h3>
-
-            <p>
-
-                AI Images,
-                Prompt Engineering,
-                AI Tutorials
-                and Automation Solutions.
-
-            </p>
-
-            <a
-                href="ai.html"
-                class="service-link"
-            >
-
-                Explore →
-                
-            </a>
-
-        </div>
-
-
-
-        <!-- GRAPHICS -->
-
-        <div class="card">
-
-            <div class="service-icon">
-                🎨
-            </div>
-
-            <h3>
-                <a href="graphics.html">
-                    Graphic Design
-                </a>
-            </h3>
-
-            <p>
-
-                Professional Logos,
-                Flyers, Posters,
-                Branding and Social Media Designs.
-
-            </p>
-
-            <a
-                href="graphics.html"
-                class="service-link"
-            >
-
-                Explore →
-
-            </a>
-
-        </div>
-
-
-
-        <!-- WEB -->
-
-        <div class="card">
-
-            <div class="service-icon">
-                🌐
-            </div>
-
-            <h3>
-                <a href="web.html">
-                    Website Development
-                </a>
-            </h3>
-
-            <p>
-
-                Modern, Responsive
-                and Fast Websites
-                for Individuals and Businesses.
-
-            </p>
-
-            <a
-                href="web.html"
-                class="service-link"
-            >
-
-                Explore →
-
-            </a>
-
-        </div>
-
-
-
-        <!-- VIDEO -->
-
-        <div class="card">
-
-            <div class="service-icon">
-                🎬
-            </div>
-
-            <h3>
-                <a href="video.html">
-                    Video Editing
-                </a>
-            </h3>
-
-            <p>
-
-                Professional Video Editing,
-                AI Videos,
-                Reels and Motion Graphics.
-
-            </p>
-
-            <a
-                href="video.html"
-                class="service-link"
-            >
-
-                Explore →
-
-            </a>
-
-        </div>
-
-
-
-        <!-- DIGITAL MARKETING -->
-
-        <div class="card">
-
-            <div class="service-icon">
-                📱
-            </div>
-
-            <h3>
-                Digital Marketing
-            </h3>
-
-            <p>
-
-                Social Media Growth,
-                Content Strategy
-                and Online Branding.
-
-            </p>
-
-        </div>
-
-
-
-        <!-- DATA -->
-
-        <div class="card">
-
-            <div class="service-icon">
-                📶
-            </div>
-
-            <h3>
-                Data Services
-            </h3>
-
-            <p>
-
-                Affordable Data Subscription
-                and Digital Services.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =========================================
-     PORTFOLIO SECTION
-========================================= -->
-
-<section
-    id="portfolio"
-    class="portfolio"
->
-
-
-    <div class="section-heading">
-
-        <span>
-            Our Work
-        </span>
-
-        <h2>
-            My Portfolio
-        </h2>
-
-        <p>
-
-            A selection of creative projects
-            and digital solutions.
-
-        </p>
-
-    </div>
-
-
-
-    <div class="portfolio-grid">
-
-
-        <div class="portfolio-card">
-
-            <img
-                src="assets/work1.jpg"
-                alt="AI Design Project"
-                loading="lazy"
-            >
-
-            <h3>
-                🤖 AI Designs
-            </h3>
-
-            <p>
-
-                Professional AI images
-                and creative artworks.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="portfolio-card">
-
-            <img
-                src="assets/work2.jpg"
-                alt="Graphic Design Project"
-                loading="lazy"
-            >
-
-            <h3>
-                🎨 Graphic Design
-            </h3>
-
-            <p>
-
-                Logos, Flyers
-                and Branding Projects.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="portfolio-card">
-
-            <img
-                src="assets/work3.jpg"
-                alt="Website Development Project"
-                loading="lazy"
-            >
-
-            <h3>
-                🌐 Website Development
-            </h3>
-
-            <p>
-
-                Modern responsive
-                websites for businesses.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="portfolio-card">
-
-            <img
-                src="assets/work4.jpg"
-                alt="Video Editing Project"
-                loading="lazy"
-            >
-
-            <h3>
-                🎬 Video Editing
-            </h3>
-
-            <p>
-
-                Professional video editing
-                and social media reels.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =========================================
-     TESTIMONIALS
-========================================= -->
-
-<section class="testimonials">
-
-
-    <div class="section-heading">
-
-        <span>
-            Client Feedback
-        </span>
-
-        <h2>
-            What Clients Say
-        </h2>
-
-    </div>
-
-
-
-    <div class="testimonial-slider">
-
-
-        <div class="testimonial active">
-
-            <p>
-
-                "Saeed Media Hub built an amazing
-                website for my business.
-                Highly recommended!"
-
-            </p>
-
-            <h4>
-                — Ahmed Musa
-            </h4>
-
-        </div>
-
-
-
-        <div class="testimonial">
-
-            <p>
-
-                "Very professional graphic designs
-                and AI services.
-                Fast delivery!"
-
-            </p>
-
-            <h4>
-                — Fatima Ibrahim
-            </h4>
-
-        </div>
-
-
-
-        <div class="testimonial">
-
-            <p>
-
-                "The best web developer
-                I've worked with.
-                Excellent support!"
-
-            </p>
-
-            <h4>
-                — John Peter
-            </h4>
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =========================================
-     CONTACT SECTION
-========================================= -->
-
-<section
-    id="contact"
-    class="contact"
->
-
-
-    <div class="section-heading">
-
-        <span>
-            Let's Work Together
-        </span>
-
-        <h2>
-            Contact Me
-        </h2>
-
-        <p>
-
-            Have a project in mind?
-            Send us a message and
-            let's create something amazing.
-
-        </p>
-
-    </div>
-
-
-
-    <!-- EMAILJS FORM -->
-
-    <form
-        class="contact-form"
-        id="contact-form"
+    <section
+        id="services"
+        class="services"
     >
 
 
-        <input
-            type="text"
-            name="user_name"
-            placeholder="Your Name"
-            autocomplete="name"
-            required
-        >
+        <div class="section-heading">
 
+            <span>
 
-        <input
-            type="email"
-            name="user_email"
-            placeholder="Your Email"
-            autocomplete="email"
-            required
-        >
+                What We Do
 
+            </span>
 
-        <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            required
-        >
+            <h2>
 
+                Our Services
 
-        <textarea
-            name="message"
-            placeholder="Write your message..."
-            rows="6"
-            required
-        ></textarea>
+            </h2>
 
+            <p>
 
-        <button
-            type="submit"
-        >
+                Professional digital solutions
+                designed to help you grow.
 
-            Send Message
+            </p>
 
-        </button>
-
-
-    </form>
+        </div>
 
 
 
-    <div class="contact-info">
+        <div class="service-grid">
 
 
-        <p>
-            📞
-            <a href="tel:+2347077992618">
-                07077992618
-            </a>
-        </p>
+            <!-- AI -->
+
+            <div class="card">
 
 
-        <p>
-            📧
-            <a
-                href="mailto:saiduhassannuhu94@gmail.com"
+                <div class="card-icon">
+
+                    🤖
+
+                </div>
+
+
+                <h3>
+
+                    AI Designs
+
+                </h3>
+
+
+                <p>
+
+                    AI Images, Prompt Engineering,
+                    AI Tutorials and Automation.
+
+                </p>
+
+
+                <a href="ai.html">
+
+                    Explore Service →
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- GRAPHIC -->
+
+            <div class="card">
+
+
+                <div class="card-icon">
+
+                    🎨
+
+                </div>
+
+
+                <h3>
+
+                    Graphic Design
+
+                </h3>
+
+
+                <p>
+
+                    Professional Logos, Flyers,
+                    Posters, Branding and
+                    Social Media Designs.
+
+                </p>
+
+
+                <a href="graphics.html">
+
+                    Explore Service →
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- WEBSITE -->
+
+            <div class="card">
+
+
+                <div class="card-icon">
+
+                    🌐
+
+                </div>
+
+
+                <h3>
+
+                    Website Development
+
+                </h3>
+
+
+                <p>
+
+                    Modern, Responsive and
+                    Fast Websites for Individuals
+                    and Businesses.
+
+                </p>
+
+
+                <a href="web.html">
+
+                    Explore Service →
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- VIDEO -->
+
+            <div class="card">
+
+
+                <div class="card-icon">
+
+                    🎬
+
+                </div>
+
+
+                <h3>
+
+                    Video Editing
+
+                </h3>
+
+
+                <p>
+
+                    Professional Video Editing,
+                    AI Videos and Motion Graphics.
+
+                </p>
+
+
+                <a href="video.html">
+
+                    Explore Service →
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- MARKETING -->
+
+            <div class="card">
+
+
+                <div class="card-icon">
+
+                    📱
+
+                </div>
+
+
+                <h3>
+
+                    Digital Marketing
+
+                </h3>
+
+
+                <p>
+
+                    Facebook Growth,
+                    Content Strategy and
+                    Online Branding.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- DATA -->
+
+            <div class="card">
+
+
+                <div class="card-icon">
+
+                    📶
+
+                </div>
+
+
+                <h3>
+
+                    Data Services
+
+                </h3>
+
+
+                <p>
+
+                    Affordable Data Subscription
+                    and Digital Services.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         PORTFOLIO
+    ================================== -->
+
+    <section
+        id="portfolio"
+        class="portfolio"
+    >
+
+
+        <div class="section-heading">
+
+            <span>
+
+                Our Work
+
+            </span>
+
+            <h2>
+
+                My Portfolio
+
+            </h2>
+
+            <p>
+
+                Explore some of my latest
+                creative and digital projects.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- FILTER BUTTONS -->
+
+        <div class="portfolio-filters">
+
+
+            <button
+                class="filter-btn active"
+                data-filter="all"
             >
-                saiduhassannuhu94@gmail.com
-            </a>
-        </p>
+
+                All
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="ai"
+            >
+
+                🤖 AI Designs
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="graphic"
+            >
+
+                🎨 Graphic Design
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="web"
+            >
+
+                🌐 Websites
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="video"
+            >
+
+                🎬 Video Editing
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- PORTFOLIO GRID -->
+
+        <div class="portfolio-grid">
+
+
+            <!-- AI -->
+
+            <div
+                class="portfolio-card"
+                data-category="ai"
+            >
+
+                <div class="portfolio-image">
+
+
+                    <img
+                        src="assets/work1.jpg"
+                        alt="AI Design Project"
+                    >
+
+
+                    <div class="portfolio-overlay">
+
+                        <span>
+
+                            🤖 AI Design
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <h3>
+
+                    🤖 AI Designs
+
+                </h3>
+
+
+                <p>
+
+                    Professional AI images,
+                    creative artworks and
+                    AI-powered designs.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- GRAPHIC -->
+
+            <div
+                class="portfolio-card"
+                data-category="graphic"
+            >
+
+                <div class="portfolio-image">
+
+
+                    <img
+                        src="assets/work2.jpg"
+                        alt="Graphic Design Project"
+                    >
+
+
+                    <div class="portfolio-overlay">
+
+                        <span>
+
+                            🎨 Graphic Design
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <h3>
+
+                    🎨 Graphic Design
+
+                </h3>
+
+
+                <p>
+
+                    Logos, Flyers, Posters,
+                    Branding and Social Media
+                    Designs.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- WEBSITE -->
+
+            <div
+                class="portfolio-card"
+                data-category="web"
+            >
+
+                <div class="portfolio-image">
+
+
+                    <img
+                        src="assets/work3.jpg"
+                        alt="Website Development Project"
+                    >
+
+
+                    <div class="portfolio-overlay">
+
+                        <span>
+
+                            🌐 Website
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <h3>
+
+                    🌐 Website Development
+
+                </h3>
+
+
+                <p>
+
+                    Modern, responsive and
+                    professional websites.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- VIDEO -->
+
+            <div
+                class="portfolio-card"
+                data-category="video"
+            >
+
+                <div class="portfolio-image">
+
+
+                    <img
+                        src="assets/work4.jpg"
+                        alt="Video Editing Project"
+                    >
+
+
+                    <div class="portfolio-overlay">
+
+                        <span>
+
+                            🎬 Video Editing
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <h3>
+
+                    🎬 Video Editing
+
+                </h3>
+
+
+                <p>
+
+                    Professional video editing,
+                    reels and AI videos.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         TESTIMONIALS
+    ================================== -->
+
+    <section class="testimonials">
+
+
+        <div class="section-heading">
+
+            <span>
+
+                Client Feedback
+
+            </span>
+
+            <h2>
+
+                What Clients Say
+
+            </h2>
+
+        </div>
+
+
+        <div class="testimonial-slider">
+
+
+            <div class="testimonial active">
+
+                <p>
+
+                    "Saeed Media Hub built
+                    an amazing website for
+                    my business. Highly
+                    recommended!"
+
+                </p>
+
+                <h4>
+
+                    — Ahmed Musa
+
+                </h4>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <p>
+
+                    "Very professional graphic
+                    designs and AI services.
+                    Fast delivery!"
+
+                </p>
+
+                <h4>
+
+                    — Fatima Ibrahim
+
+                </h4>
+
+            </div>
+
+
+            <div class="testimonial">
+
+                <p>
+
+                    "The best web developer
+                    I've worked with.
+                    Excellent support!"
+
+                </p>
+
+                <h4>
+
+                    — John Peter
+
+                </h4>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         CONTACT
+    ================================== -->
+
+    <section
+        id="contact"
+        class="contact"
+    >
+
+
+        <div class="section-heading">
+
+            <span>
+
+                Let's Connect
+
+            </span>
+
+            <h2>
+
+                Contact Me
+
+            </h2>
+
+            <p>
+
+                Let's work together on
+                your next project.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- CONTACT FORM -->
+
+        <form
+            class="contact-form"
+            id="contact-form"
+        >
+
+
+            <input
+                type="text"
+                name="user_name"
+                placeholder="Your Name"
+                required
+            >
+
+
+            <input
+                type="email"
+                name="user_email"
+                placeholder="Your Email"
+                required
+            >
+
+
+            <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                required
+            >
+
+
+            <textarea
+                name="message"
+                placeholder="Write your message..."
+                rows="6"
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+            >
+
+                Send Message
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- CONTACT DETAILS -->
+
+        <div class="contact-details">
+
+
+            <p>
+
+                📞
+                <a href="tel:+2347077992618">
+
+                    07077992618
+
+                </a>
+
+            </p>
+
+
+            <p>
+
+                📧
+                <a
+                    href="mailto:saiduhassannuhu94@gmail.com"
+                >
+
+                    saiduhassannuhu94@gmail.com
+
+                </a>
+
+            </p>
+
+
+            <p>
+
+                💬
+                <a
+                    href="https://wa.me/2347077992618"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    WhatsApp
+
+                </a>
+
+            </p>
+
+
+            <p>
+
+                🌐
+                <a
+                    href="https://www.facebook.com/ophicialsaeed1/"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    Facebook
+
+                </a>
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer class="footer">
+
+
+        <h3>
+
+            Saeed Media Hub
+
+        </h3>
 
 
         <p>
 
-            💬
+            Empowering Creativity Through
+            AI & Technology.
+
+        </p>
+
+
+        <div class="footer-links">
+
+
+            <a href="#about">
+
+                About
+
+            </a>
+
+
+            <a href="#services">
+
+                Services
+
+            </a>
+
+
+            <a href="#portfolio">
+
+                Portfolio
+
+            </a>
+
+
+            <a href="#contact">
+
+                Contact
+
+            </a>
+
+
+        </div>
+
+
+
+        <div class="social-icons">
+
 
             <a
                 href="https://wa.me/2347077992618"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
             >
 
-                WhatsApp
+                📱
 
             </a>
 
-        </p>
-
-
-        <p>
-
-            🌐
 
             <a
                 href="https://www.facebook.com/ophicialsaeed1/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
             >
 
-                Facebook
+                🌐
 
             </a>
+
+
+            <a href="#">
+
+                📷
+
+            </a>
+
+
+            <a href="#">
+
+                ▶️
+
+            </a>
+
+
+            <a href="#">
+
+                🎵
+
+            </a>
+
+
+        </div>
+
+
+        <p class="copyright">
+
+            © 2026 Saeed Media Hub.
+            All Rights Reserved.
 
         </p>
 
 
-    </div>
-
-
-</section>
+    </footer>
 
 
 
-<!-- =========================================
-     FOOTER
-========================================= -->
+    <!-- =================================
+         WHATSAPP FLOAT BUTTON
+    ================================== -->
 
-<footer class="footer">
-
-
-    <h3>
-        Saeed Media Hub
-    </h3>
-
-
-    <p>
-
-        Empowering Creativity
-        Through AI & Technology.
-
-    </p>
-
-
-
-    <div class="footer-links">
-
-
-        <a href="#about">
-            About
-        </a>
-
-
-        <a href="#services">
-            Services
-        </a>
-
-
-        <a href="#portfolio">
-            Portfolio
-        </a>
-
-
-        <a href="#contact">
-            Contact
-        </a>
-
-
-    </div>
-
-
-
-    <div class="social-icons">
-
-
-        <a
-            href="https://wa.me/2347077992618"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-        >
-            📱
-        </a>
-
-
-        <a
-            href="https://www.facebook.com/ophicialsaeed1/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-        >
-            🌐
-        </a>
-
-
-        <a
-            href="#"
-            aria-label="Instagram"
-        >
-            📷
-        </a>
-
-
-        <a
-            href="#"
-            aria-label="YouTube"
-        >
-            ▶️
-        </a>
-
-
-        <a
-            href="#"
-            aria-label="TikTok"
-        >
-            🎵
-        </a>
-
-
-    </div>
-
-
-
-    <p class="copyright">
-
-        © 2026 Saeed Media Hub.
-        All Rights Reserved.
-
-    </p>
-
-
-</footer>
-
-
-
-<!-- =========================================
-     FLOATING WHATSAPP
-========================================= -->
-
-<a
-    href="https://wa.me/2347077992618"
-    class="whatsapp-float"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Contact on WhatsApp"
->
-
-    💬
-
-</a>
-
-
-
-<!-- =========================================
-     LIGHTBOX
-========================================= -->
-
-<div
-    id="lightbox"
-    class="lightbox"
->
-
-
-    <span
-        id="closeLightbox"
-        aria-label="Close image"
+    <a
+        href="https://wa.me/2347077992618"
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener"
+        aria-label="Chat on WhatsApp"
     >
 
-        &times;
+        💬
 
-    </span>
+    </a>
 
 
-    <img
-        id="lightboxImg"
-        alt="Portfolio Preview"
+
+    <!-- =================================
+         LIGHTBOX
+    ================================== -->
+
+    <div
+        id="lightbox"
+        class="lightbox"
     >
 
 
-</div>
+        <button
+            id="closeLightbox"
+            aria-label="Close image"
+        >
+
+            &times;
+
+        </button>
+
+
+        <img
+            id="lightboxImg"
+            src=""
+            alt="Portfolio Preview"
+        >
+
+
+    </div>
 
 
 
-<!-- =========================================
-     BACK TO TOP
-========================================= -->
+    <!-- =================================
+         BACK TO TOP
+    ================================== -->
 
-<button
-    id="topBtn"
-    type="button"
-    aria-label="Back to top"
->
+    <button
+        id="topBtn"
+        aria-label="Back to top"
+    >
 
-    ↑
+        ↑
 
-</button>
-
+    </button>
 
 
-<!-- MAIN JAVASCRIPT -->
 
-<script src="script.js"></script>
+    <!-- MAIN JAVASCRIPT -->
+
+    <script src="script.js"></script>
 
 
 </body>
 
-        </html>
+         </html>
