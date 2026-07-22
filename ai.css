@@ -1,1 +1,334 @@
+/* =========================================
+   SAEED AI ASSISTANT V3.1
+   PART 1 — RESET + LAYOUT + SIDEBAR
+   ========================================= */
 
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:"Poppins",sans-serif;
+
+background:#07142b;
+
+color:#fff;
+
+overflow:hidden;
+
+}
+
+
+/* ===========================
+AI LOADER
+=========================== */
+
+.ai-loader{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100vh;
+
+background:#07142b;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+z-index:999999;
+
+transition:.6s;
+
+}
+
+.ai-loader-spinner{
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+border:5px solid #19314f;
+
+border-top:5px solid #00E676;
+
+animation:spin 1s linear infinite;
+
+margin-bottom:20px;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+.ai-loader h3{
+
+font-size:24px;
+
+color:#fff;
+
+margin-bottom:8px;
+
+}
+
+.ai-loader p{
+
+color:#9fb0c8;
+
+font-size:14px;
+
+}
+
+
+/* ===========================
+APP LAYOUT
+=========================== */
+
+.ai-app{
+
+display:flex;
+
+width:100%;
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+
+/* ===========================
+SIDEBAR
+=========================== */
+
+.ai-sidebar{
+
+width:280px;
+
+background:#0b1832;
+
+border-right:1px solid rgba(255,255,255,.08);
+
+display:flex;
+
+flex-direction:column;
+
+padding:20px;
+
+transition:.4s;
+
+}
+
+.ai-brand{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+margin-bottom:30px;
+
+}
+
+.ai-logo{
+
+width:55px;
+
+height:55px;
+
+border-radius:14px;
+
+background:#00E676;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:28px;
+
+}
+
+.ai-brand h2{
+
+font-size:22px;
+
+font-weight:700;
+
+}
+
+.ai-brand span{
+
+font-size:13px;
+
+color:#9fb0c8;
+
+}
+
+
+/* ===========================
+NEW CHAT BUTTON
+=========================== */
+
+.new-chat-btn{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:12px;
+
+background:#00E676;
+
+color:#07142b;
+
+font-size:15px;
+
+font-weight:700;
+
+cursor:pointer;
+
+margin-bottom:30px;
+
+transition:.3s;
+
+}
+
+.new-chat-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+
+/* ===========================
+NAVIGATION
+=========================== */
+
+.ai-nav{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.ai-nav-link{
+
+padding:14px;
+
+border-radius:12px;
+
+color:#d5dce8;
+
+transition:.3s;
+
+font-size:15px;
+
+}
+
+.ai-nav-link:hover{
+
+background:rgba(0,230,118,.12);
+
+color:#00E676;
+
+}
+
+.ai-nav-link.active{
+
+background:rgba(0,230,118,.18);
+
+color:#00E676;
+
+}
+
+
+/* ===========================
+BOTTOM BUTTONS
+=========================== */
+
+.ai-sidebar-bottom{
+
+margin-top:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.sidebar-action{
+
+padding:14px;
+
+border:none;
+
+border-radius:12px;
+
+background:#13284b;
+
+color:#fff;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.sidebar-action:hover{
+
+background:#1d3966;
+
+}
+
+
+/* ===========================
+MAIN AREA
+=========================== */
+
+.ai-main{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+background:#07142b;
+
+overflow:hidden;
+
+}
