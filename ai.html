@@ -1,99 +1,667 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html><html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Saeed Media Hub AI Assistant — Your intelligent digital assistant."
-    >
-
-    <title>
-        AI Assistant | Saeed Media Hub
-    </title>
-
-
-    <!-- Google Font -->
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- AI Assistant CSS -->
-
-    <link
-        rel="stylesheet"
-        href="ai.css"
-    >
-
-</head>
-
-
-<body>
-
-
-<!-- =========================================
-     AI ASSISTANT LOADER
-========================================= -->
-
-<div
-    id="aiLoader"
-    class="ai-loader"
+    <meta charset="UTF-8"><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
-    <div class="ai-loader-spinner"></div>
+<meta
+    name="description"
+    content="Saeed AI — Intelligent AI Assistant by Saeed Media Hub"
+>
 
-    <h3>
-        Saeed AI
-    </h3>
+<meta
+    name="theme-color"
+    content="#07142b"
+>
+
+<title>Saeed AI — Saeed Media Hub</title>
+
+<link rel="stylesheet" href="ai.css">
+
+</head><body><!-- =========================================
+     AI LOADER
+========================================= --><div id="aiLoader" class="ai-loader">
+    <div class="ai-loader-content">
+        <div class="ai-loader-logo">🤖</div>    <h2>Saeed AI</h2>
 
     <p>
-        Preparing your AI Assistant...
+        Preparing your intelligent workspace...
+    </p>
+
+    <div class="loader-progress">
+        <span></span>
+    </div>
+</div>
+
+</div><!-- =========================================
+     AUTHENTICATION SCREEN
+========================================= --><div id="authScreen" class="auth-screen"><div class="auth-brand">
+
+    <div class="auth-brand-icon">
+        🤖
+    </div>
+
+    <h1>Saeed AI</h1>
+
+    <p>
+        Your intelligent assistant from
+        Saeed Media Hub.
     </p>
 
 </div>
 
 
+<div class="auth-container">
 
-<!-- =========================================
-     AI ASSISTANT APP
-========================================= -->
+    <!-- LOGIN -->
 
-<div class="ai-app">
-
-
-    <!-- =====================================
-         SIDEBAR
-    ====================================== -->
-
-    <aside
-        class="ai-sidebar"
-        id="aiSidebar"
+    <section
+        id="loginPanel"
+        class="auth-panel active"
     >
 
-        <div class="ai-brand">
+        <div class="auth-header">
 
-            <div class="ai-logo">
-                🤖
+            <span class="auth-badge">
+                Welcome Back
+            </span>
+
+            <h2>
+                Sign in to Saeed AI
+            </h2>
+
+            <p>
+                Continue your conversations
+                and access your workspace.
+            </p>
+
+        </div>
+
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label for="loginEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    name="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                >
+
             </div>
+
+
+            <div class="form-group">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="loginPassword"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="auth-options">
+
+                <label class="remember-option">
+
+                    <input
+                        type="checkbox"
+                        id="rememberMe"
+                    >
+
+                    <span>
+                        Remember me
+                    </span>
+
+                </label>
+
+
+                <button
+                    type="button"
+                    id="forgotPasswordBtn"
+                    class="text-button"
+                >
+                    Forgot Password?
+                </button>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-submit"
+            >
+
+                <span>Sign In</span>
+
+                <span>→</span>
+
+            </button>
+
+        </form>
+
+
+        <div class="auth-divider">
+            <span>OR</span>
+        </div>
+
+
+        <button
+            type="button"
+            id="guestAccessBtn"
+            class="guest-button"
+        >
+            Continue as Guest
+        </button>
+
+
+        <p class="auth-switch">
+
+            New to Saeed AI?
+
+            <button
+                type="button"
+                id="showSignupBtn"
+                class="text-button"
+            >
+                Create Account
+            </button>
+
+        </p>
+
+    </section>
+
+
+    <!-- SIGN UP -->
+
+    <section
+        id="signupPanel"
+        class="auth-panel"
+    >
+
+        <div class="auth-header">
+
+            <span class="auth-badge">
+                New Customer
+            </span>
+
+            <h2>
+                Create your account
+            </h2>
+
+            <p>
+                Join Saeed AI and keep your
+                conversations organized.
+            </p>
+
+        </div>
+
+
+        <form id="signupForm">
+
+            <div class="form-group">
+
+                <label for="signupName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    name="name"
+                    placeholder="Your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    name="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupPhone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="signupPhone"
+                    name="phone"
+                    placeholder="+234..."
+                    autocomplete="tel"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="signupPassword"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupConfirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="signupConfirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="signupConfirmPassword"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <label class="terms-option">
+
+                <input
+                    type="checkbox"
+                    id="agreeTerms"
+                    required
+                >
+
+                <span>
+                    I agree to the Saeed Media Hub
+                    terms and privacy policy.
+                </span>
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="auth-submit"
+            >
+
+                <span>
+                    Create Account
+                </span>
+
+                <span>→</span>
+
+            </button>
+
+        </form>
+
+
+        <p class="auth-switch">
+
+            Already have an account?
+
+            <button
+                type="button"
+                id="showLoginBtn"
+                class="text-button"
+            >
+                Sign In
+            </button>
+
+        </p>
+
+    </section>
+
+</div>
+
+</div><!-- =========================================
+     MAIN AI APPLICATION
+========================================= --><div
+    id="aiApp"
+    class="ai-app"
+><!-- MOBILE HEADER -->
+
+<header class="mobile-ai-header">
+
+    <button
+        id="aiMenuBtn"
+        class="icon-button"
+        type="button"
+    >
+        ☰
+    </button>
+
+
+    <div class="mobile-ai-brand">
+
+        <span class="brand-ai-icon">
+            🤖
+        </span>
+
+        <span>
+            Saeed AI
+        </span>
+
+    </div>
+
+
+    <button
+        id="mobileNewChatBtn"
+        class="icon-button"
+        type="button"
+    >
+        ＋
+    </button>
+
+</header>
+
+
+<!-- SIDEBAR -->
+
+<aside
+    id="aiSidebar"
+    class="ai-sidebar"
+>
+
+    <div class="sidebar-brand">
+
+        <a
+            href="index.html"
+            class="brand-link"
+        >
+
+            <span class="brand-icon">
+                🤖
+            </span>
 
             <div>
 
-                <h2>
+                <strong>
                     Saeed AI
-                </h2>
+                </strong>
+
+                <small>
+                    Saeed Media Hub
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <button
+            id="closeSidebarBtn"
+            class="icon-button mobile-only"
+            type="button"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <button
+        id="newChatBtn"
+        class="new-chat-button"
+        type="button"
+    >
+
+        <span>＋</span>
+
+        <span>
+            New Chat
+        </span>
+
+    </button>
+
+
+    <div class="chat-search">
+
+        <span>🔍</span>
+
+        <input
+            type="search"
+            id="chatSearchInput"
+            placeholder="Search conversations..."
+        >
+
+    </div>
+
+
+    <div class="history-section">
+
+        <div class="history-heading">
+
+            <span>
+                Recent Chats
+            </span>
+
+            <button
+                id="clearHistoryBtn"
+                class="mini-button"
+                type="button"
+            >
+                🗑️
+            </button>
+
+        </div>
+
+
+        <div
+            id="chatHistoryList"
+            class="chat-history-list"
+        >
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <!-- LANGUAGE -->
+
+        <div class="sidebar-control">
+
+            <label for="languageSelect">
+                🌍 Language
+            </label>
+
+            <select id="languageSelect">
+
+                <option value="auto">
+                    Auto Detect
+                </option>
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="ha">
+                    Hausa
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- THEME -->
+
+        <button
+            id="aiThemeBtn"
+            class="sidebar-action"
+            type="button"
+        >
+
+            <span>🌙</span>
+
+            <span>
+                Theme
+            </span>
+
+        </button>
+
+
+        <!-- SETTINGS -->
+
+        <button
+            id="settingsBtn"
+            class="sidebar-action"
+            type="button"
+        >
+
+            <span>⚙️</span>
+
+            <span>
+                Settings
+            </span>
+
+        </button>
+
+
+        <!-- CUSTOMER -->
+
+        <div
+            id="customerProfile"
+            class="customer-profile"
+        >
+
+            <div
+                id="customerAvatar"
+                class="customer-avatar"
+            >
+                S
+            </div>
+
+
+            <div class="customer-info">
+
+                <strong id="customerName">
+                    Guest User
+                </strong>
+
+                <small id="customerEmail">
+                    Guest Mode
+                </small>
+
+            </div>
+
+
+            <button
+                id="profileMenuBtn"
+                class="mini-button"
+                type="button"
+            >
+                ⋮
+            </button>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main
+    id="aiMain"
+    class="ai-main"
+>
+
+    <!-- DESKTOP TOPBAR -->
+
+    <header class="ai-topbar">
+
+        <div class="topbar-title">
+
+            <div class="online-indicator"></div>
+
+            <div>
+
+                <h1>
+                    Saeed AI
+                </h1>
 
                 <span>
-                    AI Assistant
+                    Intelligent Assistant
                 </span>
 
             </div>
@@ -101,361 +669,604 @@
         </div>
 
 
-        <button
-            class="new-chat-btn"
-            id="newChatBtn"
-        >
-
-            ＋ New Chat
-
-        </button>
-
-
-        <nav class="ai-nav">
-
-            <a
-                href="index.html"
-                class="ai-nav-link"
-            >
-                🏠 Home
-            </a>
-
-
-            <a
-                href="ai.html"
-                class="ai-nav-link active"
-            >
-                🤖 AI Assistant
-            </a>
-
-
-            <a
-                href="dashboard.html"
-                class="ai-nav-link"
-            >
-                📊 Dashboard
-            </a>
-
-
-            <a
-                href="graphics.html"
-                class="ai-nav-link"
-            >
-                🎨 Graphic Design
-            </a>
-
-
-            <a
-                href="web.html"
-                class="ai-nav-link"
-            >
-                🌐 Website Development
-            </a>
-
-        </nav>
-
-
-        <div class="ai-sidebar-bottom">
+        <div class="topbar-actions">
 
             <button
-                id="clearChatBtn"
-                class="sidebar-action"
+                id="liveVoiceBtn"
+                class="topbar-button live-voice-button"
+                type="button"
             >
 
-                🗑️ Clear Chat
+                🔊
+
+                <span>
+                    Live Voice
+                </span>
 
             </button>
 
 
             <button
-                id="aiThemeBtn"
-                class="sidebar-action"
+                id="topNewChatBtn"
+                class="topbar-button"
+                type="button"
             >
 
-                🌙 Theme
+                ＋
+
+                <span>
+                    New Chat
+                </span>
 
             </button>
 
         </div>
 
-    </aside>
+    </header>
 
 
+    <!-- CHAT -->
 
-    <!-- =====================================
-         MAIN AI AREA
-    ====================================== -->
+    <section
+        id="chatArea"
+        class="chat-area"
+    >
 
-    <main class="ai-main">
+        <!-- WELCOME -->
 
-
-        <!-- TOP BAR -->
-
-        <header class="ai-topbar">
-
-            <button
-                id="aiMenuBtn"
-                class="ai-menu-btn"
-            >
-
-                ☰
-
-            </button>
-
-
-            <div class="ai-topbar-title">
-
-                <div class="online-dot"></div>
-
-                <div>
-
-                    <h3>
-                        Saeed AI Assistant
-                    </h3>
-
-                    <span>
-                        Online • Ready to help
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <button
-                id="mobileThemeBtn"
-                class="mobile-theme-btn"
-            >
-
-                🌙
-
-            </button>
-
-        </header>
-
-
-
-        <!-- =================================
-             CHAT AREA
-        ================================== -->
-
-        <section
-            class="chat-area"
-            id="chatArea"
+        <div
+            id="welcomeScreen"
+            class="welcome-screen"
         >
 
-
-            <!-- WELCOME SCREEN -->
-
-            <div
-                class="welcome-screen"
-                id="welcomeScreen"
-            >
-
-                <div class="welcome-icon">
-
-                    🤖
-
-                </div>
-
-
-                <h1>
-
-                    Hello! I'm Saeed AI
-
-                </h1>
-
-
-                <p>
-
-                    Your intelligent assistant from
-                    Saeed Media Hub.
-
-                    Ask me anything about AI,
-                    technology, websites,
-                    graphic design and digital solutions.
-
-                </p>
-
-
-                <!-- QUICK PROMPTS -->
-
-                <div class="quick-prompts">
-
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="What services does Saeed Media Hub offer?"
-                    >
-
-                        💼
-
-                        <span>
-                            Tell me about your services
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="How can I create a professional website?"
-                    >
-
-                        🌐
-
-                        <span>
-                            Help me build a website
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="What can AI help me with?"
-                    >
-
-                        🤖
-
-                        <span>
-                            What can AI do?
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="Give me some graphic design ideas."
-                    >
-
-                        🎨
-
-                        <span>
-                            Give me design ideas
-                        </span>
-
-                    </button>
-
-
-                </div>
-
+            <div class="welcome-ai-icon">
+                🤖
             </div>
 
 
-
-            <!-- MESSAGES -->
-
-            <div
-                id="messagesContainer"
-                class="messages-container"
-            >
-
-            </div>
+            <h2>
+                Hello
+                <span id="welcomeCustomerName"></span>
+                👋
+            </h2>
 
 
-        </section>
+            <p>
+                I'm Saeed AI, your intelligent
+                assistant from Saeed Media Hub.
+            </p>
 
 
+            <p class="welcome-subtext">
 
-        <!-- =================================
-             CHAT INPUT
-        ================================== -->
-
-        <div class="chat-input-wrapper">
-
-
-            <form
-                id="chatForm"
-                class="chat-form"
-            >
-
-
-                <button
-                    type="button"
-                    id="attachBtn"
-                    class="input-icon-btn"
-                    title="Attach file"
-                >
-
-                    📎
-
-                </button>
-
-
-                <input
-                    type="text"
-                    id="chatInput"
-                    placeholder="Ask Saeed AI anything..."
-                    autocomplete="off"
-                >
-
-
-                <button
-                    type="button"
-                    id="voiceBtn"
-                    class="input-icon-btn"
-                    title="Voice input"
-                >
-
-                    🎤
-
-                </button>
-
-
-                <button
-                    type="submit"
-                    id="sendBtn"
-                    class="send-btn"
-                >
-
-                    ➤
-
-                </button>
-
-
-            </form>
-
-
-            <p class="ai-disclaimer">
-
-                Saeed AI can make mistakes.
-                Please verify important information.
+                I can help you explore our services,
+                technology, AI, websites, creative
+                solutions and more.
 
             </p>
 
 
+            <div
+                id="suggestedPrompts"
+                class="suggested-prompts"
+            >
+
+                <button
+                    class="prompt-card"
+                    data-prompt="What services does Saeed Media Hub offer?"
+                    type="button"
+                >
+
+                    <span>💼</span>
+
+                    <strong>
+                        Explore Services
+                    </strong>
+
+                    <small>
+                        Discover what we can do for you.
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="prompt-card"
+                    data-prompt="I want to create a professional website."
+                    type="button"
+                >
+
+                    <span>🌐</span>
+
+                    <strong>
+                        Build a Website
+                    </strong>
+
+                    <small>
+                        Get help with your website project.
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="prompt-card"
+                    data-prompt="I need a professional graphic design."
+                    type="button"
+                >
+
+                    <span>🎨</span>
+
+                    <strong>
+                        Graphic Design
+                    </strong>
+
+                    <small>
+                        Let's discuss your design needs.
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="prompt-card"
+                    data-prompt="Tell me how Saeed AI can help me."
+                    type="button"
+                >
+
+                    <span>🧠</span>
+
+                    <strong>
+                        Ask Saeed AI
+                    </strong>
+
+                    <small>
+                        Explore the AI assistant.
+                    </small>
+
+                </button>
+
+            </div>
+
         </div>
 
 
-    </main>
+        <!-- MESSAGES -->
+
+        <div
+            id="messagesContainer"
+            class="messages-container"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- COMPOSER -->
+
+    <div class="composer-wrapper">
+
+
+        <!-- ATTACHMENTS -->
+
+        <div
+            id="attachmentPreview"
+            class="attachment-preview"
+        >
+        </div>
+
+
+        <!-- LIVE VOICE -->
+
+        <div
+            id="voiceModePanel"
+            class="voice-mode-panel"
+        >
+
+            <div class="voice-visualizer">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Live Voice Mode
+                </strong>
+
+                <small>
+                    Saeed AI is listening...
+                </small>
+
+            </div>
+
+
+            <button
+                id="stopVoiceBtn"
+                type="button"
+                class="stop-voice-button"
+            >
+                Stop
+            </button>
+
+        </div>
+
+
+        <!-- CHAT FORM -->
+
+        <form
+            id="chatForm"
+            class="chat-composer"
+        >
+
+            <input
+                type="file"
+                id="fileInput"
+                hidden
+                multiple
+                accept="image/*,.pdf,.doc,.docx,.txt,.csv,.xlsx"
+            >
+
+
+            <button
+                type="button"
+                id="attachBtn"
+                class="composer-button"
+            >
+                📎
+            </button>
+
+
+            <textarea
+                id="chatInput"
+                name="message"
+                rows="1"
+                placeholder="Message Saeed AI..."
+                autocomplete="off"
+            ></textarea>
+
+
+            <button
+                type="button"
+                id="voiceBtn"
+                class="composer-button"
+            >
+                🎤
+            </button>
+
+
+            <button
+                type="submit"
+                id="sendBtn"
+                class="send-button"
+            >
+                ➤
+            </button>
+
+        </form>
+
+
+        <p class="composer-disclaimer">
+
+            Saeed AI can make mistakes.
+            Check important information.
+
+        </p>
+
+    </div>
+
+</main>
+
+</div><!-- =========================================
+     AI MESSAGE TEMPLATE
+========================================= --><template id="aiMessageTemplate"><article class="message ai-message">
+
+    <div class="message-avatar">
+        🤖
+    </div>
+
+
+    <div class="message-content">
+
+        <div class="message-header">
+
+            <strong>
+                Saeed AI
+            </strong>
+
+            <span class="message-time">
+                Now
+            </span>
+
+        </div>
+
+
+        <div class="message-text">
+        </div>
+
+
+        <div class="message-actions">
+
+            <button
+                type="button"
+                class="message-action copy-message-btn"
+            >
+                📋 Copy
+            </button>
+
+
+            <button
+                type="button"
+                class="message-action regenerate-btn"
+            >
+                🔄 Regenerate
+            </button>
+
+
+            <button
+                type="button"
+                class="message-action like-btn"
+            >
+                👍
+            </button>
+
+
+            <button
+                type="button"
+                class="message-action dislike-btn"
+            >
+                👎
+            </button>
+
+        </div>
+
+    </div>
+
+</article>
+
+</template><!-- =========================================
+     USER MESSAGE TEMPLATE
+========================================= --><template id="userMessageTemplate"><article class="message user-message">
+
+    <div class="message-content">
+
+        <div class="message-header">
+
+            <strong>
+                You
+            </strong>
+
+            <span class="message-time">
+                Now
+            </span>
+
+        </div>
+
+
+        <div class="message-text">
+        </div>
+
+    </div>
+
+
+    <div class="message-avatar user-avatar">
+        U
+    </div>
+
+</article>
+
+</template><!-- =========================================
+     TYPING INDICATOR
+========================================= --><template id="typingTemplate"><div
+    id="typingIndicator"
+    class="typing-indicator"
+>
+
+    <div class="message-avatar">
+        🤖
+    </div>
+
+
+    <div class="typing-content">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
 
 </div>
 
+</template><!-- =========================================
+     SETTINGS MODAL
+========================================= --><div
+    id="settingsModal"
+    class="modal-overlay"
+><div class="modal-card">
+
+    <button
+        id="closeSettingsBtn"
+        class="modal-close"
+        type="button"
+    >
+        ×
+    </button>
 
 
-<!-- =========================================
-     FILE INPUT
-========================================= -->
+    <div class="modal-icon">
+        ⚙️
+    </div>
 
-<input
-    type="file"
-    id="fileInput"
-    hidden
+
+    <h2>
+        AI Settings
+    </h2>
+
+
+    <p>
+        Customize your Saeed AI experience.
+    </p>
+
+
+    <div class="settings-list">
+
+
+        <div class="setting-row">
+
+            <div>
+
+                <strong>
+                    Language
+                </strong>
+
+                <small>
+                    Choose your preferred language.
+                </small>
+
+            </div>
+
+
+            <select id="settingsLanguage">
+
+                <option value="auto">
+                    Auto
+                </option>
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="ha">
+                    Hausa
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div>
+
+                <strong>
+                    Sound
+                </strong>
+
+                <small>
+                    Voice and notification sounds.
+                </small>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="soundToggle"
+                    checked
+                >
+
+                <span></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div>
+
+                <strong>
+                    Save Chat History
+                </strong>
+
+                <small>
+                    Keep conversations for later.
+                </small>
+
+            </div>
+
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="historyToggle"
+                    checked
+                >
+
+                <span></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <button
+        id="closeSettingsAction"
+        class="modal-primary-button"
+        type="button"
+    >
+        Done
+    </button>
+
+</div>
+
+</div><!-- =========================================
+     PROFILE MENU
+========================================= --><div
+    id="profileMenu"
+    class="profile-menu"
+><button
+    id="profileBtn"
+    type="button"
 >
+    👤 My Profile
+</button>
 
 
-
-<!-- =========================================
-     AI ASSISTANT JAVASCRIPT
-========================================= -->
-
-<script
-    src="ai.js"
-></script>
+<button
+    id="accountBtn"
+    type="button"
+>
+    ⚙️ Account Settings
+</button>
 
 
-</body>
+<button
+    id="signOutBtn"
+    type="button"
+>
+    🚪 Sign Out
+</button>
 
-      </html>
+</div><!-- =========================================
+     NOTIFICATION
+========================================= --><div
+    id="aiNotification"
+    class="ai-notification"
+><span id="notificationIcon">
+    ✓
+</span>
+
+
+<span id="notificationText">
+    Done
+</span>
+
+</div><!-- =========================================
+     AI JAVASCRIPT
+========================================= --><script src="ai.js"></script></body>
+</html>
+```
