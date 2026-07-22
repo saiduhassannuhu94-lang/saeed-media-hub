@@ -1,101 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Designs | Saeed Media Hub</title>
 
-<link rel="stylesheet" href="style.css">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Saeed Media Hub AI Assistant — Your intelligent digital assistant."
+    >
+
+    <title>
+        AI Assistant | Saeed Media Hub
+    </title>
+
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- AI Assistant CSS -->
+
+    <link
+        rel="stylesheet"
+        href="ai.css"
+    >
 
 </head>
 
+
 <body>
 
-<header>
 
-<nav class="navbar">
+<!-- =========================================
+     AI ASSISTANT LOADER
+========================================= -->
 
-<div class="logo">
-<img src="logo.png" alt="Saeed Media Hub Logo">
-</div>
+<div
+    id="aiLoader"
+    class="ai-loader"
+>
 
-<ul class="nav-links">
+    <div class="ai-loader-spinner"></div>
 
-<li><a href="index.html">Home</a></li>
+    <h3>
+        Saeed AI
+    </h3>
 
-<li><a href="ai.html">AI</a></li>
-
-<li><a href="graphics.html">Graphics</a></li>
-
-<li><a href="web.html">Web</a></li>
-
-<li><a href="video.html">Video</a></li>
-
-</ul>
-
-</nav>
-
-<section class="hero">
-
-<h1>🤖 AI Designs</h1>
-
-<p>
-Professional AI Images, AI Posters, AI Logos,
-Prompt Engineering and Artificial Intelligence Services.
-</p>
-
-<a href="index.html" class="btn1">⬅ Back Home</a>
-
-</section>
-
-  </header>
-
-<section class="portfolio">
-
-<h2>Our AI Services</h2>
-
-<div class="portfolio-grid">
-
-<div class="portfolio-card">
-<img src="assets/work1.jpg">
-<h3>AI Image Generation</h3>
-<p>Professional AI generated images.</p>
-</div>
-
-<div class="portfolio-card">
-<img src="assets/work1.jpg">
-<h3>Prompt Engineering</h3>
-<p>High quality prompts for ChatGPT and AI tools.</p>
-</div>
-
-<div class="portfolio-card">
-<img src="assets/work1.jpg">
-<h3>AI Branding</h3>
-<p>AI logos, banners and business branding.</p>
-</div>
+    <p>
+        Preparing your AI Assistant...
+    </p>
 
 </div>
 
-</section>
 
-<section class="contact">
 
-<h2>Need AI Services?</h2>
+<!-- =========================================
+     AI ASSISTANT APP
+========================================= -->
 
-<a href="https://wa.me/2347077992618" class="btn2">
-Order on WhatsApp
-</a>
+<div class="ai-app">
 
-</section>
 
-<footer class="footer">
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
 
-<h3>Saeed Media Hub</h3>
+    <aside
+        class="ai-sidebar"
+        id="aiSidebar"
+    >
 
-<p>Artificial Intelligence Solutions</p>
+        <div class="ai-brand">
 
-</footer>
+            <div class="ai-logo">
+                🤖
+            </div>
+
+            <div>
+
+                <h2>
+                    Saeed AI
+                </h2>
+
+                <span>
+                    AI Assistant
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="new-chat-btn"
+            id="newChatBtn"
+        >
+
+            ＋ New Chat
+
+        </button>
+
+
+        <nav class="ai-nav">
+
+            <a
+                href="index.html"
+                class="ai-nav-link"
+            >
+                🏠 Home
+            </a>
+
+
+            <a
+                href="ai.html"
+                class="ai-nav-link active"
+            >
+                🤖 AI Assistant
+            </a>
+
+
+            <a
+                href="dashboard.html"
+                class="ai-nav-link"
+            >
+                📊 Dashboard
+            </a>
+
+
+            <a
+                href="graphics.html"
+                class="ai-nav-link"
+            >
+                🎨 Graphic Design
+            </a>
+
+
+            <a
+                href="web.html"
+                class="ai-nav-link"
+            >
+                🌐 Website Development
+            </a>
+
+        </nav>
+
+
+        <div class="ai-sidebar-bottom">
+
+            <button
+                id="clearChatBtn"
+                class="sidebar-action"
+            >
+
+                🗑️ Clear Chat
+
+            </button>
+
+
+            <button
+                id="aiThemeBtn"
+                class="sidebar-action"
+            >
+
+                🌙 Theme
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN AI AREA
+    ====================================== -->
+
+    <main class="ai-main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="ai-topbar">
+
+            <button
+                id="aiMenuBtn"
+                class="ai-menu-btn"
+            >
+
+                ☰
+
+            </button>
+
+
+            <div class="ai-topbar-title">
+
+                <div class="online-dot"></div>
+
+                <div>
+
+                    <h3>
+                        Saeed AI Assistant
+                    </h3>
+
+                    <span>
+                        Online • Ready to help
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="mobileThemeBtn"
+                class="mobile-theme-btn"
+            >
+
+                🌙
+
+            </button>
+
+        </header>
+
+
+
+        <!-- =================================
+             CHAT AREA
+        ================================== -->
+
+        <section
+            class="chat-area"
+            id="chatArea"
+        >
+
+
+            <!-- WELCOME SCREEN -->
+
+            <div
+                class="welcome-screen"
+                id="welcomeScreen"
+            >
+
+                <div class="welcome-icon">
+
+                    🤖
+
+                </div>
+
+
+                <h1>
+
+                    Hello! I'm Saeed AI
+
+                </h1>
+
+
+                <p>
+
+                    Your intelligent assistant from
+                    Saeed Media Hub.
+
+                    Ask me anything about AI,
+                    technology, websites,
+                    graphic design and digital solutions.
+
+                </p>
+
+
+                <!-- QUICK PROMPTS -->
+
+                <div class="quick-prompts">
+
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="What services does Saeed Media Hub offer?"
+                    >
+
+                        💼
+
+                        <span>
+                            Tell me about your services
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="How can I create a professional website?"
+                    >
+
+                        🌐
+
+                        <span>
+                            Help me build a website
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="What can AI help me with?"
+                    >
+
+                        🤖
+
+                        <span>
+                            What can AI do?
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Give me some graphic design ideas."
+                    >
+
+                        🎨
+
+                        <span>
+                            Give me design ideas
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MESSAGES -->
+
+            <div
+                id="messagesContainer"
+                class="messages-container"
+            >
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             CHAT INPUT
+        ================================== -->
+
+        <div class="chat-input-wrapper">
+
+
+            <form
+                id="chatForm"
+                class="chat-form"
+            >
+
+
+                <button
+                    type="button"
+                    id="attachBtn"
+                    class="input-icon-btn"
+                    title="Attach file"
+                >
+
+                    📎
+
+                </button>
+
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Ask Saeed AI anything..."
+                    autocomplete="off"
+                >
+
+
+                <button
+                    type="button"
+                    id="voiceBtn"
+                    class="input-icon-btn"
+                    title="Voice input"
+                >
+
+                    🎤
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    id="sendBtn"
+                    class="send-btn"
+                >
+
+                    ➤
+
+                </button>
+
+
+            </form>
+
+
+            <p class="ai-disclaimer">
+
+                Saeed AI can make mistakes.
+                Please verify important information.
+
+            </p>
+
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================
+     FILE INPUT
+========================================= -->
+
+<input
+    type="file"
+    id="fileInput"
+    hidden
+>
+
+
+
+<!-- =========================================
+     AI ASSISTANT JAVASCRIPT
+========================================= -->
+
+<script
+    src="ai.js"
+></script>
+
 
 </body>
 
-  </html>
+      </html>
