@@ -746,3 +746,737 @@ color:#8ea2bd;
 line-height:1.5;
 
    }
+/* =========================================
+   PART 3B — RESPONSIVE + LIGHT MODE
+   ========================================= */
+
+
+/* =========================================
+   MOBILE MENU BUTTON
+   ========================================= */
+
+.ai-menu-btn {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE THEME BUTTON
+   ========================================= */
+
+.mobile-theme-btn {
+    display: none;
+}
+
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+.chat-area::-webkit-scrollbar {
+    width: 7px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    background: #1b3764;
+    border-radius: 10px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+    background: #00E676;
+}
+
+
+/* =========================================
+   DESKTOP OPTIMIZATION
+   ========================================= */
+
+@media (min-width: 901px) {
+
+    .ai-sidebar {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .ai-sidebar {
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 280px;
+        height: 100vh;
+
+        z-index: 9999;
+
+        transform: translateX(-100%);
+
+        box-shadow:
+            10px 0 40px
+            rgba(0, 0, 0, 0.35);
+
+    }
+
+    .ai-sidebar.active {
+
+        transform: translateX(0);
+
+    }
+
+    .ai-menu-btn {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .mobile-theme-btn {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .ai-topbar {
+
+        padding:
+            0 15px;
+
+    }
+
+    .ai-topbar-title h3 {
+
+        font-size: 16px;
+
+    }
+
+    .ai-topbar-title span {
+
+        font-size: 11px;
+
+    }
+
+    .chat-area {
+
+        padding:
+            25px 18px;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+
+        font-size: 14px;
+
+    }
+
+
+    /* TOP BAR */
+
+    .ai-topbar {
+
+        height: 65px;
+
+        padding:
+            0 12px;
+
+    }
+
+
+    .ai-menu-btn,
+    .mobile-theme-btn {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 19px;
+
+    }
+
+
+    .ai-topbar-title {
+
+        gap: 8px;
+
+    }
+
+
+    .online-dot {
+
+        width: 9px;
+        height: 9px;
+
+    }
+
+
+    .ai-topbar-title h3 {
+
+        font-size: 14px;
+
+    }
+
+
+    .ai-topbar-title span {
+
+        font-size: 9px;
+
+    }
+
+
+    /* CHAT */
+
+    .chat-area {
+
+        padding:
+            20px 12px;
+
+    }
+
+
+    /* WELCOME */
+
+    .welcome-icon {
+
+        font-size: 55px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .welcome-screen h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .welcome-screen p {
+
+        font-size: 13px;
+
+        line-height: 1.7;
+
+        margin-bottom: 25px;
+
+    }
+
+
+    /* QUICK PROMPTS */
+
+    .quick-prompts {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 10px;
+
+    }
+
+
+    .quick-prompt {
+
+        padding:
+            15px;
+
+    }
+
+
+    .quick-prompt span {
+
+        font-size: 12px;
+
+    }
+
+
+    /* MESSAGES */
+
+    .user-message,
+    .ai-message {
+
+        max-width: 90%;
+
+        padding:
+            13px;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+
+    }
+
+
+    /* INPUT */
+
+    .chat-input-wrapper {
+
+        padding:
+            10px;
+
+    }
+
+
+    .chat-form {
+
+        gap: 6px;
+
+        padding: 7px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .chat-form input {
+
+        min-width: 0;
+
+        font-size: 13px;
+
+        padding:
+            10px 6px;
+
+    }
+
+
+    .input-icon-btn {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 17px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .send-btn {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .ai-disclaimer {
+
+        font-size: 9px;
+
+        margin-top: 8px;
+
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .ai-topbar-title h3 {
+
+        font-size: 12px;
+
+    }
+
+    .ai-topbar-title span {
+
+        font-size: 8px;
+
+    }
+
+    .welcome-screen h1 {
+
+        font-size: 22px;
+
+    }
+
+    .user-message,
+    .ai-message {
+
+        max-width: 94%;
+
+    }
+
+    .input-icon-btn {
+
+        width: 35px;
+        height: 35px;
+
+        font-size: 15px;
+
+    }
+
+    .send-btn {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+/* =========================================
+   LIGHT MODE
+   ========================================= */
+
+body.light-mode {
+
+    background:
+        #f5f8fc;
+
+    color:
+        #07142b;
+
+}
+
+
+/* Sidebar */
+
+body.light-mode .ai-sidebar {
+
+    background:
+        #ffffff;
+
+    border-right:
+        1px solid
+        rgba(7, 20, 43, 0.08);
+
+}
+
+
+/* Main */
+
+body.light-mode .ai-main {
+
+    background:
+        #f5f8fc;
+
+}
+
+
+/* Topbar */
+
+body.light-mode .ai-topbar {
+
+    background:
+        #ffffff;
+
+    border-bottom:
+        1px solid
+        rgba(7, 20, 43, 0.08);
+
+}
+
+
+/* Brand */
+
+body.light-mode .ai-brand h2 {
+
+    color:
+        #07142b;
+
+}
+
+body.light-mode .ai-brand span {
+
+    color:
+        #68788d;
+
+}
+
+
+/* Navigation */
+
+body.light-mode .ai-nav-link {
+
+    color:
+        #52647a;
+
+}
+
+body.light-mode .ai-nav-link:hover,
+body.light-mode .ai-nav-link.active {
+
+    background:
+        rgba(0, 230, 118, 0.1);
+
+    color:
+        #009c52;
+
+}
+
+
+/* Sidebar actions */
+
+body.light-mode .sidebar-action {
+
+    background:
+        #eef3f8;
+
+    color:
+        #07142b;
+
+}
+
+body.light-mode .sidebar-action:hover {
+
+    background:
+        #e1e9f1;
+
+}
+
+
+/* Top buttons */
+
+body.light-mode .ai-menu-btn,
+body.light-mode .mobile-theme-btn {
+
+    background:
+        #eef3f8;
+
+    color:
+        #07142b;
+
+}
+
+
+/* Top title */
+
+body.light-mode .ai-topbar-title h3 {
+
+    color:
+        #07142b;
+
+}
+
+body.light-mode .ai-topbar-title span {
+
+    color:
+        #68788d;
+
+}
+
+
+/* Welcome */
+
+body.light-mode .welcome-screen h1 {
+
+    color:
+        #07142b;
+
+}
+
+body.light-mode .welcome-screen p {
+
+    color:
+        #68788d;
+
+}
+
+
+/* Quick prompts */
+
+body.light-mode .quick-prompt {
+
+    background:
+        #ffffff;
+
+    color:
+        #07142b;
+
+    border:
+        1px solid
+        rgba(7, 20, 43, 0.08);
+
+    box-shadow:
+        0 8px 25px
+        rgba(7, 20, 43, 0.05);
+
+}
+
+body.light-mode .quick-prompt:hover {
+
+    background:
+        #f0f8f4;
+
+}
+
+
+/* AI message */
+
+body.light-mode .ai-message {
+
+    background:
+        #ffffff;
+
+    color:
+        #07142b;
+
+    border:
+        1px solid
+        rgba(7, 20, 43, 0.08);
+
+}
+
+
+/* Chat input */
+
+body.light-mode .chat-input-wrapper {
+
+    background:
+        #ffffff;
+
+    border-top:
+        1px solid
+        rgba(7, 20, 43, 0.08);
+
+}
+
+body.light-mode .chat-form {
+
+    background:
+        #f0f4f8;
+
+    border:
+        1px solid
+        rgba(7, 20, 43, 0.08);
+
+}
+
+body.light-mode .chat-form input {
+
+    color:
+        #07142b;
+
+}
+
+body.light-mode .chat-form input::placeholder {
+
+    color:
+        #8492a3;
+
+}
+
+
+/* Input buttons */
+
+body.light-mode .input-icon-btn {
+
+    background:
+        #e1e9f1;
+
+    color:
+        #07142b;
+
+}
+
+body.light-mode .input-icon-btn:hover {
+
+    background:
+        #00E676;
+
+}
+
+
+/* Disclaimer */
+
+body.light-mode .ai-disclaimer {
+
+    color:
+        #8492a3;
+
+}
+
+
+/* =========================================
+   FINAL POLISH
+   ========================================= */
+
+button,
+a {
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+
+    outline:
+        2px solid #00E676;
+
+    outline-offset:
+        3px;
+
+}
+
+
+/* Prevent selection issues */
+
+.ai-logo,
+.online-dot,
+.spinner {
+
+    user-select:
+        none;
+
+}
+
+
+/* Smooth transitions */
+
+.ai-sidebar,
+.ai-main,
+.ai-topbar,
+.chat-input-wrapper,
+.chat-form,
+.ai-message,
+.quick-prompt,
+.sidebar-action {
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+
+   }
