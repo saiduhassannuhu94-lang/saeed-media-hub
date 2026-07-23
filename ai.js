@@ -1,220 +1,101 @@
-from pathlib import Path
-
-js = r'''/* =========================================================
-   SAEED AI — AI.JS V4.1 COMPLETE
+/* =========================================================
+   SAEED AI — AI.JS V4.2 COMPLETE
    Frontend controller for AI.HTML V4.1 + AI.CSS V4.1
+   Backend/API connection: /api/chat
    ========================================================= */
 
 (() => {
   "use strict";
 
   const $ = (id) => document.getElementById(id);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const on = (el, event, fn, options) => el && el.addEventListener(event, fn, options);
+  const $$ = (selector, root = document) => [
+    ...root.querySelectorAll(selector)
+  ];
+
+  const on = (el, event, fn, options) =>
+    el && el.addEventListener(event, fn, options);
 
   const els = {
     authScreen: $("authScreen"),
+    app: $("app"),
     loginForm: $("loginForm"),
     signupForm: $("signupForm"),
-    loginIdentifier: $("loginIdentifier"),
+    loginEmail: $("loginEmail"),
     loginPassword: $("loginPassword"),
-    loginSubmitBtn: $("loginSubmitBtn"),
     signupName: $("signupName"),
-    signupUsername: $("signupUsername"),
     signupEmail: $("signupEmail"),
     signupPassword: $("signupPassword"),
-    signupSubmitBtn: $("signupSubmitBtn"),
-    guestLoginBtn: $("guestLoginBtn"),
-    showSignupBtn: $("showSignupBtn"),
-    showLoginBtn: $("showLoginBtn"),
-    toggleLoginPassword: $("toggleLoginPassword"),
-    toggleSignupPassword: $("toggleSignupPassword"),
+    logoutBtn: $("logoutBtn"),
 
-    mainAIApp: $("mainAIApp"),
-    aiSidebar: $("aiSidebar"),
-    mobileMenuOverlay: $("mobileMenuOverlay"),
-    openSidebarBtn: $("openSidebarBtn"),
-    closeSidebarBtn: $("closeSidebarBtn"),
+    userName: $("userName"),
+    userAvatar: $("userAvatar"),
 
+    chatList: $("chatList"),
     newChatBtn: $("newChatBtn"),
-    chatHistoryList: $("chatHistoryList"),
-    historySearchInput: $("historySearchInput"),
-    clearHistoryBtn: $("clearHistoryBtn"),
+    deleteChatBtn: $("deleteChatBtn"),
 
-    chatArea: $("chatArea"),
-    chatContent: $("chatContent"),
-    welcomeScreen: $("welcomeScreen"),
-    suggestedPrompts: $("suggestedPrompts"),
-    messagesContainer: $("messagesContainer"),
-    typingIndicator: $("typingIndicator"),
-
-    chatForm: $("chatForm"),
-    chatInput: $("chatInput"),
+    messages: $("messages"),
+    messageInput: $("messageInput"),
     sendBtn: $("sendBtn"),
-    clearInputBtn: $("clearInputBtn"),
-    attachBtn: $("attachBtn"),
+    stopBtn: $("stopBtn"),
+
     fileInput: $("fileInput"),
-    voiceBtn: $("voiceBtn"),
+    attachBtn: $("attachBtn"),
     attachmentPreview: $("attachmentPreview"),
 
-    aiStatus: $("aiStatus"),
-    liveClock: $("liveClock"),
-    clockTime: $("clockTime"),
-    clockDate: $("clockDate"),
+    voiceBtn: $("voiceBtn"),
+    micBtn: $("micBtn"),
 
-    historyBtn: $("historyBtn"),
-    historyOverlay: $("historyOverlay"),
-    historyPanel: $("historyPanel"),
-    closeHistoryBtn: $("closeHistoryBtn"),
-    historyPanelSearch: $("historyPanelSearch"),
-    historyPanelList: $("historyPanelList"),
-
-    voiceRecordingPanel: $("voiceRecordingPanel"),
-    voiceRecordingTime: $("voiceRecordingTime"),
-    cancelVoiceBtn: $("cancelVoiceBtn"),
-    stopVoiceBtn: $("stopVoiceBtn"),
-
-    liveVoiceBtn: $("liveVoiceBtn"),
-    liveVoicePanel: $("liveVoicePanel"),
-    closeLiveVoiceBtn: $("closeLiveVoiceBtn"),
-    startLiveVoiceBtn: $("startLiveVoiceBtn"),
-    endLiveVoiceBtn: $("endLiveVoiceBtn"),
-    liveVoiceMuteBtn: $("liveVoiceMuteBtn"),
-    liveVoiceStatus: $("liveVoiceStatus"),
+    modelSelect: $("modelSelect"),
+    temperature: $("temperature"),
+    temperatureValue: $("temperatureValue"),
 
     settingsBtn: $("settingsBtn"),
     settingsModal: $("settingsModal"),
-    closeSettingsBtn: $("closeSettingsBtn"),
-    closeSettingsAction: $("closeSettingsAction"),
+    closeSettings: $("closeSettings"),
+
     themeToggle: $("themeToggle"),
-    themeToggleBtn: $("themeToggleBtn"),
-    sidebarThemeBtn: $("sidebarThemeBtn"),
-    soundToggle: $("soundToggle"),
-    settingsLanguage: $("settingsLanguage"),
+    clearHistoryBtn: $("clearHistoryBtn"),
 
-    profileBtn: $("profileBtn"),
-    topbarProfileBtn: $("topbarProfileBtn"),
-    accountBtn: $("accountBtn"),
-    profileMenu: $("profileMenu"),
-    profileMenuBtn: $("profileMenuBtn"),
-    signOutBtn: $("signOutBtn"),
+    welcomeScreen: $("welcomeScreen"),
+    typingIndicator: $("typingIndicator"),
 
-    customerAvatar: $("customerAvatar"),
-    customerName: $("customerName"),
-    customerEmail: $("customerEmail"),
-    topbarAvatar: $("topbarAvatar"),
-
-    aiToastContainer: $("aiToastContainer"),
+    toast: $("toast")
   };
 
-  const STORAGE = {
-    users: "saeed_ai_v41_users",
-    session: "saeed_ai_v41_session",
-    chats: "saeed_ai_v41_chats",
-    settings: "saeed_ai_v41_settings",
-    theme: "saeed_ai_v41_theme"
-  };
+  /* =========================================================
+     STATE
+     ========================================================= */
 
   const state = {
-    currentUser: null,
-    currentChatId: null,
+    user: null,
     chats: [],
+    activeChatId: null,
     attachments: [],
-    recognition: null,
-    recording: false,
-    recordingStartedAt: 0,
-    recordingTimer: null,
-    speechSynthesis: window.speechSynthesis || null,
-    liveVoiceActive: false,
-    liveVoiceMuted: false,
     currentRequest: null,
+    recognition: null,
+    isRecording: false,
     isGenerating: false,
     settings: {
-      theme: localStorage.getItem(STORAGE.theme) || "light",
-      sound: true,
-      language: "English"
+      model: "default",
+      temperature: 0.7,
+      theme: "dark"
     }
   };
 
   /* =========================================================
-     STORAGE
-  ========================================================= */
+     STORAGE KEYS
+     ========================================================= */
 
-  function loadJSON(key, fallback) {
-    try {
-      const raw = localStorage.getItem(key);
-      return raw ? JSON.parse(raw) : fallback;
-    } catch {
-      return fallback;
-    }
-  }
-
-  function saveJSON(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  function loadState() {
-    state.settings = {
-      ...state.settings,
-      ...loadJSON(STORAGE.settings, {})
-    };
-
-    state.chats = loadJSON(STORAGE.chats, []);
-    state.currentUser = loadJSON(STORAGE.session, null);
-  }
-
-  function saveSettings() {
-    saveJSON(STORAGE.settings, state.settings);
-    localStorage.setItem(STORAGE.theme, state.settings.theme);
-  }
-
-  function saveChats() {
-    saveJSON(STORAGE.chats, state.chats);
-  }
+  const STORAGE = {
+    USER: "saeed_ai_user",
+    CHATS: "saeed_ai_chats",
+    SETTINGS: "saeed_ai_settings"
+  };
 
   /* =========================================================
-     UTILITIES
-  ========================================================= */
-
-  function escapeHTML(value) {
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function formatText(text) {
-    let safe = escapeHTML(text);
-
-    safe = safe.replace(
-      /```([\s\S]*?)```/g,
-      '<pre><code>$1</code></pre>'
-    );
-
-    safe = safe.replace(
-      /`([^`]+)`/g,
-      "<code>$1</code>"
-    );
-
-    safe = safe.replace(
-      /\*\*(.*?)\*\*/g,
-      "<strong>$1</strong>"
-    );
-
-    safe = safe.replace(
-      /\*(.*?)\*/g,
-      "<em>$1</em>"
-    );
-
-    safe = safe.replace(
-      /\n/g,
-      "<br>"
-    );
-
-    return safe;
-  }
+     HELPERS
+     ========================================================= */
 
   function uid(prefix = "id") {
     return `${prefix}_${Date.now()}_${Math.random()
@@ -222,1325 +103,731 @@ js = r'''/* =========================================================
       .slice(2, 9)}`;
   }
 
-  function now() {
-    return new Date();
+  function escapeHTML(value = "") {
+    const div = document.createElement("div");
+    div.textContent = value;
+    return div.innerHTML;
   }
 
-  function timeString(date = now()) {
-    return date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
+  function showToast(message) {
+    if (!els.toast) return;
+
+    els.toast.textContent = message;
+    els.toast.classList.add("show");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(() => {
+      els.toast.classList.remove("show");
+    }, 2500);
   }
 
-  function dateString(date = now()) {
-    return date.toLocaleDateString([], {
-      weekday: "short",
-      month: "short",
-      day: "numeric"
-    });
+  function saveChats() {
+    localStorage.setItem(
+      STORAGE.CHATS,
+      JSON.stringify(state.chats)
+    );
   }
 
-  function fullDateString(date = now()) {
-    return date.toISOString();
+  function saveSettings() {
+    localStorage.setItem(
+      STORAGE.SETTINGS,
+      JSON.stringify(state.settings)
+    );
   }
 
-  function showToast(message, type = "info") {
-    if (!els.aiToastContainer) return;
-
-    const toast = document.createElement("div");
-    toast.className = `ai-toast ${type}`;
-
-    const icons = {
-      success: "fa-circle-check",
-      error: "fa-circle-exclamation",
-      warning: "fa-triangle-exclamation",
-      info: "fa-circle-info"
-    };
-
-    toast.innerHTML = `
-      <i class="fa-solid ${icons[type] || icons.info}"></i>
-      <span>${escapeHTML(message)}</span>
-    `;
-
-    els.aiToastContainer.appendChild(toast);
-
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transform = "translateY(10px)";
-      setTimeout(() => toast.remove(), 220);
-    }, 3000);
-  }
-
-  function playNotification() {
-    if (!state.settings.sound) return;
-
+  function loadSettings() {
     try {
-      const AudioCtx =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-      if (!AudioCtx) return;
-
-      const ctx = new AudioCtx();
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      oscillator.frequency.value = 660;
-      oscillator.type = "sine";
-
-      gain.gain.setValueAtTime(
-        0.0001,
-        ctx.currentTime
+      const saved = JSON.parse(
+        localStorage.getItem(STORAGE.SETTINGS) || "null"
       );
 
-      gain.gain.exponentialRampToValueAtTime(
-        0.06,
-        ctx.currentTime + 0.01
+      if (saved) {
+        state.settings = {
+          ...state.settings,
+          ...saved
+        };
+      }
+    } catch (error) {
+      console.warn("Could not load settings:", error);
+    }
+  }
+
+  function loadChats() {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem(STORAGE.CHATS) || "[]"
       );
 
-      gain.gain.exponentialRampToValueAtTime(
-        0.0001,
-        ctx.currentTime + 0.12
+      state.chats = Array.isArray(saved) ? saved : [];
+    } catch (error) {
+      console.warn("Could not load chats:", error);
+      state.chats = [];
+    }
+  }
+
+  function loadUser() {
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem(STORAGE.USER) || "null"
       );
 
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
+      state.user = saved;
+    } catch (error) {
+      state.user = null;
+    }
+  }
 
-      oscillator.start();
-      oscillator.stop(ctx.currentTime + 0.13);
-    } catch {}
+  function saveUser(user) {
+    state.user = user;
+
+    localStorage.setItem(
+      STORAGE.USER,
+      JSON.stringify(user)
+    );
+  }
+
+  function removeUser() {
+    state.user = null;
+    localStorage.removeItem(STORAGE.USER);
   }
 
   /* =========================================================
      AUTH
-  ========================================================= */
+     ========================================================= */
 
-  function getUsers() {
-    return loadJSON(STORAGE.users, []);
-  }
+  function showAuth() {
+    if (els.authScreen) {
+      els.authScreen.classList.remove("hidden");
+    }
 
-  function saveUsers(users) {
-    saveJSON(STORAGE.users, users);
-  }
-
-  function setAuthenticated(user) {
-    state.currentUser = user;
-    saveJSON(STORAGE.session, user);
-
-    if (els.authScreen) els.authScreen.hidden = true;
-    if (els.mainAIApp) els.mainAIApp.hidden = false;
-
-    updateProfileUI();
-    renderHistory();
-    updateClock();
-
-    if (!state.currentChatId) {
-      createNewChat(false);
-    } else {
-      loadChat(state.currentChatId);
+    if (els.app) {
+      els.app.classList.add("hidden");
     }
   }
 
-  function logout() {
-    localStorage.removeItem(STORAGE.session);
-    state.currentUser = null;
-    state.currentChatId = null;
+  function showApp() {
+    if (els.authScreen) {
+      els.authScreen.classList.add("hidden");
+    }
 
-    if (els.mainAIApp) els.mainAIApp.hidden = true;
-    if (els.authScreen) els.authScreen.hidden = false;
+    if (els.app) {
+      els.app.classList.remove("hidden");
+    }
 
-    closeProfileMenu();
-    showLoginForm();
-
-    if (els.loginIdentifier) els.loginIdentifier.value = "";
-    if (els.loginPassword) els.loginPassword.value = "";
-
-    showToast("You have been signed out.", "success");
+    updateUserUI();
   }
 
-  function showLoginForm() {
-    if (els.loginForm) els.loginForm.classList.add("active");
-    if (els.signupForm) els.signupForm.classList.remove("active");
+  function updateUserUI() {
+    if (!state.user) return;
+
+    if (els.userName) {
+      els.userName.textContent =
+        state.user.name || "Saeed AI User";
+    }
+
+    if (els.userAvatar) {
+      const name = state.user.name || "User";
+      els.userAvatar.textContent =
+        name.charAt(0).toUpperCase();
+    }
   }
 
-  function showSignupForm() {
-    if (els.signupForm) els.signupForm.classList.add("active");
-    if (els.loginForm) els.loginForm.classList.remove("active");
-  }
-
-  function updateProfileUI() {
-    const user = state.currentUser;
-    if (!user) return;
-
-    const name =
-      user.name ||
-      user.username ||
-      "Guest User";
-
-    const email =
-      user.email ||
-      "Guest session";
-
-    const letter =
-      name.trim().charAt(0).toUpperCase() || "G";
-
-    if (els.customerName)
-      els.customerName.textContent = name;
-
-    if (els.customerEmail)
-      els.customerEmail.textContent = email;
-
-    if (els.customerAvatar)
-      els.customerAvatar.textContent = letter;
-
-    if (els.topbarAvatar)
-      els.topbarAvatar.textContent = letter;
-  }
-
-  on(els.showSignupBtn, "click", showSignupForm);
-  on(els.showLoginBtn, "click", showLoginForm);
-
-  on(els.guestLoginBtn, "click", () => {
-    setAuthenticated({
-      id: "guest",
-      name: "Guest User",
-      username: "guest",
-      email: "Guest session",
-      guest: true
-    });
-
-    showToast("Welcome to Saeed AI.", "success");
-  });
-
-  on(els.loginForm, "submit", (event) => {
+  function handleLogin(event) {
     event.preventDefault();
 
-    const identifier =
-      els.loginIdentifier?.value.trim();
+    const email =
+      els.loginEmail?.value.trim() || "";
 
     const password =
-      els.loginPassword?.value;
+      els.loginPassword?.value || "";
 
-    if (!identifier || !password) {
-      showToast(
-        "Enter your username/email and password.",
-        "warning"
-      );
+    if (!email || !password) {
+      showToast("Please enter your email and password.");
       return;
     }
 
-    const users = getUsers();
+    const user = {
+      id: uid("user"),
+      name: email.split("@")[0],
+      email
+    };
 
-    const user = users.find(
-      (item) =>
-        (
-          item.username === identifier ||
-          item.email === identifier
-        ) &&
-        item.password === password
-    );
+    saveUser(user);
+    showApp();
 
-    if (!user) {
-      showToast(
-        "Invalid login details.",
-        "error"
-      );
-      return;
+    if (els.loginForm) {
+      els.loginForm.reset();
     }
 
-    setAuthenticated(user);
-    showToast(
-      `Welcome back, ${user.name || user.username}!`,
-      "success"
-    );
-  });
+    showToast("Welcome back to Saeed AI.");
+  }
 
-  on(els.signupForm, "submit", (event) => {
+  function handleSignup(event) {
     event.preventDefault();
 
     const name =
-      els.signupName?.value.trim();
-
-    const username =
-      els.signupUsername?.value.trim();
+      els.signupName?.value.trim() || "";
 
     const email =
-      els.signupEmail?.value.trim();
+      els.signupEmail?.value.trim() || "";
 
     const password =
-      els.signupPassword?.value;
+      els.signupPassword?.value || "";
 
-    if (!name || !username || !email || !password) {
-      showToast(
-        "Please complete all sign-up fields.",
-        "warning"
-      );
-      return;
-    }
-
-    if (password.length < 6) {
-      showToast(
-        "Password must contain at least 6 characters.",
-        "warning"
-      );
-      return;
-    }
-
-    const users = getUsers();
-
-    if (
-      users.some(
-        (user) =>
-          user.username === username ||
-          user.email === email
-      )
-    ) {
-      showToast(
-        "Username or email already exists.",
-        "error"
-      );
+    if (!name || !email || !password) {
+      showToast("Please complete all fields.");
       return;
     }
 
     const user = {
       id: uid("user"),
       name,
-      username,
-      email,
-      password,
-      createdAt: fullDateString()
+      email
     };
 
-    users.push(user);
-    saveUsers(users);
+    saveUser(user);
+    showApp();
 
-    setAuthenticated(user);
+    if (els.signupForm) {
+      els.signupForm.reset();
+    }
 
-    showToast(
-      "Account created successfully.",
-      "success"
-    );
-  });
-
-  function togglePassword(input) {
-    if (!input) return;
-
-    input.type =
-      input.type === "password"
-        ? "text"
-        : "password";
+    showToast("Account created successfully.");
   }
 
-  on(
-    els.toggleLoginPassword,
-    "click",
-    () => togglePassword(els.loginPassword)
-  );
-
-  on(
-    els.toggleSignupPassword,
-    "click",
-    () => togglePassword(els.signupPassword)
-  );
+  function logout() {
+    removeUser();
+    showAuth();
+    showToast("You have been logged out.");
+  }
 
   /* =========================================================
-     CLOCK
-  ========================================================= */
+     CHAT MANAGEMENT
+     ========================================================= */
 
-  function updateClock() {
-    const d = now();
-
-    if (els.clockTime)
-      els.clockTime.textContent =
-        timeString(d);
-
-    if (els.clockDate)
-      els.clockDate.textContent =
-        dateString(d);
-  }
-
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  /* =========================================================
-     THEME
-  ========================================================= */
-
-  function applyTheme(theme) {
-    state.settings.theme = theme;
-
-    document.body.classList.toggle(
-      "dark-mode",
-      theme === "dark"
-    );
-
-    if (els.themeToggle)
-      els.themeToggle.checked =
-        theme === "dark";
-
-    saveSettings();
-  }
-
-  function toggleTheme() {
-    applyTheme(
-      state.settings.theme === "dark"
-        ? "light"
-        : "dark"
-    );
-  }
-
-  on(els.themeToggle, "change", (e) => {
-    applyTheme(
-      e.target.checked
-        ? "dark"
-        : "light"
-    );
-  });
-
-  on(els.themeToggleBtn, "click", toggleTheme);
-  on(els.sidebarThemeBtn, "click", toggleTheme);
-
-  /* =========================================================
-     SIDEBAR / MOBILE
-  ========================================================= */
-
-  function openSidebar() {
-    els.aiSidebar?.classList.add("active");
-    els.mobileMenuOverlay?.classList.add("active");
-  }
-
-  function closeSidebar() {
-    els.aiSidebar?.classList.remove("active");
-    els.mobileMenuOverlay?.classList.remove("active");
-  }
-
-  on(els.openSidebarBtn, "click", openSidebar);
-  on(els.closeSidebarBtn, "click", closeSidebar);
-  on(els.mobileMenuOverlay, "click", closeSidebar);
-
-  /* =========================================================
-     CHAT STORAGE
-  ========================================================= */
-
-  function userChats() {
-    if (!state.currentUser) return [];
-
-    const userId =
-      state.currentUser.id;
-
-    return state.chats.filter(
-      (chat) =>
-        chat.userId === userId
-    );
-  }
-
-  function getChat(id) {
-    return state.chats.find(
-      (chat) =>
-        chat.id === id &&
-        chat.userId === state.currentUser?.id
-    );
-  }
-
-  function createNewChat(render = true) {
-    if (!state.currentUser) return;
-
+  function createChat() {
     const chat = {
       id: uid("chat"),
-      userId: state.currentUser.id,
-      title: "New conversation",
-      createdAt: fullDateString(),
-      updatedAt: fullDateString(),
-      messages: []
+      title: "New Chat",
+      messages: [],
+      createdAt: Date.now(),
+      updatedAt: Date.now()
     };
 
     state.chats.unshift(chat);
-    state.currentChatId = chat.id;
+    state.activeChatId = chat.id;
 
     saveChats();
+    renderChatList();
+    renderMessages();
 
-    if (render) {
-      clearMessages();
-      renderHistory();
-      showWelcome();
+    return chat;
+  }
+
+  function getActiveChat() {
+    return state.chats.find(
+      (chat) => chat.id === state.activeChatId
+    );
+  }
+
+  function ensureActiveChat() {
+    let chat = getActiveChat();
+
+    if (!chat) {
+      chat = createChat();
     }
 
     return chat;
   }
 
-  function currentChat() {
-    return getChat(
-      state.currentChatId
+  function deleteActiveChat() {
+    if (!state.activeChatId) return;
+
+    state.chats = state.chats.filter(
+      (chat) => chat.id !== state.activeChatId
     );
-  }
 
-  function clearMessages() {
-    if (els.messagesContainer)
-      els.messagesContainer.innerHTML = "";
-  }
+    state.activeChatId =
+      state.chats[0]?.id || null;
 
-  function showWelcome() {
-    if (els.welcomeScreen)
-      els.welcomeScreen.hidden = false;
-  }
-
-  function hideWelcome() {
-    if (els.welcomeScreen)
-      els.welcomeScreen.hidden = true;
-  }
-
-  function saveCurrentChat() {
     saveChats();
-    renderHistory();
+    renderChatList();
+    renderMessages();
+
+    showToast("Chat deleted.");
   }
 
-  function loadChat(chatId) {
-    const chat = getChat(chatId);
+  function clearHistory() {
+    const chat = getActiveChat();
 
     if (!chat) return;
 
-    state.currentChatId = chat.id;
+    chat.messages = [];
+    chat.updatedAt = Date.now();
 
-    clearMessages();
+    saveChats();
+    renderMessages();
 
-    if (!chat.messages.length) {
-      showWelcome();
+    showToast("Chat history cleared.");
+  }
+
+  function selectChat(chatId) {
+    state.activeChatId = chatId;
+    renderChatList();
+    renderMessages();
+  }
+
+  function updateChatTitle(chat, prompt) {
+    if (!chat || chat.title !== "New Chat") {
       return;
     }
 
-    hideWelcome();
+    const cleanPrompt =
+      prompt.replace(/\s+/g, " ").trim();
 
-    chat.messages.forEach(
-      (message) =>
-        renderMessage(
-          message,
-          false
-        )
-    );
+    if (!cleanPrompt) return;
 
-    scrollToBottom();
-    renderHistory();
+    chat.title =
+      cleanPrompt.length > 35
+        ? `${cleanPrompt.slice(0, 35)}...`
+        : cleanPrompt;
+
+    chat.updatedAt = Date.now();
   }
 
-  function newChat() {
-    createNewChat(true);
-    closeSidebar();
-  }
+  function renderChatList() {
+    if (!els.chatList) return;
 
-  on(els.newChatBtn, "click", newChat);
+    els.chatList.innerHTML = "";
+
+    state.chats.forEach((chat) => {
+      const item = document.createElement("button");
+
+      item.className =
+        "chat-list-item" +
+        (chat.id === state.activeChatId
+          ? " active"
+          : "");
+
+      item.type = "button";
+
+      item.innerHTML = `
+        <span class="chat-list-icon">💬</span>
+        <span class="chat-list-title">
+          ${escapeHTML(chat.title)}
+        </span>
+      `;
+
+      on(item, "click", () => {
+        selectChat(chat.id);
+      });
+
+      els.chatList.appendChild(item);
+    });
+  }
 
   /* =========================================================
      MESSAGE RENDERING
-  ========================================================= */
+     ========================================================= */
 
-  function renderMessage(
-    message,
-    scroll = true
-  ) {
-    if (!els.messagesContainer)
+  function formatMessage(text = "") {
+    let html = escapeHTML(text);
+
+    html = html.replace(
+      /```([\s\S]*?)```/g,
+      "<pre><code>$1</code></pre>"
+    );
+
+    html = html.replace(
+      /`([^`]+)`/g,
+      "<code>$1</code>"
+    );
+
+    html = html.replace(
+      /\*\*(.*?)\*\*/g,
+      "<strong>$1</strong>"
+    );
+
+    html = html.replace(
+      /\n/g,
+      "<br>"
+    );
+
+    return html;
+  }
+
+  function renderMessages() {
+    if (!els.messages) return;
+
+    const chat = getActiveChat();
+
+    els.messages.innerHTML = "";
+
+    if (!chat || !chat.messages.length) {
+      if (els.welcomeScreen) {
+        els.welcomeScreen.classList.remove("hidden");
+      }
+
       return;
+    }
+
+    if (els.welcomeScreen) {
+      els.welcomeScreen.classList.add("hidden");
+    }
+
+    chat.messages.forEach((message) => {
+      renderMessageElement(message);
+    });
+
+    scrollMessages();
+  }
+
+  function renderMessageElement(message) {
+    if (!els.messages) return null;
 
     const wrapper =
       document.createElement("div");
 
-    const isUser =
-      message.role === "user";
-
     wrapper.className =
-      `message ${
-        isUser
-          ? "user-message"
-          : "ai-message"
-      }`;
+      `message ${message.role}`;
+
+    wrapper.dataset.messageId =
+      message.id;
 
     const avatar =
-      isUser
-        ? (
-          state.currentUser?.name
-            ?.charAt(0)
-            .toUpperCase() ||
-          "U"
-        )
-        : "AI";
-
-    let attachmentHTML = "";
-
-    if (
-      message.attachments &&
-      message.attachments.length
-    ) {
-      attachmentHTML = `
-        <div class="message-attachment">
-          ${message.attachments
-            .map(
-              (file) =>
-                file.type?.startsWith("image/")
-                  ? `
-                    <img
-                      class="message-attachment-image"
-                      src="${file.data}"
-                      alt="${escapeHTML(file.name)}"
-                    >
-                  `
-                  : `
-                    <div class="attachment-file">
-                      <i class="fa-solid fa-file attachment-file-icon"></i>
-                      <span class="attachment-file-name">
-                        ${escapeHTML(file.name)}
-                      </span>
-                    </div>
-                  `
-            )
-            .join("")}
-        </div>
-      `;
-    }
-
-    const actions =
-      !isUser
-        ? `
-          <div class="message-actions">
-            <button
-              class="message-action copy-message-btn"
-              title="Copy"
-            >
-              <i class="fa-regular fa-copy"></i>
-              Copy
-            </button>
-
-            <button
-              class="message-action regenerate-btn"
-              title="Regenerate"
-            >
-              <i class="fa-solid fa-rotate"></i>
-              Regenerate
-            </button>
-
-            <button
-              class="message-action like-btn"
-              title="Helpful"
-            >
-              <i class="fa-regular fa-thumbs-up"></i>
-            </button>
-
-            <button
-              class="message-action dislike-btn"
-              title="Not helpful"
-            >
-              <i class="fa-regular fa-thumbs-down"></i>
-            </button>
-          </div>
-        `
-        : "";
+      message.role === "user"
+        ? "👤"
+        : "🤖";
 
     wrapper.innerHTML = `
       <div class="message-avatar">
-        ${escapeHTML(avatar)}
+        ${avatar}
       </div>
 
-      <div class="message-body">
+      <div class="message-content">
+        <div class="message-text">
+          ${formatMessage(message.content || "")}
+        </div>
 
-        <div class="message-meta">
-          <strong class="message-author">
-            ${
-              isUser
-                ? escapeHTML(
-                    state.currentUser?.name ||
-                    "You"
+        ${
+          message.attachments?.length
+            ? `
+              <div class="message-attachments">
+                ${message.attachments
+                  .map(
+                    (file) => `
+                      <div class="attachment-item">
+                        📎 ${escapeHTML(file.name || "File")}
+                      </div>
+                    `
                   )
-                : "Saeed AI"
-            }
-          </strong>
+                  .join("")}
+              </div>
+            `
+            : ""
+        }
 
-          <span class="message-time">
-            ${escapeHTML(
-              message.time ||
-              timeString()
-            )}
-          </span>
-        </div>
+        ${
+          message.role === "assistant"
+            ? `
+              <div class="message-actions">
+                <button
+                  type="button"
+                  data-action="copy"
+                >
+                  Copy
+                </button>
 
-        <div class="${
-          isUser
-            ? "user-message-content"
-            : "ai-message-content"
-        } message-text">
-          ${
-            isUser
-              ? formatText(message.content)
-              : formatText(message.content)
-          }
-        </div>
-
-        ${attachmentHTML}
-
-        ${actions}
-
+                <button
+                  type="button"
+                  data-action="regenerate"
+                >
+                  Regenerate
+                </button>
+              </div>
+            `
+            : ""
+        }
       </div>
     `;
 
-    els.messagesContainer.appendChild(wrapper);
-
     const copyBtn =
       wrapper.querySelector(
-        ".copy-message-btn"
+        '[data-action="copy"]'
       );
 
     const regenerateBtn =
       wrapper.querySelector(
-        ".regenerate-btn"
-      );
-
-    const likeBtn =
-      wrapper.querySelector(
-        ".like-btn"
-      );
-
-    const dislikeBtn =
-      wrapper.querySelector(
-        ".dislike-btn"
+        '[data-action="regenerate"]'
       );
 
     on(copyBtn, "click", () => {
-      navigator.clipboard
-        ?.writeText(message.content)
-        .then(() =>
-          showToast(
-            "Response copied.",
-            "success"
-          )
-        )
-        .catch(() =>
-          showToast(
-            "Could not copy response.",
-            "error"
-          )
-        );
+      copyText(message.content);
     });
 
-    on(
-      regenerateBtn,
-      "click",
-      () => regenerateMessage(message.id)
-    );
-
-    on(
-      likeBtn,
-      "click",
-      () => {
-        showToast(
-          "Thanks for your feedback.",
-          "success"
-        );
-      }
-    );
-
-    on(
-      dislikeBtn,
-      "click",
-      () => {
-        showToast(
-          "Feedback recorded.",
-          "success"
-        );
-      }
-    );
-
-    if (scroll)
-      scrollToBottom();
-  }
-
-  function addMessage(
-    role,
-    content,
-    attachments = []
-  ) {
-    const chat = currentChat();
-
-    if (!chat) return null;
-
-    const message = {
-      id: uid("msg"),
-      role,
-      content,
-      attachments,
-      time: timeString(),
-      createdAt: fullDateString()
-    };
-
-    chat.messages.push(message);
-
-    chat.updatedAt =
-      fullDateString();
-
-    if (
-      role === "user" &&
-      chat.title === "New conversation"
-    ) {
-      chat.title =
-        content
-          .replace(/\s+/g, " ")
-          .trim()
-          .slice(0, 48) ||
-        "New conversation";
-    }
-
-    saveCurrentChat();
-
-    return message;
-  }
-
-  function scrollToBottom() {
-    requestAnimationFrame(() => {
-      if (els.chatArea)
-        els.chatArea.scrollTo({
-          top: els.chatArea.scrollHeight,
-          behavior: "smooth"
-        });
+    on(regenerateBtn, "click", () => {
+      regenerateMessage(message.id);
     });
+
+    els.messages.appendChild(wrapper);
+
+    return wrapper;
   }
 
-  /* =========================================================
-     HISTORY
-  ========================================================= */
+  function scrollMessages() {
+    if (!els.messages) return;
 
-  function historyHTML(chats) {
-    if (!chats.length) {
-      return `
-        <div class="empty-history-state">
-          <i class="fa-regular fa-message"></i>
-          <span>No conversations yet.</span>
-        </div>
-      `;
-    }
-
-    return chats
-      .map(
-        (chat) => `
-          <button
-            class="history-item ${
-              chat.id === state.currentChatId
-                ? "active"
-                : ""
-            }"
-            data-chat-id="${chat.id}"
-          >
-            <span class="history-item-icon">
-              <i class="fa-regular fa-message"></i>
-            </span>
-
-            <span class="history-item-content">
-              <strong class="history-item-title">
-                ${escapeHTML(chat.title)}
-              </strong>
-
-              <small class="history-item-date">
-                ${escapeHTML(
-                  new Date(
-                    chat.updatedAt
-                  ).toLocaleDateString()
-                )}
-              </small>
-            </span>
-          </button>
-        `
-      )
-      .join("");
+    els.messages.scrollTop =
+      els.messages.scrollHeight;
   }
 
-  function renderHistory(query = "") {
-    const chats =
-      userChats()
-        .filter(
-          (chat) =>
-            !query ||
-            chat.title
-              .toLowerCase()
-              .includes(
-                query.toLowerCase()
-              )
-        );
-
-    if (els.chatHistoryList) {
-      els.chatHistoryList.innerHTML =
-        historyHTML(chats);
-
-      $$(
-        ".history-item",
-        els.chatHistoryList
-      ).forEach((item) =>
-        on(
-          item,
-          "click",
-          () => {
-            loadChat(
-              item.dataset.chatId
-            );
-            closeSidebar();
-          }
-        )
-      );
-    }
-
-    if (els.historyPanelList) {
-      els.historyPanelList.innerHTML =
-        historyHTML(chats);
-
-      $$(
-        ".history-item",
-        els.historyPanelList
-      ).forEach((item) =>
-        on(
-          item,
-          "click",
-          () => {
-            loadChat(
-              item.dataset.chatId
-            );
-            closeHistory();
-          }
-        )
-      );
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast("Copied to clipboard.");
+    } catch (error) {
+      showToast("Unable to copy text.");
     }
   }
-
-  on(
-    els.historySearchInput,
-    "input",
-    (e) =>
-      renderHistory(e.target.value)
-  );
-
-  on(
-    els.historyPanelSearch,
-    "input",
-    (e) =>
-      renderHistory(e.target.value)
-  );
-
-  on(
-    els.clearHistoryBtn,
-    "click",
-    () => {
-      if (!state.currentUser) return;
-
-      const confirmed =
-        window.confirm(
-          "Clear all your chat history?"
-        );
-
-      if (!confirmed) return;
-
-      state.chats =
-        state.chats.filter(
-          (chat) =>
-            chat.userId !==
-            state.currentUser.id
-        );
-
-      saveChats();
-
-      state.currentChatId = null;
-
-      createNewChat(true);
-
-      showToast(
-        "Chat history cleared.",
-        "success"
-      );
-    }
-  );
-
-  /* =========================================================
-     HISTORY PANEL
-  ========================================================= */
-
-  function openHistory() {
-    els.historyOverlay?.classList.add("active");
-    els.historyPanel?.classList.add("active");
-    renderHistory();
-  }
-
-  function closeHistory() {
-    els.historyOverlay?.classList.remove("active");
-    els.historyPanel?.classList.remove("active");
-  }
-
-  on(els.historyBtn, "click", openHistory);
-  on(els.closeHistoryBtn, "click", closeHistory);
-  on(els.historyOverlay, "click", closeHistory);
 
   /* =========================================================
      ATTACHMENTS
-  ========================================================= */
+     ========================================================= */
 
-  function renderAttachments() {
-    if (!els.attachmentPreview)
-      return;
+  function handleFiles(files) {
+    const selected =
+      Array.from(files || []);
 
-    els.attachmentPreview.innerHTML =
-      state.attachments
-        .map(
-          (file, index) => `
-            <div class="attachment-item">
-
-              ${
-                file.type?.startsWith("image/")
-                  ? `
-                    <img
-                      class="attachment-image"
-                      src="${file.data}"
-                      alt="${escapeHTML(file.name)}"
-                    >
-                  `
-                  : `
-                    <div class="attachment-file">
-                      <i class="fa-solid fa-file attachment-file-icon"></i>
-                      <span class="attachment-file-name">
-                        ${escapeHTML(file.name)}
-                      </span>
-                    </div>
-                  `
-              }
-
-              <button
-                class="remove-attachment"
-                data-index="${index}"
-                type="button"
-              >
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-
-            </div>
-          `
-        )
-        .join("");
-
-    $$(".remove-attachment").forEach(
-      (button) =>
-        on(
-          button,
-          "click",
-          () => {
-            state.attachments.splice(
-              Number(button.dataset.index),
-              1
-            );
-
-            renderAttachments();
-          }
-        )
-    );
-  }
-
-  on(els.attachBtn, "click", () => {
-    els.fileInput?.click();
-  });
-
-  on(els.fileInput, "change", async (event) => {
-    const files = [
-      ...(event.target.files || [])
-    ];
-
-    for (const file of files) {
-      if (
-        state.attachments.length >= 5
-      ) {
-        showToast(
-          "Maximum 5 attachments.",
-          "warning"
-        );
-        break;
-      }
-
-      if (file.size > 10 * 1024 * 1024) {
-        showToast(
-          `${file.name} is larger than 10MB.`,
-          "warning"
-        );
-        continue;
-      }
-
-      const data =
-        await readFileAsDataURL(file);
-
-      state.attachments.push({
-        name: file.name,
-        type: file.type,
-        size: file.size,
-        data
-      });
-    }
-
-    renderAttachments();
-
-    event.target.value = "";
-  });
-
-  function readFileAsDataURL(file) {
-    return new Promise((resolve) => {
+    selected.forEach((file) => {
       const reader =
         new FileReader();
 
-      reader.onload = () =>
-        resolve(reader.result);
+      reader.onload = () => {
+        state.attachments.push({
+          id: uid("file"),
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          data: reader.result
+        });
 
-      reader.onerror = () =>
-        resolve("");
+        renderAttachmentPreview();
+      };
 
       reader.readAsDataURL(file);
     });
   }
 
-  /* =========================================================
-     CHAT INPUT
-  ========================================================= */
+  function renderAttachmentPreview() {
+    if (!els.attachmentPreview) return;
 
-  function autoResizeInput() {
-    if (!els.chatInput) return;
+    els.attachmentPreview.innerHTML = "";
 
-    els.chatInput.style.height =
-      "auto";
+    state.attachments.forEach((file) => {
+      const item =
+        document.createElement("div");
 
-    els.chatInput.style.height =
-      Math.min(
-        els.chatInput.scrollHeight,
-        150
-      ) + "px";
+      item.className =
+        "attachment-preview-item";
+
+      item.innerHTML = `
+        <span>
+          📎 ${escapeHTML(file.name)}
+        </span>
+
+        <button
+          type="button"
+          aria-label="Remove attachment"
+        >
+          ×
+        </button>
+      `;
+
+      const removeBtn =
+        item.querySelector("button");
+
+      on(removeBtn, "click", () => {
+        state.attachments =
+          state.attachments.filter(
+            (attachment) =>
+              attachment.id !== file.id
+          );
+
+        renderAttachmentPreview();
+      });
+
+      els.attachmentPreview.appendChild(item);
+    });
   }
 
-  on(
-    els.chatInput,
-    "input",
-    autoResizeInput
-  );
+  /* =========================================================
+     TYPING INDICATOR
+     ========================================================= */
 
-  on(
-    els.clearInputBtn,
-    "click",
-    () => {
-      if (els.chatInput)
-        els.chatInput.value = "";
+  function setGenerating(value) {
+    state.isGenerating = value;
 
-      autoResizeInput();
-      els.chatInput?.focus();
+    if (els.typingIndicator) {
+      els.typingIndicator.classList.toggle(
+        "hidden",
+        !value
+      );
     }
-  );
 
-  on(
-    els.suggestedPrompts,
-    "click",
-    (event) => {
-      const prompt =
-        event.target.closest(
-          ".suggested-prompt"
-        );
-
-      if (!prompt) return;
-
-      const text =
-        prompt.dataset.prompt ||
-        prompt
-          .querySelector(
-            ".suggested-prompt-content span"
-          )
-          ?.textContent ||
-        "";
-
-      if (!text) return;
-
-      els.chatInput.value =
-        text.trim();
-
-      autoResizeInput();
-      els.chatInput.focus();
+    if (els.sendBtn) {
+      els.sendBtn.disabled = value;
     }
-  );
 
-  on(
-    els.chatInput,
-    "keydown",
-    (event) => {
-      if (
-        event.key === "Enter" &&
-        !event.shiftKey
-      ) {
-        event.preventDefault();
-        els.chatForm?.requestSubmit();
-      }
+    if (els.stopBtn) {
+      els.stopBtn.classList.toggle(
+        "hidden",
+        !value
+      );
     }
-  );
+  }
 
   /* =========================================================
-     AI RESPONSE ENGINE
-     Frontend fallback.
-     Replace requestAI() with your secure backend endpoint
-     when connecting a real AI model.
-  ========================================================= */
+     BACKEND/API — SAEED AI V4.2
+     ========================================================= */
 
   async function requestAI(
     prompt,
     context = [],
     attachments = []
   ) {
-    /*
-      REAL API EXAMPLE:
+    const controller =
+      new AbortController();
 
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: prompt,
-          history: context,
-          attachments
-        })
-      });
+    state.currentRequest =
+      controller;
 
-      if (!response.ok)
-        throw new Error("AI request failed");
+    try {
+      const response =
+        await fetch("/api/chat", {
+          method: "POST",
 
-      const data = await response.json();
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+            message: prompt,
+
+            history: context,
+
+            attachments
+          }),
+
+          signal:
+            controller.signal
+        });
+
+      if (!response.ok) {
+        const errorData =
+          await response
+            .json()
+            .catch(() => ({}));
+
+        throw new Error(
+          errorData.error ||
+          `AI request failed with status ${response.status}`
+        );
+      }
+
+      const data =
+        await response.json();
+
+      if (!data.reply) {
+        throw new Error(
+          "No AI reply was returned by the backend."
+        );
+      }
 
       return data.reply;
-    */
-
-    return localAIResponse(
-      prompt,
-      attachments
-    );
-  }
-
-  function localAIResponse(
-    prompt,
-    attachments = []
-  ) {
-    const text =
-      prompt.toLowerCase().trim();
-
-    if (
-      text.includes("hello") ||
-      text.includes("hi") ||
-      text.includes("sannu")
-    ) {
-      return `Hello! 👋 I'm Saeed AI. How can I help you today?`;
+    } finally {
+      state.currentRequest =
+        null;
     }
-
-    if (
-      text.includes("who are you") ||
-      text.includes("what are you")
-    ) {
-      return `I'm Saeed AI, your AI assistant interface. I can help you with questions, learning, writing, coding, ideas, and more. 🤖`;
-    }
-
-    if (
-      text.includes("time") ||
-      text.includes("lokaci")
-    ) {
-      return `The current time is ${timeString()} and today is ${dateString()}.`;
-    }
-
-    if (
-      text.includes("date") ||
-      text.includes("kwanan wata")
-    ) {
-      return `Today is ${dateString()}.`;
-    }
-
-    if (
-      text.includes("thank")
-    ) {
-      return `You're welcome! 😊`;
-    }
-
-    if (
-      text.includes("help")
-    ) {
-      return `Sure! Tell me what you need help with. I can assist with learning, writing, coding, ideas, explanations, and more.`;
-    }
-
-    if (attachments.length) {
-      return `I received ${attachments.length} attachment${
-        attachments.length > 1 ? "s" : ""
-      }. 📎
-
-The frontend is ready to send these files to a real AI backend. Once the secure AI API is connected, I can analyze supported files and images directly.`;
-    }
-
-    return `I received your message:
-
-"${prompt}"
-
-The Saeed AI frontend is working correctly. 🚀
-
-The next step is connecting this chat interface to a secure AI backend/API so I can generate real live AI answers instead of using the local fallback response.`;
   }
 
   /* =========================================================
      SEND MESSAGE
-  ========================================================= */
+     ========================================================= */
 
   async function sendMessage() {
     const prompt =
-      els.chatInput?.value.trim();
+      els.messageInput?.value.trim() || "";
 
-    if (
-      !prompt &&
-      !state.attachments.length
-    ) {
+    if (!prompt && !state.attachments.length) {
       return;
     }
 
     if (state.isGenerating) {
-      showToast(
-        "AI is still generating a response.",
-        "warning"
-      );
       return;
     }
 
-    if (!currentChat()) {
-      createNewChat(false);
-    }
+    const chat =
+      ensureActiveChat();
 
-    hideWelcome();
+    const userMessage = {
+      id: uid("message"),
+      role: "user",
+      content: prompt,
+      attachments: state.attachments.map(
+        (file) => ({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          data: file.data
+        })
+      ),
+      createdAt: Date.now()
+    };
+
+    updateChatTitle(chat, prompt);
+
+    chat.messages.push(userMessage);
+    chat.updatedAt = Date.now();
 
     const attachments =
-      [...state.attachments];
-
-    const userMessage =
-      addMessage(
-        "user",
-        prompt ||
-          "Please analyze the attached file.",
-        attachments
+      state.attachments.map(
+        (file) => ({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          data: file.data
+        })
       );
 
-    renderMessage(
-      userMessage
-    );
-
-    els.chatInput.value = "";
     state.attachments = [];
 
-    renderAttachments();
-    autoResizeInput();
+    if (els.messageInput) {
+      els.messageInput.value = "";
+    }
+
+    renderAttachmentPreview();
+    saveChats();
+    renderChatList();
+    renderMessages();
 
     setGenerating(true);
 
     try {
-      const chat =
-        currentChat();
-
       const history =
         chat.messages
-          .slice(-20)
-          .map((message) => ({
-            role: message.role,
-            content: message.content
-          }));
+          .filter(
+            (message) =>
+              message.role === "user" ||
+              message.role === "assistant"
+          )
+          .map(
+            (message) => ({
+              role: message.role,
+              content: message.content
+            })
+          );
 
       const reply =
         await requestAI(
@@ -1549,117 +836,82 @@ The next step is connecting this chat interface to a secure AI backend/API so I 
           attachments
         );
 
-      if (!state.isGenerating)
-        return;
+      chat.messages.push({
+        id: uid("message"),
+        role: "assistant",
+        content: reply,
+        attachments: [],
+        createdAt: Date.now()
+      });
 
-      const aiMessage =
-        addMessage(
-          "assistant",
-          reply
-        );
+      chat.updatedAt = Date.now();
 
-      renderMessage(
-        aiMessage
-      );
-
-      playNotification();
-
+      saveChats();
+      renderMessages();
     } catch (error) {
-      console.error(error);
+      if (
+        error.name === "AbortError"
+      ) {
+        return;
+      }
 
-      const errorMessage =
-        addMessage(
-          "assistant",
-          "Sorry, something went wrong while processing your request."
-        );
-
-      renderMessage(
-        errorMessage
+      console.error(
+        "Saeed AI Backend Error:",
+        error
       );
+
+      chat.messages.push({
+        id: uid("message"),
+        role: "assistant",
+        content:
+          "Sorry, I couldn't connect to Saeed AI right now. Please check your internet connection or try again.",
+        attachments: [],
+        createdAt: Date.now()
+      });
+
+      saveChats();
+      renderMessages();
 
       showToast(
-        "AI request failed.",
-        "error"
+        "Saeed AI connection error."
       );
     } finally {
       setGenerating(false);
     }
   }
 
-  on(
-    els.chatForm,
-    "submit",
-    (event) => {
-      event.preventDefault();
-      sendMessage();
-    }
-  );
-
-  function setGenerating(value) {
-    state.isGenerating =
-      Boolean(value);
-
-    if (els.typingIndicator)
-      els.typingIndicator.hidden =
-        !value;
-
-    if (els.sendBtn) {
-      els.sendBtn.disabled =
-        value;
-
-      els.sendBtn.innerHTML =
-        value
-          ? '<i class="fa-solid fa-stop"></i>'
-          : '<i class="fa-solid fa-paper-plane"></i>';
-    }
-
-    if (value)
-      scrollToBottom();
-  }
-
-  on(
-    els.sendBtn,
-    "click",
-    (event) => {
-      if (!state.isGenerating)
-        return;
-
-      event.preventDefault();
-
-      stopGeneration();
-    }
-  );
+  /* =========================================================
+     STOP GENERATION
+     ========================================================= */
 
   function stopGeneration() {
     if (
-      state.currentRequest &&
-      typeof state.currentRequest.abort ===
-        "function"
+      state.currentRequest
     ) {
       state.currentRequest.abort();
+      state.currentRequest = null;
     }
-
-    state.isGenerating = false;
 
     setGenerating(false);
 
     showToast(
-      "Generation stopped.",
-      "success"
+      "AI response stopped."
     );
   }
 
   /* =========================================================
      REGENERATE
-  ========================================================= */
+     ========================================================= */
 
   async function regenerateMessage(
     messageId
   ) {
     const chat =
-      currentChat();
+      getActiveChat();
 
-    if (!chat) return;
+    if (!chat || state.isGenerating) {
+      return;
+    }
 
     const index =
       chat.messages.findIndex(
@@ -1667,9 +919,9 @@ The next step is connecting this chat interface to a secure AI backend/API so I 
           message.id === messageId
       );
 
-    if (index < 0) return;
+    if (index === -1) return;
 
-    const previousUser =
+    const previousUserMessage =
       [...chat.messages]
         .slice(0, index)
         .reverse()
@@ -1678,585 +930,469 @@ The next step is connecting this chat interface to a secure AI backend/API so I 
             message.role === "user"
         );
 
-    if (!previousUser) {
-      showToast(
-        "No user message found.",
-        "warning"
-      );
+    if (!previousUserMessage) {
       return;
     }
 
     chat.messages =
-      chat.messages.slice(
-        0,
-        index
-      );
+      chat.messages.slice(0, index);
 
     saveChats();
-
-    loadChat(chat.id);
+    renderMessages();
 
     setGenerating(true);
 
     try {
+      const history =
+        chat.messages
+          .map(
+            (message) => ({
+              role: message.role,
+              content: message.content
+            })
+          );
+
       const reply =
         await requestAI(
-          previousUser.content,
-          chat.messages.slice(-20),
-          previousUser.attachments || []
+          previousUserMessage.content,
+          history,
+          previousUserMessage.attachments ||
+            []
         );
 
-      const aiMessage =
-        addMessage(
-          "assistant",
-          reply
+      chat.messages.push({
+        id: uid("message"),
+        role: "assistant",
+        content: reply,
+        attachments: [],
+        createdAt: Date.now()
+      });
+
+      chat.updatedAt = Date.now();
+
+      saveChats();
+      renderMessages();
+    } catch (error) {
+      if (
+        error.name !== "AbortError"
+      ) {
+        console.error(
+          "Regeneration error:",
+          error
         );
 
-      renderMessage(
-        aiMessage
-      );
-
+        showToast(
+          "Unable to regenerate response."
+        );
+      }
     } finally {
       setGenerating(false);
     }
   }
 
   /* =========================================================
-     VOICE RECOGNITION
-  ========================================================= */
+     VOICE INPUT
+     ========================================================= */
 
-  function setupSpeechRecognition() {
-    const Recognition =
+  function setupVoiceRecognition() {
+    const SpeechRecognition =
       window.SpeechRecognition ||
       window.webkitSpeechRecognition;
 
-    if (!Recognition) {
-      return null;
+    if (!SpeechRecognition) {
+      return;
     }
 
-    const recognition =
-      new Recognition();
+    state.recognition =
+      new SpeechRecognition();
 
-    recognition.continuous = true;
-    recognition.interimResults = true;
+    state.recognition.continuous =
+      false;
 
-    recognition.lang =
-      state.settings.language ===
-      "Hausa"
-        ? "ha-NG"
-        : "en-US";
+    state.recognition.interimResults =
+      true;
 
-    recognition.onstart = () => {
-      state.recording = true;
+    state.recognition.lang =
+      "en-US";
 
-      if (
-        els.voiceRecordingPanel
-      )
-        els.voiceRecordingPanel.classList.add(
-          "active"
+    state.recognition.onstart =
+      () => {
+        state.isRecording = true;
+
+        els.voiceBtn?.classList.add(
+          "recording"
         );
 
-      startRecordingTimer();
+        els.micBtn?.classList.add(
+          "recording"
+        );
+      };
 
-      showToast(
-        "Listening...",
-        "success"
-      );
-    };
-
-    recognition.onresult =
+    state.recognition.onresult =
       (event) => {
-        let finalText = "";
+        let transcript = "";
 
         for (
           let i = event.resultIndex;
           i < event.results.length;
           i++
         ) {
-          if (
-            event.results[i].isFinal
-          ) {
-            finalText +=
-              event.results[i][0]
-                .transcript;
-          }
+          transcript +=
+            event.results[i][0]
+              .transcript;
         }
 
-        if (finalText) {
-          els.chatInput.value +=
-            (
-              els.chatInput.value
-                ? " "
-                : ""
-            ) +
-            finalText.trim();
-
-          autoResizeInput();
+        if (els.messageInput) {
+          els.messageInput.value =
+            transcript;
         }
       };
 
-    recognition.onerror =
+    state.recognition.onend =
+      () => {
+        state.isRecording = false;
+
+        els.voiceBtn?.classList.remove(
+          "recording"
+        );
+
+        els.micBtn?.classList.remove(
+          "recording"
+        );
+      };
+
+    state.recognition.onerror =
       (event) => {
         console.warn(
-          "Speech recognition:",
+          "Speech recognition error:",
           event.error
         );
 
-        if (
-          event.error ===
-          "not-allowed"
-        ) {
-          showToast(
-            "Microphone permission was denied.",
-            "error"
-          );
-        }
+        state.isRecording = false;
+
+        els.voiceBtn?.classList.remove(
+          "recording"
+        );
+
+        els.micBtn?.classList.remove(
+          "recording"
+        );
       };
-
-    recognition.onend = () => {
-      if (state.recording) {
-        try {
-          recognition.start();
-        } catch {}
-      }
-    };
-
-    return recognition;
   }
 
-  function startVoice() {
-    if (!state.recognition)
-      state.recognition =
-        setupSpeechRecognition();
-
+  function toggleVoice() {
     if (!state.recognition) {
       showToast(
-        "Voice recognition is not supported in this browser.",
-        "warning"
+        "Voice recognition is not supported in this browser."
       );
+
       return;
     }
 
-    if (state.recording) return;
-
-    try {
+    if (state.isRecording) {
+      state.recognition.stop();
+    } else {
       state.recognition.start();
-    } catch (error) {
-      console.warn(error);
     }
   }
-
-  function stopVoice() {
-    state.recording = false;
-
-    clearInterval(
-      state.recordingTimer
-    );
-
-    try {
-      state.recognition?.stop();
-    } catch {}
-
-    els.voiceRecordingPanel?.classList.remove(
-      "active"
-    );
-  }
-
-  function startRecordingTimer() {
-    state.recordingStartedAt =
-      Date.now();
-
-    clearInterval(
-      state.recordingTimer
-    );
-
-    state.recordingTimer =
-      setInterval(() => {
-        const seconds =
-          Math.floor(
-            (
-              Date.now() -
-              state.recordingStartedAt
-            ) / 1000
-          );
-
-        const minutes =
-          String(
-            Math.floor(
-              seconds / 60
-            )
-          ).padStart(2, "0");
-
-        const remaining =
-          String(
-            seconds % 60
-          ).padStart(2, "0");
-
-        if (
-          els.voiceRecordingTime
-        ) {
-          els.voiceRecordingTime.textContent =
-            `${minutes}:${remaining}`;
-        }
-      }, 1000);
-  }
-
-  on(
-    els.voiceBtn,
-    "click",
-    startVoice
-  );
-
-  on(
-    els.cancelVoiceBtn,
-    "click",
-    stopVoice
-  );
-
-  on(
-    els.stopVoiceBtn,
-    "click",
-    stopVoice
-  );
 
   /* =========================================================
-     LIVE VOICE
-  ========================================================= */
+     THEME
+     ========================================================= */
 
-  function openLiveVoice() {
-    els.liveVoicePanel?.removeAttribute(
-      "hidden"
-    );
+  function applyTheme() {
+    document.documentElement.dataset.theme =
+      state.settings.theme;
 
-    state.liveVoiceActive = false;
-
-    if (els.liveVoiceStatus)
-      els.liveVoiceStatus.textContent =
-        "Ready to start live voice";
-
-    if (els.startLiveVoiceBtn)
-      els.startLiveVoiceBtn.hidden =
-        false;
-  }
-
-  function closeLiveVoice() {
-    stopLiveVoice();
-
-    els.liveVoicePanel?.setAttribute(
-      "hidden",
-      ""
+    document.body.classList.toggle(
+      "light-theme",
+      state.settings.theme ===
+        "light"
     );
   }
 
-  function startLiveVoice() {
-    state.liveVoiceActive = true;
+  function toggleTheme() {
+    state.settings.theme =
+      state.settings.theme ===
+      "dark"
+        ? "light"
+        : "dark";
 
-    if (els.liveVoiceStatus)
-      els.liveVoiceStatus.textContent =
-        "Listening...";
-
-    if (els.startLiveVoiceBtn)
-      els.startLiveVoiceBtn.hidden =
-        true;
-
-    startVoice();
+    applyTheme();
+    saveSettings();
   }
-
-  function stopLiveVoice() {
-    state.liveVoiceActive = false;
-
-    stopVoice();
-
-    if (els.liveVoiceStatus)
-      els.liveVoiceStatus.textContent =
-        "Live voice ended";
-
-    if (els.startLiveVoiceBtn)
-      els.startLiveVoiceBtn.hidden =
-        false;
-  }
-
-  on(
-    els.liveVoiceBtn,
-    "click",
-    openLiveVoice
-  );
-
-  on(
-    els.closeLiveVoiceBtn,
-    "click",
-    closeLiveVoice
-  );
-
-  on(
-    els.startLiveVoiceBtn,
-    "click",
-    startLiveVoice
-  );
-
-  on(
-    els.endLiveVoiceBtn,
-    "click",
-    closeLiveVoice
-  );
-
-  on(
-    els.liveVoiceMuteBtn,
-    "click",
-    () => {
-      state.liveVoiceMuted =
-        !state.liveVoiceMuted;
-
-      els.liveVoiceMuteBtn.innerHTML =
-        state.liveVoiceMuted
-          ? '<i class="fa-solid fa-microphone-slash"></i>'
-          : '<i class="fa-solid fa-microphone"></i>';
-
-      showToast(
-        state.liveVoiceMuted
-          ? "Microphone muted."
-          : "Microphone unmuted.",
-        "success"
-      );
-    }
-  );
 
   /* =========================================================
      SETTINGS
-  ========================================================= */
+     ========================================================= */
 
   function openSettings() {
-    els.settingsModal?.removeAttribute(
+    if (!els.settingsModal) return;
+
+    els.settingsModal.classList.remove(
       "hidden"
     );
-
-    if (els.themeToggle)
-      els.themeToggle.checked =
-        state.settings.theme ===
-        "dark";
-
-    if (els.soundToggle)
-      els.soundToggle.checked =
-        state.settings.sound;
-
-    if (els.settingsLanguage)
-      els.settingsLanguage.value =
-        state.settings.language;
   }
 
   function closeSettings() {
-    els.settingsModal?.setAttribute(
-      "hidden",
-      ""
-    );
-  }
+    if (!els.settingsModal) return;
 
-  on(
-    els.settingsBtn,
-    "click",
-    openSettings
-  );
-
-  on(
-    els.closeSettingsBtn,
-    "click",
-    closeSettings
-  );
-
-  on(
-    els.closeSettingsAction,
-    "click",
-    closeSettings
-  );
-
-  on(
-    els.settingsModal,
-    "click",
-    (event) => {
-      if (
-        event.target ===
-        els.settingsModal
-      ) {
-        closeSettings();
-      }
-    }
-  );
-
-  on(
-    els.soundToggle,
-    "change",
-    (event) => {
-      state.settings.sound =
-        event.target.checked;
-
-      saveSettings();
-    }
-  );
-
-  on(
-    els.settingsLanguage,
-    "change",
-    (event) => {
-      state.settings.language =
-        event.target.value;
-
-      saveSettings();
-
-      if (state.recognition) {
-        state.recognition.lang =
-          event.target.value ===
-          "Hausa"
-            ? "ha-NG"
-            : "en-US";
-      }
-    }
-  );
-
-  /* =========================================================
-     PROFILE MENU
-  ========================================================= */
-
-  function openProfileMenu() {
-    els.profileMenu?.removeAttribute(
+    els.settingsModal.classList.add(
       "hidden"
     );
   }
 
-  function closeProfileMenu() {
-    els.profileMenu?.setAttribute(
-      "hidden",
-      ""
-    );
+  function updateTemperature() {
+    if (!els.temperature) return;
+
+    const value =
+      Number(
+        els.temperature.value
+      );
+
+    state.settings.temperature =
+      value;
+
+    if (els.temperatureValue) {
+      els.temperatureValue.textContent =
+        value.toFixed(1);
+    }
+
+    saveSettings();
   }
 
-  function toggleProfileMenu() {
-    if (
-      els.profileMenu?.hasAttribute(
-        "hidden"
-      )
-    ) {
-      openProfileMenu();
-    } else {
-      closeProfileMenu();
-    }
+  function updateModel() {
+    if (!els.modelSelect) return;
+
+    state.settings.model =
+      els.modelSelect.value;
+
+    saveSettings();
   }
-
-  on(
-    els.profileBtn,
-    "click",
-    toggleProfileMenu
-  );
-
-  on(
-    els.topbarProfileBtn,
-    "click",
-    toggleProfileMenu
-  );
-
-  on(
-    els.accountBtn,
-    "click",
-    toggleProfileMenu
-  );
-
-  on(
-    els.profileMenuBtn,
-    "click",
-    toggleProfileMenu
-  );
-
-  on(
-    els.signOutBtn,
-    "click",
-    logout
-  );
-
-  document.addEventListener(
-    "click",
-    (event) => {
-      if (
-        els.profileMenu &&
-        !els.profileMenu.contains(
-          event.target
-        ) &&
-        !els.profileBtn?.contains(
-          event.target
-        ) &&
-        !els.topbarProfileBtn?.contains(
-          event.target
-        )
-      ) {
-        closeProfileMenu();
-      }
-    }
-  );
 
   /* =========================================================
-     INITIALIZATION
-  ========================================================= */
+     INITIALIZE SETTINGS UI
+     ========================================================= */
 
-  function init() {
-    loadState();
-
-    applyTheme(
-      state.settings.theme
-    );
-
-    if (
-      els.soundToggle
-    ) {
-      els.soundToggle.checked =
-        state.settings.sound;
+  function syncSettingsUI() {
+    if (els.temperature) {
+      els.temperature.value =
+        state.settings.temperature;
     }
 
-    if (
-      els.settingsLanguage
-    ) {
-      els.settingsLanguage.value =
-        state.settings.language;
+    if (els.temperatureValue) {
+      els.temperatureValue.textContent =
+        Number(
+          state.settings.temperature
+        ).toFixed(1);
     }
 
-    if (state.currentUser) {
-      if (els.authScreen)
-        els.authScreen.hidden = true;
-
-      if (els.mainAIApp)
-        els.mainAIApp.hidden = false;
-
-      updateProfileUI();
-      renderHistory();
-
-      const chats =
-        userChats();
-
-      if (chats.length) {
-        state.currentChatId =
-          chats[0].id;
-
-        loadChat(
-          state.currentChatId
-        );
-      } else {
-        createNewChat(true);
-      }
-    } else {
-      if (els.authScreen)
-        els.authScreen.hidden = false;
-
-      if (els.mainAIApp)
-        els.mainAIApp.hidden = true;
-
-      showLoginForm();
+    if (els.modelSelect) {
+      els.modelSelect.value =
+        state.settings.model;
     }
-
-    updateClock();
   }
 
-  init();
+  /* =========================================================
+     EVENT LISTENERS
+     ========================================================= */
+
+  function setupEvents() {
+    on(
+      els.loginForm,
+      "submit",
+      handleLogin
+    );
+
+    on(
+      els.signupForm,
+      "submit",
+      handleSignup
+    );
+
+    on(
+      els.logoutBtn,
+      "click",
+      logout
+    );
+
+    on(
+      els.newChatBtn,
+      "click",
+      () => {
+        createChat();
+        showToast(
+          "New chat created."
+        );
+      }
+    );
+
+    on(
+      els.deleteChatBtn,
+      "click",
+      deleteActiveChat
+    );
+
+    on(
+      els.clearHistoryBtn,
+      "click",
+      clearHistory
+    );
+
+    on(
+      els.sendBtn,
+      "click",
+      sendMessage
+    );
+
+    on(
+      els.stopBtn,
+      "click",
+      stopGeneration
+    );
+
+    on(
+      els.attachBtn,
+      "click",
+      () => {
+        els.fileInput?.click();
+      }
+    );
+
+    on(
+      els.fileInput,
+      "change",
+      (event) => {
+        handleFiles(
+          event.target.files
+        );
+
+        event.target.value = "";
+      }
+    );
+
+    on(
+      els.voiceBtn,
+      "click",
+      toggleVoice
+    );
+
+    on(
+      els.micBtn,
+      "click",
+      toggleVoice
+    );
+
+    on(
+      els.themeToggle,
+      "click",
+      toggleTheme
+    );
+
+    on(
+      els.settingsBtn,
+      "click",
+      openSettings
+    );
+
+    on(
+      els.closeSettings,
+      "click",
+      closeSettings
+    );
+
+    on(
+      els.temperature,
+      "input",
+      updateTemperature
+    );
+
+    on(
+      els.modelSelect,
+      "change",
+      updateModel
+    );
+
+    on(
+      els.messageInput,
+      "keydown",
+      (event) => {
+        if (
+          event.key === "Enter" &&
+          !event.shiftKey
+        ) {
+          event.preventDefault();
+          sendMessage();
+        }
+      }
+    );
+
+    on(
+      els.settingsModal,
+      "click",
+      (event) => {
+        if (
+          event.target ===
+          els.settingsModal
+        ) {
+          closeSettings();
+        }
+      }
+    );
+  }
+
+  /* =========================================================
+     START APPLICATION
+     ========================================================= */
+
+  function init() {
+    loadSettings();
+    loadChats();
+    loadUser();
+
+    applyTheme();
+    syncSettingsUI();
+
+    setupEvents();
+    setupVoiceRecognition();
+
+    if (
+      state.user
+    ) {
+      showApp();
+    } else {
+      showAuth();
+    }
+
+    if (
+      state.chats.length &&
+      !state.activeChatId
+    ) {
+      state.activeChatId =
+        state.chats[0].id;
+    }
+
+    if (
+      !state.chats.length &&
+      state.user
+    ) {
+      createChat();
+    }
+
+    renderChatList();
+    renderMessages();
+  }
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      init
+    );
+  } else {
+    init();
+  }
 
 })();
-'''
-
-path = "/mnt/data/AI.JS_V4.1_COMPLETE.js"
-Path(path).write_text(js, encoding="utf-8")
-print(path)
