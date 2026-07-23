@@ -1,698 +1,372 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"><meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta charset="UTF-8">
 
-<meta
-    name="description"
-    content="Saeed AI — Intelligent AI Assistant by Saeed Media Hub"
->
-
-<meta
-    name="theme-color"
-    content="#07142b"
->
-
-<title>Saeed AI — Saeed Media Hub</title>
-
-<link rel="stylesheet" href="ai.css">
-
-</head><body><!-- =========================================
-     AI LOADER
-========================================= --><div id="aiLoader" class="ai-loader">
-    <div class="ai-loader-content">
-        <div class="ai-loader-logo">🤖</div>    <h2>Saeed AI</h2>
-
-    <p>
-        Preparing your intelligent workspace...
-    </p>
-
-    <div class="loader-progress">
-        <span></span>
-    </div>
-</div>
-
-</div><!-- =========================================
-     AUTHENTICATION SCREEN
-========================================= --><div id="authScreen" class="auth-screen"><div class="auth-brand">
-
-    <div class="auth-brand-icon">
-        🤖
-    </div>
-
-    <h1>Saeed AI</h1>
-
-    <p>
-        Your intelligent assistant from
-        Saeed Media Hub.
-    </p>
-
-</div>
-
-
-<div class="auth-container">
-
-    <!-- LOGIN -->
-
-    <section
-        id="loginPanel"
-        class="auth-panel active"
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
-        <div class="auth-header">
+    <meta
+        name="theme-color"
+        content="#061126"
+    >
 
-            <span class="auth-badge">
-                Welcome Back
-            </span>
+    <title>Saeed AI — Saeed Media Hub</title>
 
-            <h2>
-                Sign in to Saeed AI
-            </h2>
+    <!-- =====================================================
+         OPTIONAL ICON LIBRARY
+    ====================================================== -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-            <p>
-                Continue your conversations
-                and access your workspace.
-            </p>
+    <!-- =====================================================
+         AI CSS V4.1
+         This will be connected after HTML is ready.
+    ====================================================== -->
+    <link
+        rel="stylesheet"
+        href="ai.css"
+    >
+</head>
 
-        </div>
+<body>
 
+<!-- =========================================================
+     APP ROOT
+========================================================= -->
 
-        <form id="loginForm">
+<div
+    id="aiApp"
+    class="ai-app"
+    data-version="4.1"
+>
 
-            <div class="form-group">
+    <!-- =====================================================
+         AUTH SCREEN
+    ====================================================== -->
 
-                <label for="loginEmail">
-                    Email Address
-                </label>
+    <section
+        id="authScreen"
+        class="auth-screen"
+    >
 
-                <input
-                    type="email"
-                    id="loginEmail"
-                    name="email"
-                    placeholder="you@example.com"
-                    autocomplete="email"
-                    required
-                >
+        <div class="auth-card">
 
-            </div>
+            <!-- Brand -->
 
+            <div class="auth-brand">
 
-            <div class="form-group">
+                <div class="auth-logo">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
 
-                <label for="loginPassword">
-                    Password
-                </label>
+                <div>
+                    <h1>Saeed AI</h1>
 
-                <div class="password-field">
-
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        name="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="password-toggle"
-                        data-target="loginPassword"
-                    >
-                        👁️
-                    </button>
-
+                    <p>
+                        Saeed Media Hub Intelligent Assistant
+                    </p>
                 </div>
 
             </div>
 
 
-            <div class="auth-options">
+            <!-- =================================================
+                 LOGIN
+            ================================================== -->
 
-                <label class="remember-option">
-
-                    <input
-                        type="checkbox"
-                        id="rememberMe"
-                    >
-
-                    <span>
-                        Remember me
-                    </span>
-
-                </label>
-
-
-                <button
-                    type="button"
-                    id="forgotPasswordBtn"
-                    class="text-button"
-                >
-                    Forgot Password?
-                </button>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="auth-submit"
+            <form
+                id="loginForm"
+                class="auth-form active"
+                autocomplete="on"
             >
 
-                <span>Sign In</span>
+                <div class="auth-heading">
 
-                <span>→</span>
+                    <h2>
+                        Welcome back
+                    </h2>
 
-            </button>
+                    <p>
+                        Sign in to continue to Saeed AI.
+                    </p>
 
-        </form>
-
-
-        <div class="auth-divider">
-            <span>OR</span>
-        </div>
-
-
-        <button
-            type="button"
-            id="guestAccessBtn"
-            class="guest-button"
-        >
-            Continue as Guest
-        </button>
+                </div>
 
 
-        <p class="auth-switch">
-
-            New to Saeed AI?
-
-            <button
-                type="button"
-                id="showSignupBtn"
-                class="text-button"
-            >
-                Create Account
-            </button>
-
-        </p>
-
-    </section>
-
-
-    <!-- SIGN UP -->
-
-    <section
-        id="signupPanel"
-        class="auth-panel"
-    >
-
-        <div class="auth-header">
-
-            <span class="auth-badge">
-                New Customer
-            </span>
-
-            <h2>
-                Create your account
-            </h2>
-
-            <p>
-                Join Saeed AI and keep your
-                conversations organized.
-            </p>
-
-        </div>
-
-
-        <form id="signupForm">
-
-            <div class="form-group">
-
-                <label for="signupName">
-                    Full Name
+                <label>
+                    Email or Username
                 </label>
 
                 <input
+                    id="loginIdentifier"
                     type="text"
-                    id="signupName"
-                    name="name"
-                    placeholder="Your full name"
-                    autocomplete="name"
+                    placeholder="Enter email or username"
+                    autocomplete="username"
                     required
                 >
 
-            </div>
 
-
-            <div class="form-group">
-
-                <label for="signupEmail">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    id="signupEmail"
-                    name="email"
-                    placeholder="you@example.com"
-                    autocomplete="email"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="signupPhone">
-                    Phone Number
-                </label>
-
-                <input
-                    type="tel"
-                    id="signupPhone"
-                    name="phone"
-                    placeholder="+234..."
-                    autocomplete="tel"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="signupPassword">
+                <label>
                     Password
                 </label>
 
                 <div class="password-field">
 
                     <input
+                        id="loginPassword"
                         type="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        id="toggleLoginPassword"
+                        type="button"
+                        class="password-toggle"
+                        aria-label="Show password"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+
+                </div>
+
+
+                <button
+                    id="loginSubmitBtn"
+                    type="submit"
+                    class="auth-primary-button"
+                >
+                    <span>
+                        Sign In
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+
+                <button
+                    id="guestLoginBtn"
+                    type="button"
+                    class="guest-button"
+                >
+                    <i class="fa-solid fa-user-secret"></i>
+
+                    Continue as Guest
+                </button>
+
+
+                <p class="auth-switch-text">
+
+                    Don't have an account?
+
+                    <button
+                        id="showSignupBtn"
+                        type="button"
+                        class="auth-link-button"
+                    >
+                        Create Account
+                    </button>
+
+                </p>
+
+            </form>
+
+
+            <!-- =================================================
+                 SIGN UP
+            ================================================== -->
+
+            <form
+                id="signupForm"
+                class="auth-form"
+                autocomplete="on"
+            >
+
+                <div class="auth-heading">
+
+                    <h2>
+                        Create your account
+                    </h2>
+
+                    <p>
+                        Join Saeed Media Hub and start using Saeed AI.
+                    </p>
+
+                </div>
+
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    id="signupName"
+                    type="text"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    id="signupUsername"
+                    type="text"
+                    placeholder="Choose a username"
+                    autocomplete="username"
+                    required
+                >
+
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    id="signupEmail"
+                    type="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <label>
+                    Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
                         id="signupPassword"
-                        name="password"
+                        type="password"
                         placeholder="Create a password"
                         autocomplete="new-password"
                         required
                     >
 
                     <button
+                        id="toggleSignupPassword"
                         type="button"
                         class="password-toggle"
-                        data-target="signupPassword"
+                        aria-label="Show password"
                     >
-                        👁️
+                        <i class="fa-solid fa-eye"></i>
                     </button>
 
                 </div>
 
-            </div>
+
+                <button
+                    id="signupSubmitBtn"
+                    type="submit"
+                    class="auth-primary-button"
+                >
+                    <span>
+                        Create Account
+                    </span>
+
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
 
 
-            <div class="form-group">
+                <p class="auth-switch-text">
 
-                <label for="signupConfirmPassword">
-                    Confirm Password
-                </label>
-
-                <div class="password-field">
-
-                    <input
-                        type="password"
-                        id="signupConfirmPassword"
-                        name="confirmPassword"
-                        placeholder="Confirm your password"
-                        autocomplete="new-password"
-                        required
-                    >
+                    Already have an account?
 
                     <button
+                        id="showLoginBtn"
                         type="button"
-                        class="password-toggle"
-                        data-target="signupConfirmPassword"
+                        class="auth-link-button"
                     >
-                        👁️
+                        Sign In
                     </button>
 
-                </div>
+                </p>
 
-            </div>
+            </form>
 
-
-            <label class="terms-option">
-
-                <input
-                    type="checkbox"
-                    id="agreeTerms"
-                    required
-                >
-
-                <span>
-                    I agree to the Saeed Media Hub
-                    terms and privacy policy.
-                </span>
-
-            </label>
-
-
-            <button
-                type="submit"
-                class="auth-submit"
-            >
-
-                <span>
-                    Create Account
-                </span>
-
-                <span>→</span>
-
-            </button>
-
-        </form>
-
-
-        <p class="auth-switch">
-
-            Already have an account?
-
-            <button
-                type="button"
-                id="showLoginBtn"
-                class="text-button"
-            >
-                Sign In
-            </button>
-
-        </p>
+        </div>
 
     </section>
 
-</div>
 
-</div><!-- =========================================
-     MAIN AI APPLICATION
-========================================= --><div
-    id="aiApp"
-    class="ai-app"
-><!-- MOBILE HEADER -->
+    <!-- =====================================================
+         MAIN AI APPLICATION
+    ====================================================== -->
 
-<header class="mobile-ai-header">
-
-    <button
-        id="aiMenuBtn"
-        class="icon-button"
-        type="button"
-    >
-        ☰
-    </button>
-
-
-    <div class="mobile-ai-brand">
-
-        <span class="brand-ai-icon">
-            🤖
-        </span>
-
-        <span>
-            Saeed AI
-        </span>
-
-    </div>
-
-
-    <button
-        id="mobileNewChatBtn"
-        class="icon-button"
-        type="button"
-    >
-        ＋
-    </button>
-
-</header>
-
-
-<!-- SIDEBAR -->
-
-<aside
-    id="aiSidebar"
-    class="ai-sidebar"
->
-
-    <div class="sidebar-brand">
-
-        <a
-            href="index.html"
-            class="brand-link"
-        >
-
-            <span class="brand-icon">
-                🤖
-            </span>
-
-            <div>
-
-                <strong>
-                    Saeed AI
-                </strong>
-
-                <small>
-                    Saeed Media Hub
-                </small>
-
-            </div>
-
-        </a>
-
-
-        <button
-            id="closeSidebarBtn"
-            class="icon-button mobile-only"
-            type="button"
-        >
-            ×
-        </button>
-
-    </div>
-
-
-    <button
-        id="newChatBtn"
-        class="new-chat-button"
-        type="button"
+    <main
+        id="mainAIApp"
+        class="main-ai-app"
+        hidden
     >
 
-        <span>＋</span>
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
 
-        <span>
-            New Chat
-        </span>
-
-    </button>
-
-
-    <div class="chat-search">
-
-        <span>🔍</span>
-
-        <input
-            type="search"
-            id="chatSearchInput"
-            placeholder="Search conversations..."
+        <aside
+            id="aiSidebar"
+            class="ai-sidebar"
         >
 
-    </div>
+            <div class="sidebar-header">
+
+                <div class="sidebar-brand">
+
+                    <div class="sidebar-logo">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Saeed AI
+                        </strong>
+
+                        <small>
+                            AI Assistant
+                        </small>
+
+                    </div>
+
+                </div>
 
 
-    <div class="history-section">
-
-        <div class="history-heading">
-
-            <span>
-                Recent Chats
-            </span>
-
-            <button
-                id="clearHistoryBtn"
-                class="mini-button"
-                type="button"
-            >
-                🗑️
-            </button>
-
-        </div>
-
-
-        <div
-            id="chatHistoryList"
-            class="chat-history-list"
-        >
-        </div>
-
-    </div>
-
-
-    <div class="sidebar-bottom">
-
-        <!-- LANGUAGE -->
-
-        <div class="sidebar-control">
-
-            <label for="languageSelect">
-                🌍 Language
-            </label>
-
-            <select id="languageSelect">
-
-                <option value="auto">
-                    Auto Detect
-                </option>
-
-                <option value="en">
-                    English
-                </option>
-
-                <option value="ha">
-                    Hausa
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- THEME -->
-
-        <button
-            id="aiThemeBtn"
-            class="sidebar-action"
-            type="button"
-        >
-
-            <span>🌙</span>
-
-            <span>
-                Theme
-            </span>
-
-        </button>
-
-
-        <!-- SETTINGS -->
-
-        <button
-            id="settingsBtn"
-            class="sidebar-action"
-            type="button"
-        >
-
-            <span>⚙️</span>
-
-            <span>
-                Settings
-            </span>
-
-        </button>
-
-
-        <!-- CUSTOMER -->
-
-        <div
-            id="customerProfile"
-            class="customer-profile"
-        >
-
-            <div
-                id="customerAvatar"
-                class="customer-avatar"
-            >
-                S
-            </div>
-
-
-            <div class="customer-info">
-
-                <strong id="customerName">
-                    Guest User
-                </strong>
-
-                <small id="customerEmail">
-                    Guest Mode
-                </small>
+                <button
+                    id="closeSidebarBtn"
+                    type="button"
+                    class="sidebar-close-btn"
+                    aria-label="Close sidebar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
 
             </div>
 
 
-            <button
-                id="profileMenuBtn"
-                class="mini-button"
-                type="button"
-            >
-                ⋮
-            </button>
-
-        </div>
-
-    </div>
-
-</aside>
-
-
-<!-- MAIN -->
-
-<main
-    id="aiMain"
-    class="ai-main"
->
-
-    <!-- DESKTOP TOPBAR -->
-
-    <header class="ai-topbar">
-
-        <div class="topbar-title">
-
-            <div class="online-indicator"></div>
-
-            <div>
-
-                <h1>
-                    Saeed AI
-                </h1>
-
-                <span>
-                    Intelligent Assistant
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="topbar-actions">
+            <!-- New Chat -->
 
             <button
-                id="liveVoiceBtn"
-                class="topbar-button live-voice-button"
+                id="newChatBtn"
                 type="button"
+                class="new-chat-button"
             >
-
-                🔊
-
-                <span>
-                    Live Voice
-                </span>
-
-            </button>
-
-
-            <button
-                id="topNewChatBtn"
-                class="topbar-button"
-                type="button"
-            >
-
-                ＋
+                <i class="fa-solid fa-plus"></i>
 
                 <span>
                     New Chat
@@ -700,573 +374,1431 @@
 
             </button>
 
-        </div>
 
-    </header>
+            <!-- Search History -->
 
+            <div class="history-search-box">
 
-    <!-- CHAT -->
+                <i class="fa-solid fa-magnifying-glass"></i>
 
-    <section
-        id="chatArea"
-        class="chat-area"
-    >
+                <input
+                    id="historySearchInput"
+                    type="search"
+                    placeholder="Search conversations..."
+                    autocomplete="off"
+                >
 
-        <!-- WELCOME -->
-
-        <div
-            id="welcomeScreen"
-            class="welcome-screen"
-        >
-
-            <div class="welcome-ai-icon">
-                🤖
             </div>
 
 
-            <h2>
-                Hello
-                <span id="welcomeCustomerName"></span>
-                👋
-            </h2>
+            <!-- History -->
 
+            <div class="sidebar-section-title">
 
-            <p>
-                I'm Saeed AI, your intelligent
-                assistant from Saeed Media Hub.
-            </p>
+                <span>
+                    Recent Chats
+                </span>
 
+                <button
+                    id="clearHistoryBtn"
+                    type="button"
+                    aria-label="Clear history"
+                >
+                    Clear
+                </button>
 
-            <p class="welcome-subtext">
-
-                I can help you explore our services,
-                technology, AI, websites, creative
-                solutions and more.
-
-            </p>
+            </div>
 
 
             <div
-                id="suggestedPrompts"
-                class="suggested-prompts"
+                id="chatHistoryList"
+                class="chat-history-list"
             >
 
-                <button
-                    class="prompt-card"
-                    data-prompt="What services does Saeed Media Hub offer?"
-                    type="button"
+                <!-- History items are generated by JS -->
+
+                <div
+                    id="emptyHistoryState"
+                    class="empty-history-state"
                 >
 
-                    <span>💼</span>
+                    <i class="fa-regular fa-message"></i>
 
-                    <strong>
-                        Explore Services
-                    </strong>
+                    <span>
+                        No conversations yet
+                    </span>
 
-                    <small>
-                        Discover what we can do for you.
-                    </small>
-
-                </button>
-
-
-                <button
-                    class="prompt-card"
-                    data-prompt="I want to create a professional website."
-                    type="button"
-                >
-
-                    <span>🌐</span>
-
-                    <strong>
-                        Build a Website
-                    </strong>
-
-                    <small>
-                        Get help with your website project.
-                    </small>
-
-                </button>
-
-
-                <button
-                    class="prompt-card"
-                    data-prompt="I need a professional graphic design."
-                    type="button"
-                >
-
-                    <span>🎨</span>
-
-                    <strong>
-                        Graphic Design
-                    </strong>
-
-                    <small>
-                        Let's discuss your design needs.
-                    </small>
-
-                </button>
-
-
-                <button
-                    class="prompt-card"
-                    data-prompt="Tell me how Saeed AI can help me."
-                    type="button"
-                >
-
-                    <span>🧠</span>
-
-                    <strong>
-                        Ask Saeed AI
-                    </strong>
-
-                    <small>
-                        Explore the AI assistant.
-                    </small>
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MESSAGES -->
-
-        <div
-            id="messagesContainer"
-            class="messages-container"
-        >
-        </div>
-
-    </section>
-
-
-    <!-- COMPOSER -->
-
-    <div class="composer-wrapper">
-
-
-        <!-- ATTACHMENTS -->
-
-        <div
-            id="attachmentPreview"
-            class="attachment-preview"
-        >
-        </div>
-
-
-        <!-- LIVE VOICE -->
-
-        <div
-            id="voiceModePanel"
-            class="voice-mode-panel"
-        >
-
-            <div class="voice-visualizer">
-
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                </div>
 
             </div>
 
 
-            <div>
+            <!-- Sidebar Bottom -->
 
-                <strong>
-                    Live Voice Mode
-                </strong>
+            <div class="sidebar-bottom">
 
-                <small>
-                    Saeed AI is listening...
-                </small>
+                <button
+                    id="historyBtn"
+                    type="button"
+                    class="sidebar-action-button"
+                >
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    <span>
+                        History
+                    </span>
+
+                </button>
+
+
+                <button
+                    id="settingsBtn"
+                    type="button"
+                    class="sidebar-action-button"
+                >
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>
+                        Settings
+                    </span>
+
+                </button>
+
+
+                <button
+                    id="sidebarThemeBtn"
+                    type="button"
+                    class="sidebar-action-button"
+                >
+                    <i class="fa-solid fa-moon"></i>
+
+                    <span>
+                        Theme
+                    </span>
+
+                </button>
+
+
+                <!-- Customer Profile -->
+
+                <div
+                    id="customerProfile"
+                    class="customer-profile"
+                >
+
+                    <div
+                        id="customerAvatar"
+                        class="customer-avatar"
+                    >
+                        U
+                    </div>
+
+                    <div class="customer-info">
+
+                        <strong
+                            id="customerName"
+                        >
+                            Guest User
+                        </strong>
+
+                        <small
+                            id="customerEmail"
+                        >
+                            Guest Mode
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        id="profileMenuBtn"
+                        type="button"
+                        class="profile-menu-button"
+                        aria-label="Open profile menu"
+                    >
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+
+                </div>
 
             </div>
 
+        </aside>
+
+
+        <!-- Sidebar Overlay -->
+
+        <div
+            id="mobileMenuOverlay"
+            class="mobile-menu-overlay"
+        ></div>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <section
+            id="aiMain"
+            class="ai-main"
+        >
+
+            <!-- =================================================
+                 TOPBAR
+            ================================================== -->
+
+            <header
+                id="aiTopbar"
+                class="ai-topbar"
+            >
+
+                <div class="topbar-left">
+
+                    <button
+                        id="openSidebarBtn"
+                        type="button"
+                        class="topbar-button menu-button"
+                        aria-label="Open menu"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+
+                    <div class="topbar-title">
+
+                        <h2>
+                            Saeed AI
+                        </h2>
+
+                        <span>
+                            Your intelligent digital assistant
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <!-- Live Clock -->
+
+                    <div
+                        id="liveClock"
+                        class="ai-live-clock"
+                    >
+
+                        <strong
+                            id="clockTime"
+                        >
+                            00:00:00
+                        </strong>
+
+                        <small
+                            id="clockDate"
+                        >
+                            Loading...
+                        </small>
+
+                    </div>
+
+
+                    <!-- AI Online Status -->
+
+                    <div
+                        id="aiStatus"
+                        class="ai-status online"
+                    >
+
+                        <span></span>
+
+                        <small>
+                            Online
+                        </small>
+
+                    </div>
+
+
+                    <!-- Live Voice -->
+
+                    <button
+                        id="liveVoiceBtn"
+                        type="button"
+                        class="topbar-button live-voice-button"
+                        title="Live Voice"
+                    >
+                        <i class="fa-solid fa-wave-square"></i>
+
+                        <span>
+                            Live
+                        </span>
+                    </button>
+
+
+                    <!-- Theme -->
+
+                    <button
+                        id="themeToggleBtn"
+                        type="button"
+                        class="topbar-button"
+                        aria-label="Toggle theme"
+                    >
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+
+                    <!-- Profile -->
+
+                    <button
+                        id="topbarProfileBtn"
+                        type="button"
+                        class="topbar-profile-button"
+                    >
+
+                        <span
+                            id="topbarAvatar"
+                        >
+                            U
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CHAT AREA
+            ================================================== -->
+
+            <section
+                id="chatArea"
+                class="chat-area"
+            >
+
+                <div
+                    id="chatContent"
+                    class="chat-content"
+                >
+
+                    <!-- =================================================
+                         WELCOME SCREEN
+                    ================================================== -->
+
+                    <div
+                        id="welcomeScreen"
+                        class="welcome-screen"
+                    >
+
+                        <div class="welcome-logo">
+
+                            <i class="fa-solid fa-sparkles"></i>
+
+                        </div>
+
+
+                        <h1>
+                            Hello, I'm
+                            <span>
+                                Saeed AI
+                            </span>
+                        </h1>
+
+
+                        <p>
+                            Your intelligent assistant from
+                            Saeed Media Hub. Ask questions,
+                            learn, create, write, analyze,
+                            translate, or get help with your work.
+                        </p>
+
+
+                        <div class="welcome-features">
+
+                            <span class="welcome-feature">
+                                <i class="fa-solid fa-bolt"></i>
+                                Fast Answers
+                            </span>
+
+                            <span class="welcome-feature">
+                                <i class="fa-solid fa-paperclip"></i>
+                                File Support
+                            </span>
+
+                            <span class="welcome-feature">
+                                <i class="fa-solid fa-microphone"></i>
+                                Voice
+                            </span>
+
+                            <span class="welcome-feature">
+                                <i class="fa-solid fa-language"></i>
+                                Hausa & English
+                            </span>
+
+                        </div>
+
+
+                        <!-- Suggested Prompts -->
+
+                        <div
+                            id="suggestedPrompts"
+                            class="suggested-prompts"
+                        >
+
+                            <button
+                                type="button"
+                                class="suggested-prompt"
+                                data-prompt="Explain this topic to me in simple terms."
+                            >
+
+                                <span class="suggested-prompt-icon">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </span>
+
+                                <span class="suggested-prompt-content">
+
+                                    <strong>
+                                        Explain something
+                                    </strong>
+
+                                    <span>
+                                        Make a difficult topic simple.
+                                    </span>
+
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="suggested-prompt"
+                                data-prompt="Help me write a professional message."
+                            >
+
+                                <span class="suggested-prompt-icon">
+                                    <i class="fa-solid fa-pen"></i>
+                                </span>
+
+                                <span class="suggested-prompt-content">
+
+                                    <strong>
+                                        Help me write
+                                    </strong>
+
+                                    <span>
+                                        Create a professional message.
+                                    </span>
+
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="suggested-prompt"
+                                data-prompt="Help me with my school assignment."
+                            >
+
+                                <span class="suggested-prompt-icon">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </span>
+
+                                <span class="suggested-prompt-content">
+
+                                    <strong>
+                                        Study with me
+                                    </strong>
+
+                                    <span>
+                                        Get help with assignments and exams.
+                                    </span>
+
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="suggested-prompt"
+                                data-prompt="Translate this text between Hausa and English."
+                            >
+
+                                <span class="suggested-prompt-icon">
+                                    <i class="fa-solid fa-language"></i>
+                                </span>
+
+                                <span class="suggested-prompt-content">
+
+                                    <strong>
+                                        Translate
+                                    </strong>
+
+                                    <span>
+                                        Hausa ↔ English translation.
+                                    </span>
+
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         MESSAGES
+                    ================================================== -->
+
+                    <div
+                        id="messagesContainer"
+                        class="messages-container"
+                    >
+
+                        <!-- Dynamic messages -->
+
+                    </div>
+
+
+                    <!-- =================================================
+                         TYPING INDICATOR
+                    ================================================== -->
+
+                    <div
+                        id="typingIndicator"
+                        class="typing-indicator"
+                        hidden
+                    >
+
+                        <div class="message-avatar">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+
+                        <div class="typing-bubble">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CHAT COMPOSER
+            ================================================== -->
+
+            <div
+                class="chat-composer-wrapper"
+            >
+
+                <form
+                    id="chatForm"
+                    class="chat-composer"
+                >
+
+                    <!-- Attachment Preview -->
+
+                    <div
+                        id="attachmentPreview"
+                        class="attachment-preview"
+                    ></div>
+
+
+                    <div class="composer-input-row">
+
+                        <!-- Attach -->
+
+                        <button
+                            id="attachBtn"
+                            type="button"
+                            class="composer-button attach-button"
+                            title="Attach file"
+                        >
+                            <i class="fa-solid fa-paperclip"></i>
+                        </button>
+
+
+                        <input
+                            id="fileInput"
+                            type="file"
+                            multiple
+                            accept="image/*,.pdf,.doc,.docx,.txt,.csv,.xlsx,.ppt,.pptx"
+                        >
+
+
+                        <!-- Text -->
+
+                        <textarea
+                            id="chatInput"
+                            class="composer-input"
+                            rows="1"
+                            placeholder="Message Saeed AI..."
+                            autocomplete="off"
+                            spellcheck="true"
+                        ></textarea>
+
+
+                        <!-- Voice -->
+
+                        <button
+                            id="voiceBtn"
+                            type="button"
+                            class="composer-button voice-button"
+                            title="Voice input"
+                        >
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+
+
+                        <!-- Send -->
+
+                        <button
+                            id="sendBtn"
+                            type="submit"
+                            class="composer-button send-button"
+                            title="Send message"
+                        >
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="composer-footer">
+
+                        <span
+                            id="composerStatus"
+                            class="composer-status"
+                        >
+                            Saeed AI can make mistakes. Check important information.
+                        </span>
+
+
+                        <div class="composer-tools">
+
+                            <button
+                                id="clearInputBtn"
+                                type="button"
+                                class="composer-tool"
+                            >
+                                Clear
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MOBILE BOTTOM NAVIGATION
+        ================================================== -->
+
+        <nav
+            id="mobileBottomNav"
+            class="mobile-bottom-nav"
+        >
 
             <button
-                id="stopVoiceBtn"
                 type="button"
-                class="stop-voice-button"
+                class="mobile-nav-button active"
+                data-mobile-action="chat"
             >
-                Stop
+                <i class="fa-solid fa-message"></i>
+                <span>Chat</span>
             </button>
+
+
+            <button
+                type="button"
+                class="mobile-nav-button"
+                data-mobile-action="history"
+            >
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="mobile-nav-button"
+                data-mobile-action="voice"
+            >
+                <i class="fa-solid fa-microphone"></i>
+                <span>Voice</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="mobile-nav-button"
+                data-mobile-action="settings"
+            >
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     HISTORY PANEL
+========================================================= -->
+
+<div
+    id="historyOverlay"
+    class="history-overlay"
+></div>
+
+
+<aside
+    id="historyPanel"
+    class="history-panel"
+>
+
+    <div class="history-header">
+
+        <h2>
+            Chat History
+        </h2>
+
+        <button
+            id="closeHistoryBtn"
+            type="button"
+            class="history-close"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+
+    <div class="history-search">
+
+        <input
+            id="historyPanelSearch"
+            type="search"
+            placeholder="Search your chats..."
+        >
+
+    </div>
+
+
+    <div
+        id="historyPanelList"
+        class="history-list"
+    ></div>
+
+</aside>
+
+
+<!-- =========================================================
+     VOICE RECORDING PANEL
+========================================================= -->
+
+<div
+    id="voiceRecordingPanel"
+    class="voice-recording-panel"
+>
+
+    <div class="voice-recording-icon">
+
+        <i class="fa-solid fa-microphone"></i>
+
+    </div>
+
+
+    <h3>
+        Listening...
+    </h3>
+
+
+    <div
+        id="voiceRecordingTime"
+        class="voice-recording-time"
+    >
+        00:00
+    </div>
+
+
+    <div class="voice-wave">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <div class="voice-recording-actions">
+
+        <button
+            id="cancelVoiceBtn"
+            type="button"
+            class="voice-cancel"
+        >
+            Cancel
+        </button>
+
+
+        <button
+            id="stopVoiceBtn"
+            type="button"
+            class="voice-stop"
+        >
+            Stop & Send
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     LIVE VOICE MODE
+========================================================= -->
+
+<div
+    id="liveVoicePanel"
+    class="live-voice-panel"
+    hidden
+>
+
+    <div class="live-voice-card">
+
+        <button
+            id="closeLiveVoiceBtn"
+            type="button"
+            class="live-voice-close"
+            aria-label="Close live voice"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+        <div class="live-voice-orb">
+
+            <i class="fa-solid fa-wave-square"></i>
 
         </div>
 
 
-        <!-- CHAT FORM -->
+        <h2>
+            Saeed AI Live Voice
+        </h2>
 
-        <form
-            id="chatForm"
-            class="chat-composer"
+
+        <p
+            id="liveVoiceStatus"
+            class="live-voice-status"
         >
-
-            <input
-                type="file"
-                id="fileInput"
-                hidden
-                multiple
-                accept="image/*,.pdf,.doc,.docx,.txt,.csv,.xlsx"
-            >
-
-
-            <button
-                type="button"
-                id="attachBtn"
-                class="composer-button"
-            >
-                📎
-            </button>
-
-
-            <textarea
-                id="chatInput"
-                name="message"
-                rows="1"
-                placeholder="Message Saeed AI..."
-                autocomplete="off"
-            ></textarea>
-
-
-            <button
-                type="button"
-                id="voiceBtn"
-                class="composer-button"
-            >
-                🎤
-            </button>
-
-
-            <button
-                type="submit"
-                id="sendBtn"
-                class="send-button"
-            >
-                ➤
-            </button>
-
-        </form>
-
-
-        <p class="composer-disclaimer">
-
-            Saeed AI can make mistakes.
-            Check important information.
-
+            Ready to talk
         </p>
 
-    </div>
 
-</main>
-
-</div><!-- =========================================
-     AI MESSAGE TEMPLATE
-========================================= --><template id="aiMessageTemplate"><article class="message ai-message">
-
-    <div class="message-avatar">
-        🤖
-    </div>
-
-
-    <div class="message-content">
-
-        <div class="message-header">
-
-            <strong>
-                Saeed AI
-            </strong>
-
-            <span class="message-time">
-                Now
-            </span>
-
-        </div>
-
-
-        <div class="message-text">
-        </div>
-
-
-        <div class="message-actions">
+        <div class="live-voice-controls">
 
             <button
+                id="liveVoiceMuteBtn"
                 type="button"
-                class="message-action copy-message-btn"
+                class="live-voice-control"
+                title="Mute microphone"
             >
-                📋 Copy
+                <i class="fa-solid fa-microphone"></i>
             </button>
 
 
             <button
+                id="startLiveVoiceBtn"
                 type="button"
-                class="message-action regenerate-btn"
+                class="live-voice-control"
+                title="Start voice"
             >
-                🔄 Regenerate
+                <i class="fa-solid fa-microphone-lines"></i>
             </button>
 
 
             <button
+                id="endLiveVoiceBtn"
                 type="button"
-                class="message-action like-btn"
+                class="live-voice-control live-voice-end"
+                title="End live voice"
             >
-                👍
-            </button>
-
-
-            <button
-                type="button"
-                class="message-action dislike-btn"
-            >
-                👎
+                <i class="fa-solid fa-phone-slash"></i>
             </button>
 
         </div>
 
     </div>
 
-</article>
-
-</template><!-- =========================================
-     USER MESSAGE TEMPLATE
-========================================= --><template id="userMessageTemplate"><article class="message user-message">
-
-    <div class="message-content">
-
-        <div class="message-header">
-
-            <strong>
-                You
-            </strong>
-
-            <span class="message-time">
-                Now
-            </span>
-
-        </div>
+</div>
 
 
-        <div class="message-text">
-        </div>
+<!-- =========================================================
+     SETTINGS MODAL
+========================================================= -->
 
-    </div>
-
-
-    <div class="message-avatar user-avatar">
-        U
-    </div>
-
-</article>
-
-</template><!-- =========================================
-     TYPING INDICATOR
-========================================= --><template id="typingTemplate"><div
-    id="typingIndicator"
-    class="typing-indicator"
+<div
+    id="settingsModal"
+    class="settings-overlay"
+    hidden
 >
 
-    <div class="message-avatar">
-        🤖
-    </div>
+    <div class="settings-modal">
+
+        <div class="settings-header">
+
+            <h2>
+                AI Settings
+            </h2>
 
 
-    <div class="typing-content">
+            <button
+                id="closeSettingsBtn"
+                type="button"
+                class="settings-close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </div>
-
-</div>
-
-</template><!-- =========================================
-     SETTINGS MODAL
-========================================= --><div
-    id="settingsModal"
-    class="modal-overlay"
-><div class="modal-card">
-
-    <button
-        id="closeSettingsBtn"
-        class="modal-close"
-        type="button"
-    >
-        ×
-    </button>
+        </div>
 
 
-    <div class="modal-icon">
-        ⚙️
-    </div>
+        <div class="settings-body">
 
 
-    <h2>
-        AI Settings
-    </h2>
+            <!-- Language -->
 
+            <div class="settings-group">
 
-    <p>
-        Customize your Saeed AI experience.
-    </p>
-
-
-    <div class="settings-list">
-
-
-        <div class="setting-row">
-
-            <div>
-
-                <strong>
+                <div class="settings-group-title">
                     Language
-                </strong>
-
-                <small>
-                    Choose your preferred language.
-                </small>
-
-            </div>
+                </div>
 
 
-            <select id="settingsLanguage">
+                <div class="settings-row">
 
-                <option value="auto">
-                    Auto
-                </option>
+                    <div class="settings-row-info">
 
-                <option value="en">
-                    English
-                </option>
+                        <strong>
+                            Preferred Language
+                        </strong>
 
-                <option value="ha">
-                    Hausa
-                </option>
+                        <small>
+                            Choose how Saeed AI communicates with you.
+                        </small>
 
-            </select>
-
-        </div>
+                    </div>
 
 
-        <div class="setting-row">
+                    <select
+                        id="settingsLanguage"
+                        class="settings-select"
+                    >
 
-            <div>
+                        <option value="auto">
+                            Auto
+                        </option>
 
-                <strong>
-                    Sound
-                </strong>
+                        <option value="en">
+                            English
+                        </option>
 
-                <small>
-                    Voice and notification sounds.
-                </small>
+                        <option value="ha">
+                            Hausa
+                        </option>
 
-            </div>
+                    </select>
 
-
-            <label class="switch">
-
-                <input
-                    type="checkbox"
-                    id="soundToggle"
-                    checked
-                >
-
-                <span></span>
-
-            </label>
-
-        </div>
-
-
-        <div class="setting-row">
-
-            <div>
-
-                <strong>
-                    Save Chat History
-                </strong>
-
-                <small>
-                    Keep conversations for later.
-                </small>
+                </div>
 
             </div>
 
 
-            <label class="switch">
+            <!-- Theme -->
 
-                <input
-                    type="checkbox"
-                    id="historyToggle"
-                    checked
-                >
+            <div class="settings-group">
 
-                <span></span>
+                <div class="settings-group-title">
+                    Appearance
+                </div>
 
-            </label>
+
+                <div class="settings-row">
+
+                    <div class="settings-row-info">
+
+                        <strong>
+                            Dark Mode
+                        </strong>
+
+                        <small>
+                            Switch between dark and light appearance.
+                        </small>
+
+                    </div>
+
+
+                    <label class="toggle">
+
+                        <input
+                            id="themeToggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Sound -->
+
+            <div class="settings-group">
+
+                <div class="settings-group-title">
+                    Audio
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div class="settings-row-info">
+
+                        <strong>
+                            Sound Effects
+                        </strong>
+
+                        <small>
+                            Enable notification and interaction sounds.
+                        </small>
+
+                    </div>
+
+
+                    <label class="toggle">
+
+                        <input
+                            id="soundToggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- History -->
+
+            <div class="settings-group">
+
+                <div class="settings-group-title">
+                    Privacy
+                </div>
+
+
+                <div class="settings-row">
+
+                    <div class="settings-row-info">
+
+                        <strong>
+                            Save Chat History
+                        </strong>
+
+                        <small>
+                            Keep conversations saved on this device.
+                        </small>
+
+                    </div>
+
+
+                    <label class="toggle">
+
+                        <input
+                            id="historyToggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span class="toggle-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="closeSettingsAction"
+                type="button"
+                class="settings-primary-button"
+            >
+                Done
+            </button>
 
         </div>
 
     </div>
 
-
-    <button
-        id="closeSettingsAction"
-        class="modal-primary-button"
-        type="button"
-    >
-        Done
-    </button>
-
 </div>
 
-</div><!-- =========================================
+
+<!-- =========================================================
      PROFILE MENU
-========================================= --><div
+========================================================= -->
+
+<div
     id="profileMenu"
     class="profile-menu"
-><button
-    id="profileBtn"
-    type="button"
+    hidden
 >
-    👤 My Profile
-</button>
+
+    <button
+        id="profileBtn"
+        type="button"
+    >
+        <i class="fa-solid fa-user"></i>
+        My Profile
+    </button>
 
 
-<button
-    id="accountBtn"
-    type="button"
+    <button
+        id="accountBtn"
+        type="button"
+    >
+        <i class="fa-solid fa-gear"></i>
+        Account Settings
+    </button>
+
+
+    <button
+        id="signOutBtn"
+        type="button"
+    >
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Sign Out
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST NOTIFICATIONS
+========================================================= -->
+
+<div
+    id="aiToastContainer"
+    class="ai-toast-container"
+    aria-live="polite"
+    aria-atomic="true"
+></div>
+
+
+<!-- =========================================================
+     AI MESSAGE TEMPLATE
+========================================================= -->
+
+<template
+    id="aiMessageTemplate"
 >
-    ⚙️ Account Settings
-</button>
+
+    <article
+        class="message ai-message"
+    >
+
+        <div class="message-avatar">
+
+            <i class="fa-solid fa-robot"></i>
+
+        </div>
 
 
-<button
-    id="signOutBtn"
-    type="button"
+        <div class="message-body">
+
+            <div class="message-meta">
+
+                <strong class="message-author">
+                    Saeed AI
+                </strong>
+
+                <span class="message-time">
+                    Now
+                </span>
+
+            </div>
+
+
+            <div class="ai-message-content">
+
+                <div class="message-text"></div>
+
+            </div>
+
+
+            <div class="message-actions">
+
+                <button
+                    type="button"
+                    class="message-action copy-message-btn"
+                    title="Copy response"
+                >
+                    <i class="fa-regular fa-copy"></i>
+                    Copy
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-action regenerate-btn"
+                    title="Regenerate response"
+                >
+                    <i class="fa-solid fa-rotate"></i>
+                    Regenerate
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-action like-btn"
+                    title="Like"
+                >
+                    <i class="fa-regular fa-thumbs-up"></i>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="message-action dislike-btn"
+                    title="Dislike"
+                >
+                    <i class="fa-regular fa-thumbs-down"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </article>
+
+</template>
+
+
+<!-- =========================================================
+     USER MESSAGE TEMPLATE
+========================================================= -->
+
+<template
+    id="userMessageTemplate"
 >
-    🚪 Sign Out
-</button>
 
-</div><!-- =========================================
-     NOTIFICATION
-========================================= --><div
-    id="aiNotification"
-    class="ai-notification"
-><span id="notificationIcon">
-    ✓
-</span>
+    <article
+        class="message user-message"
+    >
+
+        <div class="message-body">
+
+            <div class="message-meta">
+
+                <strong class="message-author">
+                    You
+                </strong>
+
+                <span class="message-time">
+                    Now
+                </span>
+
+            </div>
 
 
-<span id="notificationText">
-    Done
-</span>
+            <div class="user-message-content">
 
-</div><!-- =========================================
-     AI JAVASCRIPT
-========================================= --><script src="ai.js"></script></body>
-</html>
-```
+                <div class="message-text"></div>
+
+            </div>
+
+
+            <div
+                class="message-attachment"
+                hidden
+            >
+
+                <img
+                    class="message-attachment-image"
+                    alt="Attachment"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="message-avatar user-avatar">
+
+            <span class="user-avatar-letter">
+                U
+            </span>
+
+        </div>
+
+    </article>
+
+</template>
+
+
+<!-- =========================================================
+     TYPING TEMPLATE
+========================================================= -->
+
+<template
+    id="typingTemplate"
+>
+
+    <div
+        class="typing-indicator"
+    >
+
+        <div class="message-avatar">
+
+            <i class="fa-solid fa-robot"></i>
+
+        </div>
+
+
+        <div class="typing-bubble">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+</template>
+
+
+<!-- =========================================================
+     HISTORY ITEM TEMPLATE
+========================================================= -->
+
+<template
+    id="historyItemTemplate"
+>
+
+    <button
+        type="button"
+        class="history-item"
+    >
+
+        <span class="history-item-icon">
+
+            <i class="fa-regular fa-message"></i>
+
+        </span>
+
+
+        <span class="history-item-content">
+
+            <strong class="history-item-title">
+                New Conversation
+            </strong>
+
+            <small class="history-item-date">
+                Just now
+            </small>
+
+        </span>
+
+    </button>
+
+</template>
+
+
+<!-- =========================================================
+     ATTACHMENT ITEM TEMPLATE
+========================================================= -->
+
+<template
+    id="attachmentItemTemplate"
+>
+
+    <div
+        class="attachment-item"
+    >
+
+        <img
+            class="attachment-image"
+            alt="Attachment preview"
+        >
+
+
+        <div
+            class="attachment-file"
+            hidden
+        >
+
+            <i class="fa-solid fa-file attachment-file-icon"></i>
+
+            <span class="attachment-file-name">
+                file
+            </span>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="remove-attachment"
+            title="Remove attachment"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+</template>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="ai.js"
+    defer
+></script>
+
+
+</body>
+    </html>
