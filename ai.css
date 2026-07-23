@@ -1068,3 +1068,1791 @@ background:
 AI.CSS V4.0 COMPLETE
 PART 1 END
 ========================================================= */
+/* =========================================================
+SAEED MEDIA HUB — SAEED AI ASSISTANT
+AI.CSS V4.0 COMPLETE
+PART 2 — WELCOME + CHAT + MESSAGES + CLOCK + COMPOSER
+========================================================= */
+
+/* =========================================================
+18. CHAT AREA
+========================================================= */
+
+.chat-area {
+
+position:
+    relative;
+
+flex:
+    1;
+
+min-height:
+    0;
+
+overflow-y:
+    auto;
+
+overflow-x:
+    hidden;
+
+padding:
+    30px 24px 190px;
+
+scroll-behavior:
+    smooth;
+
+}
+
+/* =========================================================
+19. CHAT CONTENT WIDTH
+========================================================= */
+
+.chat-content {
+
+width:
+    100%;
+
+max-width:
+    850px;
+
+margin:
+    0 auto;
+
+}
+
+/* =========================================================
+20. WELCOME SCREEN
+========================================================= */
+
+.welcome-screen {
+
+min-height:
+    calc(
+        100vh -
+        var(--ai-topbar-height) -
+        150px
+    );
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+padding:
+    35px 15px;
+
+text-align:
+    center;
+
+}
+
+.welcome-logo {
+
+width:
+    76px;
+
+height:
+    76px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+margin-bottom:
+    20px;
+
+color:
+    #001b0d;
+
+border-radius:
+    24px;
+
+background:
+    linear-gradient(
+        135deg,
+        var(--ai-primary),
+        var(--ai-accent)
+    );
+
+box-shadow:
+    0 18px 55px
+    rgba(0,230,118,0.15);
+
+font-size:
+    34px;
+
+animation:
+    welcomeFloat 3s ease-in-out infinite;
+
+}
+
+@keyframes welcomeFloat {
+
+0%,
+100% {
+
+    transform:
+        translateY(0);
+
+}
+
+50% {
+
+    transform:
+        translateY(-6px);
+
+}
+
+}
+
+.welcome-screen h1 {
+
+max-width:
+    700px;
+
+margin-bottom:
+    10px;
+
+font-size:
+    clamp(
+        25px,
+        4vw,
+        38px
+    );
+
+line-height:
+    1.15;
+
+font-weight:
+    850;
+
+letter-spacing:
+    -1px;
+
+}
+
+.welcome-screen h1 span {
+
+background:
+    linear-gradient(
+        90deg,
+        var(--ai-primary),
+        var(--ai-accent)
+    );
+
+-webkit-background-clip:
+    text;
+
+background-clip:
+    text;
+
+color:
+    transparent;
+
+}
+
+.welcome-screen p {
+
+max-width:
+    580px;
+
+color:
+    var(--ai-text-secondary);
+
+font-size:
+    12px;
+
+line-height:
+    1.7;
+
+}
+
+/* =========================================================
+21. WELCOME FEATURES
+========================================================= */
+
+.welcome-features {
+
+display:
+    flex;
+
+flex-wrap:
+    wrap;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+gap:
+    7px;
+
+margin-top:
+    20px;
+
+}
+
+.welcome-feature {
+
+display:
+    inline-flex;
+
+align-items:
+    center;
+
+gap:
+    5px;
+
+padding:
+    7px 10px;
+
+color:
+    var(--ai-text-secondary);
+
+border:
+    1px solid
+    var(--ai-border);
+
+border-radius:
+    20px;
+
+background:
+    var(--ai-surface);
+
+font-size:
+    9px;
+
+}
+
+/* =========================================================
+22. SUGGESTED PROMPTS
+========================================================= */
+
+.suggested-prompts {
+
+width:
+    100%;
+
+max-width:
+    700px;
+
+display:
+    grid;
+
+grid-template-columns:
+    repeat(
+        2,
+        minmax(0, 1fr)
+    );
+
+gap:
+    9px;
+
+margin-top:
+    25px;
+
+}
+
+.suggested-prompt {
+
+min-height:
+    62px;
+
+display:
+    flex;
+
+align-items:
+    flex-start;
+
+gap:
+    10px;
+
+padding:
+    12px;
+
+color:
+    var(--ai-text-secondary);
+
+border:
+    1px solid
+    var(--ai-border);
+
+border-radius:
+    13px;
+
+background:
+    var(--ai-surface);
+
+text-align:
+    left;
+
+transition:
+    border-color var(--ai-transition),
+    background var(--ai-transition),
+    transform var(--ai-transition);
+
+}
+
+.suggested-prompt:hover {
+
+color:
+    var(--ai-text);
+
+border-color:
+    rgba(0,230,118,0.22);
+
+background:
+    var(--ai-primary-soft);
+
+transform:
+    translateY(-2px);
+
+}
+
+.suggested-prompt-icon {
+
+width:
+    30px;
+
+height:
+    30px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+flex:
+    0 0 auto;
+
+color:
+    var(--ai-primary);
+
+border-radius:
+    8px;
+
+background:
+    var(--ai-primary-soft);
+
+font-size:
+    14px;
+
+}
+
+.suggested-prompt-content {
+
+min-width:
+    0;
+
+}
+
+.suggested-prompt-content strong {
+
+display:
+    block;
+
+margin-bottom:
+    3px;
+
+color:
+    var(--ai-text);
+
+font-size:
+    10px;
+
+}
+
+.suggested-prompt-content span {
+
+display:
+    block;
+
+color:
+    var(--ai-text-muted);
+
+font-size:
+    9px;
+
+line-height:
+    1.4;
+
+}
+
+/* =========================================================
+23. MESSAGES CONTAINER
+========================================================= */
+
+.messages-container {
+
+width:
+    100%;
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+gap:
+    22px;
+
+}
+
+.message {
+
+width:
+    100%;
+
+display:
+    flex;
+
+gap:
+    11px;
+
+animation:
+    messageIn 0.3s ease;
+
+}
+
+@keyframes messageIn {
+
+from {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(8px);
+
+}
+
+to {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+
+}
+
+}
+
+/* =========================================================
+24. AI MESSAGE
+========================================================= */
+
+.message.ai-message {
+
+align-items:
+    flex-start;
+
+}
+
+.message-avatar {
+
+width:
+    34px;
+
+height:
+    34px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+flex:
+    0 0 auto;
+
+color:
+    #001b0d;
+
+border-radius:
+    10px;
+
+background:
+    linear-gradient(
+        135deg,
+        var(--ai-primary),
+        var(--ai-accent)
+    );
+
+font-size:
+    15px;
+
+box-shadow:
+    0 7px 20px
+    rgba(0,230,118,0.12);
+
+}
+
+.message-body {
+
+min-width:
+    0;
+
+max-width:
+    min(
+    100%,
+    760px
+    );
+
+}
+
+.message-meta {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    7px;
+
+margin-bottom:
+    5px;
+
+}
+
+.message-author {
+
+color:
+    var(--ai-text);
+
+font-size:
+    10px;
+
+font-weight:
+    750;
+
+}
+
+.message-time {
+
+color:
+    var(--ai-text-muted);
+
+font-size:
+    8px;
+
+}
+
+/* =========================================================
+25. AI MESSAGE BUBBLE
+========================================================= */
+
+.ai-message-content {
+
+padding:
+    13px 15px;
+
+color:
+    var(--ai-text-secondary);
+
+border:
+    1px solid
+    var(--ai-border);
+
+border-radius:
+    5px 16px 16px 16px;
+
+background:
+    var(--ai-surface);
+
+font-size:
+    12px;
+
+line-height:
+    1.75;
+
+}
+
+.ai-message-content p {
+
+margin-bottom:
+    9px;
+
+}
+
+.ai-message-content p:last-child {
+
+margin-bottom:
+    0;
+
+}
+
+.ai-message-content strong {
+
+color:
+    var(--ai-text);
+
+}
+
+.ai-message-content a {
+
+color:
+    var(--ai-primary);
+
+text-decoration:
+    underline;
+
+}
+
+/* =========================================================
+26. USER MESSAGE
+========================================================= */
+
+.message.user-message {
+
+justify-content:
+    flex-end;
+
+}
+
+.user-message .message-body {
+
+max-width:
+    min(
+    78%,
+    650px
+    );
+
+}
+
+.user-message .message-meta {
+
+justify-content:
+    flex-end;
+
+}
+
+.user-message .message-author {
+
+color:
+    var(--ai-primary);
+
+}
+
+.user-message-content {
+
+padding:
+    12px 15px;
+
+color:
+    #001b0d;
+
+border-radius:
+    16px 5px 16px 16px;
+
+background:
+    var(--ai-primary);
+
+font-size:
+    12px;
+
+line-height:
+    1.65;
+
+box-shadow:
+    0 8px 25px
+    rgba(0,230,118,0.1);
+
+}
+
+/* =========================================================
+27. USER ATTACHMENT
+========================================================= */
+
+.message-attachment {
+
+max-width:
+    280px;
+
+margin-top:
+    8px;
+
+overflow:
+    hidden;
+
+border:
+    1px solid
+    var(--ai-border);
+
+border-radius:
+    12px;
+
+}
+
+.message-attachment img {
+
+width:
+    100%;
+
+max-height:
+    260px;
+
+object-fit:
+    cover;
+
+}
+
+/* =========================================================
+28. AI MARKDOWN ELEMENTS
+========================================================= */
+
+.ai-message-content h1,
+.ai-message-content h2,
+.ai-message-content h3 {
+
+margin:
+    15px 0 8px;
+
+color:
+    var(--ai-text);
+
+}
+
+.ai-message-content h1 {
+
+font-size:
+    20px;
+
+}
+
+.ai-message-content h2 {
+
+font-size:
+    17px;
+
+}
+
+.ai-message-content h3 {
+
+font-size:
+    14px;
+
+}
+
+.ai-message-content ul,
+.ai-message-content ol {
+
+margin:
+    8px 0 10px 20px;
+
+}
+
+.ai-message-content li {
+
+margin-bottom:
+    5px;
+
+}
+
+.ai-message-content blockquote {
+
+margin:
+    10px 0;
+
+padding:
+    9px 12px;
+
+color:
+    var(--ai-text-secondary);
+
+border-left:
+    3px solid
+    var(--ai-primary);
+
+background:
+    var(--ai-primary-soft);
+
+}
+
+/* =========================================================
+29. CODE BLOCK
+========================================================= */
+
+.ai-code-block {
+
+position:
+    relative;
+
+margin:
+    12px 0;
+
+overflow:
+    hidden;
+
+border:
+    1px solid
+    var(--ai-border);
+
+border-radius:
+    11px;
+
+background:
+    #030712;
+
+}
+
+.ai-code-header {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    space-between;
+
+padding:
+    7px 10px;
+
+color:
+    var(--ai-text-muted);
+
+border-bottom:
+    1px solid
+    var(--ai-border);
+
+font-size:
+    9px;
+
+}
+
+.ai-copy-code {
+
+padding:
+    4px 7px;
+
+color:
+    var(--ai-text-secondary);
+
+border-radius:
+    5px;
+
+background:
+    rgba(255,255,255,0.06);
+
+font-size:
+    8px;
+
+}
+
+.ai-code-block pre {
+
+max-width:
+    100%;
+
+padding:
+    13px;
+
+overflow-x:
+    auto;
+
+color:
+    #d9e3f0;
+
+font-family:
+    "JetBrains Mono",
+    "Courier New",
+    monospace;
+
+font-size:
+    10px;
+
+line-height:
+    1.6;
+
+}
+
+/* =========================================================
+30. TYPING INDICATOR
+========================================================= */
+
+.typing-indicator {
+
+display:
+    none;
+
+align-items:
+    flex-start;
+
+gap:
+    11px;
+
+margin-top:
+    10px;
+
+}
+
+.typing-indicator.active {
+
+display:
+    flex;
+
+}
+
+.typing-bubble {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    4px;
+
+padding:
+    12px 14px;
+
+border:
+    1px solid
+    var(--ai-border);
+
+border-radius:
+    5px 14px 14px 14px;
+
+background:
+    var(--ai-surface);
+
+}
+
+.typing-bubble span {
+
+width:
+    6px;
+
+height:
+    6px;
+
+border-radius:
+    50%;
+
+background:
+    var(--ai-text-muted);
+
+animation:
+    typingBounce 1.2s infinite;
+
+}
+
+.typing-bubble span:nth-child(2) {
+
+animation-delay:
+    0.15s;
+
+}
+
+.typing-bubble span:nth-child(3) {
+
+animation-delay:
+    0.3s;
+
+}
+
+@keyframes typingBounce {
+
+0%,
+60%,
+100% {
+
+    opacity:
+        0.35;
+
+    transform:
+        translateY(0);
+
+}
+
+30% {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(-4px);
+
+}
+
+}
+
+/* =========================================================
+31. LIVE CLOCK
+========================================================= */
+
+.ai-live-clock {
+
+display:
+    flex;
+
+flex-direction:
+    column;
+
+align-items:
+    flex-end;
+
+justify-content:
+    center;
+
+min-width:
+    85px;
+
+}
+
+.ai-clock-time {
+
+color:
+    var(--ai-text);
+
+font-size:
+    12px;
+
+font-weight:
+    750;
+
+font-variant-numeric:
+    tabular-nums;
+
+}
+
+.ai-clock-date {
+
+margin-top:
+    2px;
+
+color:
+    var(--ai-text-muted);
+
+font-size:
+    8px;
+
+}
+
+.ai-clock-status {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    4px;
+
+margin-top:
+    3px;
+
+color:
+    var(--ai-primary);
+
+font-size:
+    7px;
+
+}
+
+.ai-clock-status::before {
+
+content:
+    "";
+
+width:
+    5px;
+
+height:
+    5px;
+
+border-radius:
+    50%;
+
+background:
+    var(--ai-primary);
+
+}
+
+/* =========================================================
+32. CHAT COMPOSER
+========================================================= */
+
+.chat-composer-wrapper {
+
+position:
+    absolute;
+
+left:
+    0;
+
+right:
+    0;
+
+bottom:
+    0;
+
+padding:
+    12px 24px 20px;
+
+background:
+    linear-gradient(
+        to top,
+        var(--ai-bg) 65%,
+        transparent
+    );
+
+z-index:
+    900;
+
+}
+
+.chat-composer {
+
+width:
+    100%;
+
+max-width:
+    850px;
+
+margin:
+    0 auto;
+
+border:
+    1px solid
+    var(--ai-border-light);
+
+border-radius:
+    18px;
+
+background:
+    rgba(8,19,41,0.95);
+
+box-shadow:
+    0 15px 50px
+    rgba(0,0,0,0.3);
+
+backdrop-filter:
+    blur(20px);
+
+}
+
+body.light-mode .chat-composer {
+
+background:
+    rgba(255,255,255,0.96);
+
+}
+
+.composer-input-row {
+
+display:
+    flex;
+
+align-items:
+    flex-end;
+
+gap:
+    6px;
+
+padding:
+    7px;
+
+}
+
+.composer-input {
+
+flex:
+    1;
+
+min-width:
+    0;
+
+min-height:
+    42px;
+
+max-height:
+    140px;
+
+padding:
+    10px 7px;
+
+color:
+    var(--ai-text);
+
+border:
+    0;
+
+outline:
+    0;
+
+resize:
+    none;
+
+overflow-y:
+    auto;
+
+background:
+    transparent;
+
+font-size:
+    12px;
+
+line-height:
+    1.55;
+
+}
+
+.composer-input::placeholder {
+
+color:
+    var(--ai-text-muted);
+
+}
+
+/* =========================================================
+33. COMPOSER BUTTONS
+========================================================= */
+
+.composer-button {
+
+width:
+    40px;
+
+height:
+    40px;
+
+display:
+    inline-flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+flex:
+    0 0 auto;
+
+color:
+    var(--ai-text-secondary);
+
+border-radius:
+    10px;
+
+background:
+    transparent;
+
+font-size:
+    17px;
+
+transition:
+    background var(--ai-transition),
+    color var(--ai-transition),
+    transform var(--ai-transition);
+
+}
+
+.composer-button:hover {
+
+color:
+    var(--ai-text);
+
+background:
+    var(--ai-surface-light);
+
+}
+
+.composer-button:active {
+
+transform:
+    scale(0.92);
+
+}
+
+.attach-button {
+
+font-size:
+    19px;
+
+}
+
+.voice-button {
+
+color:
+    var(--ai-accent);
+
+}
+
+.send-button {
+
+color:
+    #001b0d;
+
+background:
+    var(--ai-primary);
+
+}
+
+.send-button:hover {
+
+color:
+    #001b0d;
+
+background:
+    #26f18a;
+
+}
+
+/* =========================================================
+34. ATTACHMENT PREVIEW
+========================================================= */
+
+.attachment-preview {
+
+display:
+    none;
+
+flex-wrap:
+    wrap;
+
+gap:
+    7px;
+
+padding:
+    8px 10px 2px;
+
+}
+
+.attachment-preview.active {
+
+display:
+    flex;
+
+}
+
+.attachment-item {
+
+position:
+    relative;
+
+width:
+    62px;
+
+height:
+    62px;
+
+overflow:
+    hidden;
+
+border:
+    1px solid
+    var(--ai-border-light);
+
+border-radius:
+    9px;
+
+background:
+    var(--ai-bg-tertiary);
+
+}
+
+.attachment-item img {
+
+width:
+    100%;
+
+height:
+    100%;
+
+object-fit:
+    cover;
+
+}
+
+.remove-attachment {
+
+position:
+    absolute;
+
+top:
+    3px;
+
+right:
+    3px;
+
+width:
+    18px;
+
+height:
+    18px;
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    center;
+
+color:
+    #fff;
+
+border-radius:
+    50%;
+
+background:
+    rgba(0,0,0,0.75);
+
+font-size:
+    9px;
+
+}
+
+/* =========================================================
+35. COMPOSER FOOTER
+========================================================= */
+
+.composer-footer {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+justify-content:
+    space-between;
+
+padding:
+    3px 10px 7px;
+
+}
+
+.composer-status {
+
+color:
+    var(--ai-text-muted);
+
+font-size:
+    8px;
+
+}
+
+.composer-tools {
+
+display:
+    flex;
+
+align-items:
+    center;
+
+gap:
+    5px;
+
+}
+
+.composer-tool {
+
+padding:
+    4px 7px;
+
+color:
+    var(--ai-text-muted);
+
+border-radius:
+    6px;
+
+background:
+    transparent;
+
+font-size:
+    8px;
+
+}
+
+.composer-tool:hover {
+
+color:
+    var(--ai-text);
+
+background:
+    var(--ai-surface-light);
+
+}
+
+/* =========================================================
+36. HIDDEN FILE INPUTS
+========================================================= */
+
+#fileInput,
+#imageInput {
+
+display:
+    none;
+
+}
+
+/* =========================================================
+37. MOBILE RESPONSIVE — CHAT
+========================================================= */
+
+@media (max-width: 767px) {
+
+.chat-area {
+
+    padding:
+        20px 12px 170px;
+
+}
+
+
+.welcome-screen {
+
+    min-height:
+        calc(
+            100vh -
+            var(--ai-topbar-height) -
+            100px
+        );
+
+    padding:
+        25px 8px;
+
+}
+
+
+.welcome-logo {
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    border-radius:
+        19px;
+
+    font-size:
+        28px;
+
+}
+
+
+.welcome-screen h1 {
+
+    font-size:
+        25px;
+
+}
+
+
+.welcome-screen p {
+
+    font-size:
+        10px;
+
+}
+
+
+.suggested-prompts {
+
+    grid-template-columns:
+        1fr;
+
+    gap:
+        7px;
+
+    margin-top:
+        18px;
+
+}
+
+
+.suggested-prompt {
+
+    min-height:
+        55px;
+
+    padding:
+        10px;
+
+}
+
+
+.message {
+
+    gap:
+        7px;
+
+}
+
+
+.message-avatar {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    border-radius:
+        8px;
+
+    font-size:
+        12px;
+
+}
+
+
+.message-body {
+
+    max-width:
+        calc(
+            100% - 40px
+        );
+
+}
+
+
+.user-message .message-body {
+
+    max-width:
+        84%;
+
+}
+
+
+.ai-message-content,
+.user-message-content {
+
+    padding:
+        10px 12px;
+
+    font-size:
+        11px;
+
+}
+
+
+.chat-composer-wrapper {
+
+    padding:
+        8px 8px
+        calc(
+            8px +
+            env(
+                safe-area-inset-bottom
+            )
+        );
+
+}
+
+
+.composer-input {
+
+    font-size:
+        11px;
+
+}
+
+
+.composer-button {
+
+    width:
+        37px;
+
+    height:
+        37px;
+
+}
+
+
+.composer-footer {
+
+    display:
+        none;
+
+}
+
+
+.ai-live-clock {
+
+    display:
+        none;
+
+}
+
+}
+
+/* =========================================================
+38. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+.welcome-screen h1 {
+
+    font-size:
+        22px;
+
+}
+
+
+.welcome-screen p {
+
+    font-size:
+        9px;
+
+}
+
+
+.composer-button {
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    font-size:
+        15px;
+
+}
+
+
+.chat-composer {
+
+    border-radius:
+        14px;
+
+}
+
+}
+
+/* =========================================================
+AI.CSS V4.0 COMPLETE
+PART 2 END
+========================================================= */
