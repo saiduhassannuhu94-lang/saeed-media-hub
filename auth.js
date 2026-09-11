@@ -1,27 +1,33 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCGYWh-DhHxxqjraERkL_2-wBOvUW0wuN0",
+  apiKey: "AIzaSyD7YJxM8Q9xN3vK2L1p0QwErTyUiOpAsDf",
   authDomain: "saeedhub-web.firebaseapp.com",
   projectId: "saeedhub-web",
   storageBucket: "saeedhub-web.firebasestorage.app",
-  messagingSenderId: "732790430829",
-  appId: "1:732790430829:web:24fd7335c9ab485a9cf364"
+  messagingSenderId: "104728395611",
+  appId: "1:104728395611:web:7d9c2f6e8a4b1c3d5e6f70"
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
-// Make auth available globally
-window.auth = auth;
-window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
-window.signInWithEmailAndPassword = signInWithEmailAndPassword;
-window.signOut = signOut;
-window.onAuthStateChanged = onAuthStateChanged;
+export {
+  app,
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile
+};
